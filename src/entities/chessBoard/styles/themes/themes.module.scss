@@ -1,0 +1,31 @@
+@import "../variables/variables.module";
+
+.style-usual {
+	.evenSquare {
+		background: bisque;
+	}
+	
+	.oddSquare {
+		background: black;
+	}
+}
+
+.style-second {
+	.evenSquare {
+		background: rgb(230 134 17);
+	}
+	
+	.oddSquare {
+		background: rgb(51 22 22);
+	}
+}
+
+.style-primary {
+	.evenSquare {
+		background: rgb(57 192 4);
+	}
+	
+	.oddSquare {
+		background: rgb(47 11 95);
+	}
+}

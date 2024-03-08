@@ -1,4 +1,4 @@
-import { ChessBoard } from '@/entities/chessBoard';
+import { GamePanel } from '@/widgets/gamePanel';
 import { memo } from 'react';
 // import {
 // 	BlackBishop,
@@ -11,7 +11,7 @@ import { memo } from 'react';
 export const GamePage = memo(() => {
 	return (
 		<div>
-			<ChessBoard />
+			<GamePanel />
 			{/* <div style={{ width: 400, height: 400 }}>
 				<BlackBishop width={60} height={60} viewBox='5 5 35 35' />
 				<BlackKing width={60} height={60} viewBox='5 5 35 35' />

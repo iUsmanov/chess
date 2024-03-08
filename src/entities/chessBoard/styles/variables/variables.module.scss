@@ -1,0 +1,20 @@
+:root {
+	// not works
+	// --board-size: calc(var(--square-size) * 8);
+}
+
+[data-size] {
+	--board-size: calc(var(--square-size) * 8);
+}
+
+[data-size="s"] {
+	--square-size: 64px;
+}
+
+[data-size="m"] {
+	--square-size: 80px;
+}
+
+[data-size="x"] {
+	--square-size: 100px;
+}

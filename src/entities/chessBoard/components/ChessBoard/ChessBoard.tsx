@@ -2,7 +2,10 @@ import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ChessSquare } from '../ChessSquare/ChessSquare';
 import cls from './ChessBoard.module.scss';
+import themesCls from '../../styles/themes/themes.module.scss';
 import { isEven } from '@/shared/lib/helpers/isEven/isEven';
+
+export type ChessBoardSize = 's' | 'm' | 'x';
 
 interface ChessBoardProps {
 	className?: string;
@@ -26,25 +29,15 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 			squares.push(
 				<ChessSquare
 					key={`${x} + ${y}`}
-					className={isEvenSquare ? cls.evenSquare : cls.oddSquare}
+					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
 				/>
 			);
 		}
 	}
 
-	return <section className={classNames(cls.chessBoard, {}, [className])}>{squares}</section>;
+	return (
+		<section className={classNames(cls.chessBoard, {}, [className, themesCls[`style-${'second'}`]])}>
+			{squares}
+		</section>
+	);
 });
-
-// if (isEven(x)) {
-// 	if (isEven(y)) {
-// 		isEvenSquare = true;
-// 	} else {
-// 		// false
-// 	}
-// } else {
-// 	if (isEven(y)) {
-// 		// false
-// 	} else {
-// 		isEvenSquare = true;
-// 	}
-// }
