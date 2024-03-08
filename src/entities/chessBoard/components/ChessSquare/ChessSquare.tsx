@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessSquare.module.scss';
 import { ChessFigure, ChessSide } from '../../model/types/chessBoard';
-import { viewBoxes } from '../../consts/chessBoard';
+import { getSvg } from '../../consts/chessBoard';
 
 interface ChessSquareBaseProps {
 	className?: string;
@@ -14,7 +14,6 @@ interface ChessSquareFreeProps extends ChessSquareBaseProps {
 
 interface ChessSquareBusyProps extends ChessSquareBaseProps {
 	isBusy: true;
-	Svg: React.FC<React.SVGProps<SVGSVGElement>>;
 	figureType: ChessFigure;
 	figureColor: ChessSide;
 }
@@ -29,10 +28,10 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 	}
 
 	if (isBusy) {
-		const { Svg, figureColor, figureType } = props;
+		const { figureColor, figureType } = props;
 		return (
 			<div className={classNames(cls.chessSquare, {}, [className])}>
-				{<Svg className={cls.svg} viewBox={viewBoxes[figureType]} />}
+				{getSvg(figureType, figureColor, cls)}
 			</div>
 		);
 	}
