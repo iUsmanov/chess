@@ -6,3 +6,4 @@ export interface Figure {
 	color: ChessColor;
 	figure: ChessFigure;
 }
+export type ChessLocations = Record<string, Figure>;

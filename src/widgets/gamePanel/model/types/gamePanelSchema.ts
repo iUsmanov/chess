@@ -1,5 +1,5 @@
-import { Figure } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/chessBoard';
 
 export interface GamePanelSchema {
-	locations: Record<string, Figure>;
+	locations: ChessLocations;
 }

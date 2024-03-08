@@ -3,6 +3,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
 import { ChessBoard } from '@/entities/chessBoard';
 import { ChessBoardSize } from '@/entities/chessBoard';
+import { useSelector } from 'react-redux';
+import { getChessLocations } from '../../model/selectors/getChessLocations/getChessLocations';
 
 interface GamePanelProps {
 	className?: string;
@@ -11,6 +13,7 @@ interface GamePanelProps {
 export const GamePanel = memo((props: GamePanelProps) => {
 	const { className } = props;
 	const [size, setSize] = useState<ChessBoardSize>('s');
+	const locations = useSelector(getChessLocations);
 
 	return (
 		<div
@@ -18,7 +21,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 			data-size={size}
 			data-figures-pack={`figures-${'classic'}`}
 		>
-			<ChessBoard />
+			<ChessBoard locations={locations} />
 		</div>
 	);
 });

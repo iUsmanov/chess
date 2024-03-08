@@ -4,18 +4,20 @@ import { ChessSquare } from '../ChessSquare/ChessSquare';
 import cls from './ChessBoard.module.scss';
 import themesCls from '../../styles/themes/themes.module.scss';
 import { isEven } from '@/shared/lib/helpers/isEven/isEven';
+import { ChessLocations } from '../../model/types/chessBoard';
 
 export type ChessBoardSize = 's' | 'm' | 'x';
 
 interface ChessBoardProps {
 	className?: string;
+	locations: ChessLocations;
 }
 
 const verticals = 'abcdefgh';
 const horizontals = '87654321';
 
 export const ChessBoard = memo((props: ChessBoardProps) => {
-	const { className } = props;
+	const { className, locations } = props;
 	const squares = [];
 
 	for (let y = 0; y < 8; y++) {
@@ -30,17 +32,30 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 				isEvenSquare = true;
 			}
 
-			squares.push(
-				<ChessSquare
-					key={id}
-					id={id}
-					coordinates={[x + 1, Math.abs(y - 8)]}
-					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
-					// isBusy
-					// figureType='knight'
-					// figureColor='black'
-				/>
-			);
+			const location = locations[id];
+
+			if (location) {
+				squares.push(
+					<ChessSquare
+						key={id}
+						id={id}
+						coordinates={[x + 1, Math.abs(y - 8)]}
+						className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
+						isBusy={true}
+						figureType={location.figure}
+						figureColor={location.color}
+					/>
+				);
+			} else {
+				squares.push(
+					<ChessSquare
+						key={id}
+						id={id}
+						coordinates={[x + 1, Math.abs(y - 8)]}
+						className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
+					/>
+				);
+			}
 		}
 	}
 
