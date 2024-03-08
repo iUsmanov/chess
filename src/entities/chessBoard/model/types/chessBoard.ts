@@ -1,4 +1,8 @@
 export interface ChessBoard {}
 
 export type ChessFigure = 'king' | 'knight' | 'rook' | 'pawn' | 'queen' | 'bishop';
-export type ChessSide = 'white' | 'black';
+export type ChessColor = 'white' | 'black';
+export interface Figure {
+	color: ChessColor;
+	figure: ChessFigure;
+}

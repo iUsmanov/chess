@@ -2,6 +2,7 @@
 import { AnyAction, CombinedState, Reducer, configureStore } from '@reduxjs/toolkit';
 import { ReducersObject, StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
+import { gamePanelReducer } from '@/widgets/gamePanel';
 
 /**
  * @param children - что мы хотим обернуть в Provider?
@@ -13,6 +14,7 @@ import { createReducerManager } from './reducerManager';
 export const createReduxStore = (initialState?: StateSchema, asyncReducers?: ReducersObject) => {
 	const rootReducer: ReducersObject = {
 		// [rtkApi.reducerPath]: rtkApi.reducer,
+		gamePanel: gamePanelReducer,
 		...asyncReducers,
 	};
 

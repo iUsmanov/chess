@@ -1,4 +1,5 @@
 // #store
+import { GamePanelSchema } from '@/widgets/gamePanel';
 import { createReduxStore } from './store';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
@@ -9,6 +10,7 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 export interface StateSchema {
 	// [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 	// asyncState
+	gamePanel: GamePanelSchema;
 }
 
 /**

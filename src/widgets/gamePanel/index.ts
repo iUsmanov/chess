@@ -1,2 +1,3 @@
 export { GamePanel } from './components/GamePanel/GamePanel';
-// export { GamePanelSchema } from './model/types/gamePanelSchema';
+export type { GamePanelSchema } from './model/types/gamePanelSchema';
+export { gamePanelReducer } from './model/slices/gamePanelSlice';

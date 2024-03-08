@@ -1,4 +1,4 @@
-import { ChessFigure, ChessSide } from '../model/types/chessBoard';
+import { ChessFigure, ChessColor } from '../model/types/chessBoard';
 import {
 	BlackBishop,
 	BlackKing,
@@ -23,8 +23,12 @@ const viewBoxes: Record<ChessFigure, string> = {
 	rook: '5 6 35 35',
 };
 
-export const getSvg = (figureType: ChessFigure, figureSide: ChessSide, cls: Record<string, string>) => {
-	switch (figureSide) {
+export const getSvg = (
+	figureType: ChessFigure,
+	figureColor: ChessColor,
+	cls: Record<string, string>
+) => {
+	switch (figureColor) {
 		case 'white': {
 			switch (figureType) {
 				case 'king':

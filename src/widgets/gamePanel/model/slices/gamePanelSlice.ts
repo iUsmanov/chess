@@ -1,17 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { GamePanelSchema } from '../types/gamePanelSchema';
-
-export const initialState: GamePanelSchema = {
-	
-};
+import { initialState } from '../../consts/gamePanel';
 
 export const gamePanelSlice = createSlice({
 	name: 'gamePanel',
 	initialState,
 	reducers: {
-		template: (state, action: PayloadAction<string>) => {
-        
-		},
+		template: (state, action: PayloadAction<string>) => {},
 	},
 	// extraReducers(builder) {
 	// 	builder

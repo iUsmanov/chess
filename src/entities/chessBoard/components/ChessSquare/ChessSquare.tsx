@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessSquare.module.scss';
-import { ChessFigure, ChessSide } from '../../model/types/chessBoard';
+import { ChessFigure, ChessColor } from '../../model/types/chessBoard';
 import { getSvg } from '../../consts/chessBoard';
 
 interface ChessSquareBaseProps {
@@ -18,7 +18,7 @@ interface ChessSquareFreeProps extends ChessSquareBaseProps {
 interface ChessSquareBusyProps extends ChessSquareBaseProps {
 	isBusy: true;
 	figureType: ChessFigure;
-	figureColor: ChessSide;
+	figureColor: ChessColor;
 }
 
 type ChessBoardProps = ChessSquareFreeProps | ChessSquareBusyProps;
