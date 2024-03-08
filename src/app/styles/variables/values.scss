@@ -1,0 +1,4 @@
+:root {
+	--square-size: 64px;
+	--board-size: calc(var(--square-size) * 8);
+}

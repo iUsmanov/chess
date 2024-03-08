@@ -1,0 +1,16 @@
+.chessBoard {
+	// width: 64px * 8;
+	// height: 64px * 8;
+	width: var(--board-size);
+	height: var(--board-size);
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.evenSquare {
+	background: bisque;
+}
+
+.oddSquare {
+	background: black;
+}
