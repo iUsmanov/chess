@@ -1,0 +1,57 @@
+.mainLayout {
+	position: relative;
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr minmax(auto, 1100px) 250px 1fr;
+	grid-template-rows: 1fr 100px;
+
+	// background: green;
+
+	@media (width <= 762px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: minmax(auto, 200px) 1fr 200px;
+	}
+}
+
+.products {
+	justify-self: center;
+	padding: 32px;
+	width: 100%;
+
+	// background: red;
+
+	@media (width > 762px) {
+		grid-column: 2 / 3;
+	}
+
+	@media (width <= 762px) {
+		grid-row: 2 / 3;
+	}
+}
+
+.filters {
+	// background: blue;
+
+	@media (width > 762px) {
+		position: fixed;
+		top: 30px;
+		grid-column: 3 / 4;
+	}
+
+	@media (width <= 762px) {
+		grid-row: 1 / 2;
+	}
+}
+
+.pagination {
+	// background-color: yellow;
+
+	@media (width > 762px) {
+		grid-column: 2 / 3;
+		grid-row: 2 / 3;
+	}
+
+	@media (width <= 762px) {
+		// grid-row: 1 / 2;
+	}
+}
