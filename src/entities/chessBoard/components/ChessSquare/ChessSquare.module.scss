@@ -10,3 +10,14 @@
 	width: var(--figure-svg-size);
 	height: var(--figure-svg-size);
 }
+
+.label {
+	background-color: green;
+	width: 20%;
+	height: 20%;
+	border-radius: 50%;
+}
+
+.available {
+	border: 2px solid green;
+}

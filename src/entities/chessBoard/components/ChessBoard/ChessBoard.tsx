@@ -11,12 +11,16 @@ interface ChessBoardProps {
 	className?: string;
 }
 
+const verticals = 'abcdefgh';
+const horizontals = '87654321';
+
 export const ChessBoard = memo((props: ChessBoardProps) => {
 	const { className } = props;
 	const squares = [];
 
 	for (let x = 0; x < 8; x++) {
 		for (let y = 0; y < 8; y++) {
+			const id = verticals[y] + horizontals[x];
 			let isEvenSquare: boolean = false;
 
 			if (isEven(x) && isEven(y)) {
@@ -28,10 +32,12 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 
 			squares.push(
 				<ChessSquare
-					key={`${x} + ${y}`}
+					key={id}
+					id={id}
 					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
-					figureType='knight'
+					available
 					isBusy
+					figureType='knight'
 					figureColor='black'
 				/>
 			);

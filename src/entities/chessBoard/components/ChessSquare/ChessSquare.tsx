@@ -6,6 +6,8 @@ import { getSvg } from '../../consts/chessBoard';
 
 interface ChessSquareBaseProps {
 	className?: string;
+	id: string;
+	available?: boolean;
 }
 
 interface ChessSquareFreeProps extends ChessSquareBaseProps {
@@ -21,16 +23,24 @@ interface ChessSquareBusyProps extends ChessSquareBaseProps {
 type ChessBoardProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
 export const ChessSquare = memo((props: ChessBoardProps) => {
-	const { className, isBusy } = props;
+	const { className, isBusy, id } = props;
 
 	if (!isBusy) {
-		return <div className={classNames(cls.chessSquare, {}, [className])}></div>;
+		const { available } = props;
+		return (
+			<div className={classNames(cls.chessSquare, {}, [className])} data-square-id={id}>
+				{available && <div className={cls.label}></div>}
+			</div>
+		);
 	}
 
 	if (isBusy) {
-		const { figureColor, figureType } = props;
+		const { figureColor, figureType, available } = props;
 		return (
-			<div className={classNames(cls.chessSquare, {}, [className])}>
+			<div
+				className={classNames(cls.chessSquare, { [cls.available]: available }, [className])}
+				data-square-id={id}
+			>
 				{getSvg(figureType, figureColor, cls)}
 			</div>
 		);
