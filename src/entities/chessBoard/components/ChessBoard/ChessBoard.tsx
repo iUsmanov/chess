@@ -34,11 +34,11 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 				<ChessSquare
 					key={id}
 					id={id}
+					coordinates={[y + 1, Math.abs(x - 8)]}
 					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
-					available
-					isBusy
-					figureType='knight'
-					figureColor='black'
+					// isBusy
+					// figureType='knight'
+					// figureColor='black'
 				/>
 			);
 		}

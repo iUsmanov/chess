@@ -7,6 +7,7 @@ import { getSvg } from '../../consts/chessBoard';
 interface ChessSquareBaseProps {
 	className?: string;
 	id: string;
+	coordinates: [number, number];
 	available?: boolean;
 }
 
@@ -23,7 +24,7 @@ interface ChessSquareBusyProps extends ChessSquareBaseProps {
 type ChessBoardProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
 export const ChessSquare = memo((props: ChessBoardProps) => {
-	const { className, isBusy, id } = props;
+	const { className, isBusy, id, coordinates } = props;
 
 	if (!isBusy) {
 		const { available } = props;
