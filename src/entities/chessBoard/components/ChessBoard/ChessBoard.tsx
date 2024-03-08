@@ -33,6 +33,8 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
 					Svg={BlackBishop}
 					figureType='bishop'
+					isBusy
+					figureColor='white'
 				/>
 			);
 		}

@@ -1,7 +1,6 @@
 import { memo, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
-import themesCls from '../../styles/themes/themes.module.scss';
 import { ChessBoard } from '@/entities/chessBoard';
 import { ChessBoardSize } from '@/entities/chessBoard';
 
@@ -15,12 +14,9 @@ export const GamePanel = memo((props: GamePanelProps) => {
 
 	return (
 		<div
-			className={classNames(cls.gamePanel, {}, [
-				className,
-				cls[`size-${size}`],
-				themesCls[`figures-${'usual'}`],
-			])}
+			className={classNames(cls.gamePanel, {}, [className])}
 			data-size={size}
+			data-figures-pack={`figures-${'classic'}`}
 		>
 			<ChessBoard />
 		</div>
