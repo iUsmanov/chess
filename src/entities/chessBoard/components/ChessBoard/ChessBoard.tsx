@@ -18,15 +18,15 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 	const { className } = props;
 	const squares = [];
 
-	for (let x = 0; x < 8; x++) {
-		for (let y = 0; y < 8; y++) {
-			const id = verticals[y] + horizontals[x];
+	for (let y = 0; y < 8; y++) {
+		for (let x = 0; x < 8; x++) {
+			const id = verticals[x] + horizontals[y];
 			let isEvenSquare: boolean = false;
 
-			if (isEven(x) && isEven(y)) {
+			if (isEven(y) && isEven(x)) {
 				isEvenSquare = true;
 			}
-			if (!isEven(x) && !isEven(y)) {
+			if (!isEven(y) && !isEven(x)) {
 				isEvenSquare = true;
 			}
 
@@ -34,7 +34,7 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 				<ChessSquare
 					key={id}
 					id={id}
-					coordinates={[y + 1, Math.abs(x - 8)]}
+					coordinates={[x + 1, Math.abs(y - 8)]}
 					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
 					// isBusy
 					// figureType='knight'

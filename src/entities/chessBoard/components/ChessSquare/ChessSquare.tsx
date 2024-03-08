@@ -31,6 +31,9 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 		return (
 			<div className={classNames(cls.chessSquare, {}, [className])} data-square-id={id}>
 				{available && <div className={cls.label}></div>}
+				{/* {coordinates[0]} {coordinates[1]} */}
+				{/* <br /> */}
+				{/* {id} */}
 			</div>
 		);
 	}
