@@ -5,5 +5,5 @@ import { getChessLocations } from '../getChessLocations/getChessLocations';
 export const getChessAtLocation = createSelector(
 	getChessLocations,
 	(state: StateSchema, key: string) => key,
-	(locations, key) => locations[key] // udefined
+	(locations, key) => locations[key] || undefined
 );

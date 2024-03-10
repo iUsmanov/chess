@@ -23,9 +23,14 @@ interface ChessSquareBusyProps extends ChessSquareBaseProps {
 	figureColor: ChessColor;
 }
 
-type ChessBoardProps = ChessSquareFreeProps | ChessSquareBusyProps;
+export type ChessSquareProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
-export const ChessSquare = memo((props: ChessBoardProps) => {
+export type ChessSquareContainerProps = Omit<
+	ChessSquareBaseProps,
+	'available' | 'isSelected' | 'onSelectSquare'
+>;
+
+export const ChessSquare = memo((props: ChessSquareProps) => {
 	const { className, isBusy, id, coordinates, onSelectSquare, isSelected } = props;
 
 	if (!isBusy) {

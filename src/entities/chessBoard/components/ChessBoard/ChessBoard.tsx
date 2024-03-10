@@ -1,25 +1,22 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ChessSquare } from '../ChessSquare/ChessSquare';
 import cls from './ChessBoard.module.scss';
 import themesCls from '../../styles/themes/themes.module.scss';
 import { isEven } from '@/shared/lib/helpers/isEven/isEven';
-import { ChessLocations } from '../../model/types/chessBoard';
+import { ChessSquareContainerProps } from '../ChessSquare/ChessSquare';
 
 export type ChessBoardSize = 's' | 'm' | 'x';
 
 interface ChessBoardProps {
 	className?: string;
-	locations: ChessLocations;
-	onSelectSquare: (square: string) => void;
-	selectedSquare?: string;
+	ChessSquareContainer: React.MemoExoticComponent<(props: ChessSquareContainerProps) => JSX.Element>;
 }
 
 const verticals = 'abcdefgh';
 const horizontals = '87654321';
 
 export const ChessBoard = memo((props: ChessBoardProps) => {
-	const { className, locations, onSelectSquare, selectedSquare } = props;
+	const { className, ChessSquareContainer } = props;
 	const squares = [];
 
 	for (let y = 0; y < 8; y++) {
@@ -34,33 +31,14 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 				isEvenSquare = true;
 			}
 
-			const location = locations[id];
-
-			if (location) {
-				squares.push(
-					<ChessSquare
-						key={id}
-						id={id}
-						coordinates={[x + 1, Math.abs(y - 8)]}
-						className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
-						isBusy={true}
-						figureType={location.figure}
-						figureColor={location.color}
-						onSelectSquare={onSelectSquare}
-						isSelected={selectedSquare === id}
-					/>
-				);
-			} else {
-				squares.push(
-					<ChessSquare
-						key={id}
-						id={id}
-						coordinates={[x + 1, Math.abs(y - 8)]}
-						className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
-						onSelectSquare={onSelectSquare}
-					/>
-				);
-			}
+			squares.push(
+				<ChessSquareContainer
+					key={id}
+					id={id}
+					coordinates={[x + 1, Math.abs(y - 8)]}
+					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
+				/>
+			);
 		}
 	}
 
