@@ -31,7 +31,7 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 		const { available } = props;
 		return (
 			<div
-				className={classNames(cls.chessSquare, { [cls.selected]: false }, [className])}
+				className={classNames(cls.chessSquare, {}, [className])}
 				data-square-id={id}
 				onClick={() => onSelectSquare(id)}
 			>
@@ -47,7 +47,11 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 		const { figureColor, figureType, available } = props;
 		return (
 			<div
-				className={classNames(cls.chessSquare, { [cls.available]: available }, [className])}
+				className={classNames(
+					cls.chessSquare,
+					{ [cls.available]: available, [cls.selected]: false },
+					[className]
+				)}
 				data-square-id={id}
 				onClick={() => onSelectSquare(id)}
 			>
