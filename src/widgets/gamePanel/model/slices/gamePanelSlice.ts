@@ -6,6 +6,13 @@ export const gamePanelSlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		selectSquare: (state, action: PayloadAction<string>) => {
+			if (state.selectedSquare === action.payload) {
+				state.selectedSquare = undefined;
+			} else {
+				state.selectedSquare = action.payload;
+			}
+		},
 	},
 	// extraReducers(builder) {
 	// 	builder

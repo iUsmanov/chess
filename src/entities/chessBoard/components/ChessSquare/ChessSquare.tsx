@@ -9,6 +9,7 @@ interface ChessSquareBaseProps {
 	id: string;
 	coordinates: [number, number];
 	available?: boolean;
+	onSelectSquare: (square: string) => void;
 }
 
 interface ChessSquareFreeProps extends ChessSquareBaseProps {
@@ -24,12 +25,16 @@ interface ChessSquareBusyProps extends ChessSquareBaseProps {
 type ChessBoardProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
 export const ChessSquare = memo((props: ChessBoardProps) => {
-	const { className, isBusy, id, coordinates } = props;
+	const { className, isBusy, id, coordinates, onSelectSquare } = props;
 
 	if (!isBusy) {
 		const { available } = props;
 		return (
-			<div className={classNames(cls.chessSquare, {}, [className])} data-square-id={id}>
+			<div
+				className={classNames(cls.chessSquare, { [cls.selected]: false }, [className])}
+				data-square-id={id}
+				onClick={() => onSelectSquare(id)}
+			>
 				{available && <div className={cls.label}></div>}
 				{/* {coordinates[0]} {coordinates[1]} */}
 				{/* <br /> */}
@@ -44,6 +49,7 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 			<div
 				className={classNames(cls.chessSquare, { [cls.available]: available }, [className])}
 				data-square-id={id}
+				onClick={() => onSelectSquare(id)}
 			>
 				{getSvg(figureType, figureColor, cls)}
 			</div>
