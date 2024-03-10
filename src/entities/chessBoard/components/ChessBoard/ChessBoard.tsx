@@ -12,13 +12,14 @@ interface ChessBoardProps {
 	className?: string;
 	locations: ChessLocations;
 	onSelectSquare: (square: string) => void;
+	selectedSquare?: string;
 }
 
 const verticals = 'abcdefgh';
 const horizontals = '87654321';
 
 export const ChessBoard = memo((props: ChessBoardProps) => {
-	const { className, locations, onSelectSquare } = props;
+	const { className, locations, onSelectSquare, selectedSquare } = props;
 	const squares = [];
 
 	for (let y = 0; y < 8; y++) {
@@ -46,6 +47,7 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 						figureType={location.figure}
 						figureColor={location.color}
 						onSelectSquare={onSelectSquare}
+						isSelected={selectedSquare === id}
 					/>
 				);
 			} else {

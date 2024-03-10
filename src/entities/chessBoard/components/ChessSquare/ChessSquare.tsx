@@ -9,6 +9,7 @@ interface ChessSquareBaseProps {
 	id: string;
 	coordinates: [number, number];
 	available?: boolean;
+	isSelected?: boolean;
 	onSelectSquare: (square: string) => void;
 }
 
@@ -25,7 +26,7 @@ interface ChessSquareBusyProps extends ChessSquareBaseProps {
 type ChessBoardProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
 export const ChessSquare = memo((props: ChessBoardProps) => {
-	const { className, isBusy, id, coordinates, onSelectSquare } = props;
+	const { className, isBusy, id, coordinates, onSelectSquare, isSelected } = props;
 
 	if (!isBusy) {
 		const { available } = props;
@@ -49,7 +50,7 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 			<div
 				className={classNames(
 					cls.chessSquare,
-					{ [cls.available]: available, [cls.selected]: false },
+					{ [cls.available]: available, [cls.selected]: isSelected },
 					[className]
 				)}
 				data-square-id={id}

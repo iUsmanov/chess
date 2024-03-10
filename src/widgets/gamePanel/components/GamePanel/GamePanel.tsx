@@ -6,6 +6,7 @@ import { ChessBoardSize } from '@/entities/chessBoard';
 import { useSelector } from 'react-redux';
 import { getChessLocations } from '../../model/selectors/getChessLocations/getChessLocations';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
+import { getSelectedSquare } from '../../model/selectors/getSelectedSquare/getSelectedSquare';
 
 interface GamePanelProps {
 	className?: string;
@@ -15,6 +16,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const { className } = props;
 	const [size, setSize] = useState<ChessBoardSize>('s');
 	const locations = useSelector(getChessLocations);
+	const selectedSquare = useSelector(getSelectedSquare);
 
 	const onSelectSquare = useCallback((square: string) => {
 		gamePanelActions.selectSquare(square);
@@ -26,7 +28,11 @@ export const GamePanel = memo((props: GamePanelProps) => {
 			data-size={size}
 			data-figures-pack={`figures-${'classic'}`}
 		>
-			<ChessBoard locations={locations} onSelectSquare={onSelectSquare} />
+			<ChessBoard
+				locations={locations}
+				onSelectSquare={onSelectSquare}
+				selectedSquare={selectedSquare}
+			/>
 		</div>
 	);
 });
