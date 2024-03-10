@@ -9,11 +9,10 @@ import { getSelectedSquare } from '../../model/selectors/getSelectedSquare/getSe
 import { chessPlayActions } from '../../model/slices/chessPlaySlice';
 
 export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
-	const { className, id, coordinates } = props;
+	const { className, coordinates } = props;
 	const selectedSquare = useSelector(getSelectedSquare);
 	const dispatch = useAppDispatch();
-
-	const figure = useSelector((state: StateSchema) => getChessAtLocation(state, id));
+	const figure = useSelector((state: StateSchema) => getChessAtLocation(state, coordinates));
 
 	const onSelectSquare = useCallback(
 		(square: string) => {
@@ -26,12 +25,11 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 		<ChessSquare
 			className={className}
 			coordinates={coordinates}
-			id={id}
 			isBusy={Boolean(figure)}
 			onSelectSquare={onSelectSquare}
 			figureColor={figure?.color}
 			figureType={figure?.figure}
-			isSelected={id === selectedSquare}
+			isSelected={coordinates === selectedSquare}
 			available={false}
 		/>
 	);

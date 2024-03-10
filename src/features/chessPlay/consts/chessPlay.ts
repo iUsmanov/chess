@@ -2,143 +2,143 @@ import { ChessPlaySchema } from '../model/types/chessPlaySchema';
 
 export const initialState: ChessPlaySchema = {
 	locations: {
-		a2: {
+		12: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		b2: {
+		22: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		c2: {
+		32: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		d2: {
+		42: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		e2: {
+		52: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		f2: {
+		62: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		g2: {
+		72: {
 			color: 'white',
 			figure: 'pawn',
 		},
-		h2: {
+		82: {
 			color: 'white',
 			figure: 'pawn',
 		},
 		// ======
-		a7: {
+		17: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		b7: {
+		27: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		c7: {
+		37: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		d7: {
+		47: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		e7: {
+		57: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		f7: {
+		67: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		g7: {
+		77: {
 			color: 'black',
 			figure: 'pawn',
 		},
-		h7: {
+		87: {
 			color: 'black',
 			figure: 'pawn',
 		},
 		//============
 		//============
 		//============
-		a1: {
+		11: {
 			color: 'white',
 			figure: 'rook',
 		},
-		h1: {
+		81: {
 			color: 'white',
 			figure: 'rook',
 		},
 		// ===
-		b1: {
+		21: {
 			color: 'white',
 			figure: 'knight',
 		},
-		g1: {
+		71: {
 			color: 'white',
 			figure: 'knight',
 		},
 		// ===
-		c1: {
+		31: {
 			color: 'white',
 			figure: 'bishop',
 		},
-		f1: {
+		61: {
 			color: 'white',
 			figure: 'bishop',
 		},
 		// ===
-		d1: {
+		41: {
 			color: 'white',
 			figure: 'queen',
 		},
-		e1: {
+		51: {
 			color: 'white',
 			figure: 'king',
 		},
 		// ==================================
 		// ==================================
-		a8: {
+		18: {
 			color: 'black',
 			figure: 'rook',
 		},
-		h8: {
+		88: {
 			color: 'black',
 			figure: 'rook',
 		},
 		// ===
-		b8: {
+		28: {
 			color: 'black',
 			figure: 'knight',
 		},
-		g8: {
+		78: {
 			color: 'black',
 			figure: 'knight',
 		},
 		// ===
-		c8: {
+		38: {
 			color: 'black',
 			figure: 'bishop',
 		},
-		f8: {
+		68: {
 			color: 'black',
 			figure: 'bishop',
 		},
 		// ===
-		d8: {
+		48: {
 			color: 'black',
 			figure: 'queen',
 		},
-		e8: {
+		58: {
 			color: 'black',
 			figure: 'king',
 		},
