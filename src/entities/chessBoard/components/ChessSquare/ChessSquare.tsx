@@ -34,7 +34,7 @@ export const ChessSquare = memo((props: ChessBoardProps) => {
 			<div
 				className={classNames(cls.chessSquare, {}, [className])}
 				data-square-id={id}
-				onClick={() => onSelectSquare(id)}
+				// onClick={() => onSelectSquare(id)}
 			>
 				{available && <div className={cls.label}></div>}
 				{/* {coordinates[0]} {coordinates[1]} */}
