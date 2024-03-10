@@ -1,1 +1,5 @@
-export interface GamePanelSchema {}
+import { ChessColor } from '@/entities/chessBoard';
+
+export interface GamePanelSchema {
+	mover: ChessColor;
+}
