@@ -1,11 +1,18 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { initialState } from '../../consts/gamePanel';
+import { initialState } from '../../consts/chessPlay';
 
-export const gamePanelSlice = createSlice({
-	name: 'gamePanel',
+export const chessPlaySlice = createSlice({
+	name: 'chessPlay',
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		selectSquare: (state, action: PayloadAction<string>) => {
+			if (state.selectedSquare === action.payload) {
+				state.selectedSquare = undefined;
+			} else {
+				state.selectedSquare = action.payload;
+			}
+		},
 	},
 	// extraReducers(builder) {
 	// 	builder
@@ -25,5 +32,5 @@ export const gamePanelSlice = createSlice({
 	// },
 });
 
-export const { actions: gamePanelActions } = gamePanelSlice;
-export const { reducer: gamePanelReducer } = gamePanelSlice;
+export const { actions: chessPlayActions } = chessPlaySlice;
+export const { reducer: chessPlayReducer } = chessPlaySlice;
