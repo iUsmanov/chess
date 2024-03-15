@@ -1,10 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ChessBoardSchema } from '../types/chessBoardSchema';
 import { ChessColor } from '../types/chessBoard';
-
-export const initialState: ChessBoardSchema = {
-	mover: 'white',
-};
+import { initialState } from '../../consts/chessBoard';
 
 export const chessBoardSlice = createSlice({
 	name: 'chessBoard',

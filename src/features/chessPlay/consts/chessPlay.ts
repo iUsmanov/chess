@@ -143,5 +143,10 @@ export const initialState: ChessPlaySchema = {
 			color: 'black',
 			figure: 'king',
 		},
+		// =====DAADDAADAD
+		63: {
+			color: 'black',
+			figure: 'pawn',
+		},
 	},
 };

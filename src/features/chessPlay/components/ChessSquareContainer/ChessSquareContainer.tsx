@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { ChessSquareContainerProps } from '@/entities/chessBoard';
+import { ChessSquareContainerProps, getMover } from '@/entities/chessBoard';
 import { getChessAtLocation } from '../../model/selectors/getChessAtLocation/getChessAtLocation';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { ChessSquare } from '@/entities/chessBoard';
@@ -15,12 +15,13 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 	const dispatch = useAppDispatch();
 	const figure = useSelector((state: StateSchema) => getChessAtLocation(state, coordinates));
 	const isAvailable = useSelector((state: StateSchema) => getSquareIsAvailable(state, coordinates));
+	const mover = useSelector(getMover);
 
 	const onSelectSquare = useCallback(
 		(square: string) => {
-			dispatch(chessPlayActions.selectSquare(square));
+			dispatch(chessPlayActions.selectSquare({ mover: mover, selectedSquare: square }));
 		},
-		[dispatch]
+		[dispatch, mover]
 	);
 
 	return (
