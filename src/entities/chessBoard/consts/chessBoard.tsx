@@ -13,6 +13,7 @@ import {
 	WhiteQueen,
 	WhiteRook,
 } from '@/shared/assets/figures';
+import { ChessBoardSchema } from '../model/types/chessBoardSchema';
 
 const viewBoxes: Record<ChessFigure, string> = {
 	bishop: '5 5 35 35',
@@ -63,4 +64,8 @@ export const getSvg = (
 			}
 		}
 	}
+};
+
+export const initialState: ChessBoardSchema = {
+	mover: 'white',
 };

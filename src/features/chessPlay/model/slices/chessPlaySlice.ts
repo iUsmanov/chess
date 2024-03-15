@@ -35,10 +35,13 @@ export const chessPlaySlice = createSlice({
 							const isFirstMoveOfPawn = true;
 							const squareToTopBy1 = currentX + String(+currentY + 1);
 							const squareToTopBy2 = currentX + String(+currentY + 2);
+							const squareToLeftTop = String(+currentX - 1) + String(+currentY + 1);
+							const squareToRightTop = String(+currentX + 1) + String(+currentY + 1);
 
-							if (getIsSquareEmpty(state.locations, squareToTopBy1)) {
-								state.availableSquares.push(squareToTopBy1);
-							}
+							if (state.locations[squareToLeftTop].color === 'black')
+								if (getIsSquareEmpty(state.locations, squareToTopBy1)) {
+									state.availableSquares.push(squareToTopBy1);
+								}
 
 							if (isFirstMoveOfPawn && getIsSquareEmpty(state.locations, squareToTopBy2)) {
 								state.availableSquares.push(squareToTopBy2);

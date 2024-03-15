@@ -4,6 +4,7 @@ import { createReduxStore } from './store';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ChessPlaySchema } from '@/features/chessPlay';
+import { ChessBoardSchema } from '@/entities/chessBoard';
 
 /**
  * StateSchema описывает состояние нашего `store`.
@@ -13,6 +14,7 @@ export interface StateSchema {
 	// asyncState
 	gamePanel: GamePanelSchema;
 	chessPlay: ChessPlaySchema;
+	chessBoard: ChessBoardSchema;
 }
 
 /**
