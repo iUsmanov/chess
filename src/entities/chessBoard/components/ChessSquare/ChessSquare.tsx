@@ -22,7 +22,7 @@ interface ChessSquareBusyProps extends ChessSquareBaseProps {
 	figureColor: ChessColor;
 }
 
-export type ChessSquareProps = ChessSquareFreeProps | ChessSquareBusyProps;
+type ChessSquareProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
 export type ChessSquareContainerProps = Omit<
 	ChessSquareBaseProps,

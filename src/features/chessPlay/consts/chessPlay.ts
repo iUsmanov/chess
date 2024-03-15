@@ -1,6 +1,7 @@
 import { ChessPlaySchema } from '../model/types/chessPlaySchema';
 
 export const initialState: ChessPlaySchema = {
+	availableSquares: [],
 	locations: {
 		12: {
 			color: 'white',
