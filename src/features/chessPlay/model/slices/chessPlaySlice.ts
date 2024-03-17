@@ -49,10 +49,14 @@ export const chessPlaySlice = createSlice({
 							const squareToLeftTop = String(+currentX - 1) + String(+currentY + 1);
 							const squareToRightTop = String(+currentX + 1) + String(+currentY + 1);
 
-							if (state.locations[squareToLeftTop]?.color === enemy) {
-								if()
-								state.availableSquares.push(squareToLeftTop);
-							}
+							// if (state.locations[squareToLeftTop]?.color === enemy) {
+							// 	state.locations[selectedSquare] === undefined;
+							// 	state.locations[squareToLeftTop].color === mover;
+							// 	state.locations[squareToLeftTop].figure === figure.figure;
+							// 	const kingIsAttacked = false;
+
+							// 	state.availableSquares.push(squareToLeftTop);
+							// }
 
 							if (state.locations[squareToRightTop]?.color === enemy) {
 								state.availableSquares.push(squareToRightTop);

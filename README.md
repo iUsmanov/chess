@@ -1,3 +1,5 @@
+# Данное приложение ещё не окончено
+
 # Getting started
 
 ## Запуск проекта
@@ -13,12 +15,8 @@ npm run build:prod - Сборка в prod-режиме
 В проекте использовал:
 
 -  React
--  Redux/toolkit, RTKQuery
+-  Redux/toolkit
 -  FSD - архитектура
 -  Webpack
 -  TypeScript
 -  и другое.
-
-Дизайн оставляет желать лучшего.
-
-Готовый рабочий сайт - https://valantis-idris.netlify.app/products
