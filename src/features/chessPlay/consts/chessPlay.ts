@@ -180,11 +180,11 @@ const initialLocations: ChessLocations = {
 		name: 'pawn',
 		attackedSquares: [],
 	},
-	24: {
-		color: 'white',
-		name: 'bishop',
-		attackedSquares: [],
-	},
+	// 24: {
+	// 	color: 'white',
+	// 	name: 'bishop',
+	// 	attackedSquares: [],
+	// },
 	44: {
 		color: 'white',
 		name: 'rook',

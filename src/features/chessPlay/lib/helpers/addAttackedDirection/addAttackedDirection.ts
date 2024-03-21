@@ -1,7 +1,7 @@
 import { ChessColor, ChessLocations } from '@/entities/chessBoard';
-import { Coordinates } from './addAttackedDiagonalsSquares';
+import { Coordinates } from '../../../model/types/chessPlay';
 
-export const addAds = (
+export const addAttackedDirection = (
 	attackedSquares: string[],
 	locations: ChessLocations,
 	figureColor: ChessColor,

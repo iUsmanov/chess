@@ -1,10 +1,6 @@
 import { ChessColor, ChessLocations } from '@/entities/chessBoard';
-import { addAds } from './asdsa';
-
-export interface Coordinates {
-	x: number;
-	y: number;
-}
+import { addAttackedDirection } from '../addAttackedDirection/addAttackedDirection';
+import { Coordinates } from '../../../model/types/chessPlay';
 
 export const addAttackedDiagonalsSquares = (
 	attackedSquares: string[],
@@ -25,7 +21,15 @@ export const addAttackedDiagonalsSquares = (
 
 	const canShiftToRightTop = (coordinates: Coordinates) => coordinates.x < 8 && coordinates.y < 8;
 
-	addAds(attackedSquares, locations, figureColor, canShiftToRightTop, shiftToRightTop, x, y);
+	addAttackedDirection(
+		attackedSquares,
+		locations,
+		figureColor,
+		canShiftToRightTop,
+		shiftToRightTop,
+		x,
+		y
+	);
 	/* LEFT TOP */
 	/* LEFT TOP */
 	/* LEFT TOP */
@@ -38,7 +42,15 @@ export const addAttackedDiagonalsSquares = (
 
 	const canShiftToLeftTop = (coordinates: Coordinates) => coordinates.x > 1 && coordinates.y < 8;
 
-	addAds(attackedSquares, locations, figureColor, canShiftToLeftTop, shiftToLeftTop, x, y);
+	addAttackedDirection(
+		attackedSquares,
+		locations,
+		figureColor,
+		canShiftToLeftTop,
+		shiftToLeftTop,
+		x,
+		y
+	);
 
 	/* LEFT BOTTOM */
 	/* LEFT BOTTOM */
@@ -52,7 +64,15 @@ export const addAttackedDiagonalsSquares = (
 
 	const canShiftToLeftBottom = (coordinates: Coordinates) => coordinates.x > 1 && coordinates.y > 1;
 
-	addAds(attackedSquares, locations, figureColor, canShiftToLeftBottom, shiftToLeftBottom, x, y);
+	addAttackedDirection(
+		attackedSquares,
+		locations,
+		figureColor,
+		canShiftToLeftBottom,
+		shiftToLeftBottom,
+		x,
+		y
+	);
 
 	/* RIGHT BOTTOM */
 	/* RIGHT BOTTOM */
@@ -66,5 +86,13 @@ export const addAttackedDiagonalsSquares = (
 
 	const canShiftToRightBottom = (coordinates: Coordinates) => coordinates.x < 8 && coordinates.y > 1;
 
-	addAds(attackedSquares, locations, figureColor, canShiftToRightBottom, shiftToRightBottom, x, y);
+	addAttackedDirection(
+		attackedSquares,
+		locations,
+		figureColor,
+		canShiftToRightBottom,
+		shiftToRightBottom,
+		x,
+		y
+	);
 };

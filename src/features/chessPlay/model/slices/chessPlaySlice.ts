@@ -2,9 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/chessPlay';
 import { getIsSquareEmpty } from '../../lib/helpers/getIsSquareEmpty/getIsSquareEmpty';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
-import { addAttackedVerticalSquares } from '../../lib/helpers/addAttackedVerticalSquares/addAttackedVerticalSquares';
-import { addAttackedHorizontalSquares } from '../../lib/helpers/addAttackedHorizontalSquares/addAttackedHorizontalSquares';
 import { addAttackedDiagonalsSquares } from '../../lib/helpers/addAttackedDiagonalSquares/addAttackedDiagonalsSquares';
+import { addAttackedAxles } from '../../lib/helpers/addAttackedAxles/addAttackedAxles';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
@@ -48,8 +47,7 @@ export const chessPlaySlice = createSlice({
 						break;
 					case 'rook':
 						(() => {
-							addAttackedVerticalSquares(attackedSquares, state.locations, figureColor, x, y);
-							addAttackedHorizontalSquares(attackedSquares, state.locations, figureColor, x, y);
+							addAttackedAxles(attackedSquares, state.locations, figureColor, x, y);
 						})();
 						break;
 					case 'bishop':
