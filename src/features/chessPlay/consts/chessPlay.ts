@@ -185,6 +185,11 @@ const initialLocations: ChessLocations = {
 		name: 'bishop',
 		attackedSquares: [],
 	},
+	44: {
+		color: 'white',
+		name: 'rook',
+		attackedSquares: [],
+	},
 };
 
 export const initialState: ChessPlaySchema = {

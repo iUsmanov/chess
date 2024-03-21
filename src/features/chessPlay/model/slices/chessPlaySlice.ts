@@ -4,7 +4,7 @@ import { getIsSquareEmpty } from '../../lib/helpers/getIsSquareEmpty/getIsSquare
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
 import { addAttackedVerticalSquares } from '../../lib/helpers/addAttackedVerticalSquares/addAttackedVerticalSquares';
 import { addAttackedHorizontalSquares } from '../../lib/helpers/addAttackedHorizontalSquares/addAttackedHorizontalSquares';
-import { addAttackedDiagonalSquares } from '../../lib/helpers/addAttackedDiagonalSquares/addAttackedDiagonalSquares';
+import { addAttackedDiagonalsSquares } from '../../lib/helpers/addAttackedDiagonalSquares/addAttackedDiagonalsSquares';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
@@ -54,7 +54,7 @@ export const chessPlaySlice = createSlice({
 						break;
 					case 'bishop':
 						(() => {
-							addAttackedDiagonalSquares(attackedSquares, state.locations, figureColor, x, y);
+							addAttackedDiagonalsSquares(attackedSquares, state.locations, figureColor, x, y);
 						})();
 				}
 				state.locations[square].attackedSquares.push(...attackedSquares);
