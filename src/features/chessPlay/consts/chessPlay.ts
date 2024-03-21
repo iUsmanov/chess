@@ -187,7 +187,7 @@ const initialLocations: ChessLocations = {
 	// },
 	44: {
 		color: 'white',
-		name: 'rook',
+		name: 'queen',
 		attackedSquares: [],
 	},
 };

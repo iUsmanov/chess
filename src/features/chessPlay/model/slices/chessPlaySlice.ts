@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/chessPlay';
 import { getIsSquareEmpty } from '../../lib/helpers/getIsSquareEmpty/getIsSquareEmpty';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
-import { addAttackedDiagonalsSquares } from '../../lib/helpers/addAttackedDiagonalSquares/addAttackedDiagonalsSquares';
+import { addAttackedDiagonals } from '../../lib/helpers/addAttackedDiagonals/addAttackedDiagonals';
 import { addAttackedAxles } from '../../lib/helpers/addAttackedAxles/addAttackedAxles';
 
 export const chessPlaySlice = createSlice({
@@ -50,9 +50,15 @@ export const chessPlaySlice = createSlice({
 							addAttackedAxles(attackedSquares, state.locations, figureColor, x, y);
 						})();
 						break;
+					case 'queen':
+						(() => {
+							addAttackedAxles(attackedSquares, state.locations, figureColor, x, y);
+							addAttackedDiagonals(attackedSquares, state.locations, figureColor, x, y);
+						})();
+						break;
 					case 'bishop':
 						(() => {
-							addAttackedDiagonalsSquares(attackedSquares, state.locations, figureColor, x, y);
+							addAttackedDiagonals(attackedSquares, state.locations, figureColor, x, y);
 						})();
 				}
 				state.locations[square].attackedSquares.push(...attackedSquares);
