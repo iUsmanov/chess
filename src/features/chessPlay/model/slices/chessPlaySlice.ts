@@ -4,6 +4,8 @@ import { getIsSquareEmpty } from '../../lib/helpers/getIsSquareEmpty/getIsSquare
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
 import { addAttackedDiagonals } from '../../lib/helpers/addAttackedDiagonals/addAttackedDiagonals';
 import { addAttackedAxles } from '../../lib/helpers/addAttackedAxles/addAttackedAxles';
+import { Coordinates } from '../types/chessPlay';
+import { getSquareIsExists } from '../../lib/helpers/getSquareIsExists/getSquareIsExists';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
@@ -54,6 +56,106 @@ export const chessPlaySlice = createSlice({
 						(() => {
 							addAttackedAxles(attackedSquares, state.locations, figureColor, x, y);
 							addAttackedDiagonals(attackedSquares, state.locations, figureColor, x, y);
+						})();
+						break;
+					case 'knight':
+						(() => {
+							const coords: Coordinates[] = [
+								{
+									x: x + 2,
+									y: y + 1,
+								},
+								{
+									x: x + 1,
+									y: y + 2,
+								},
+								{
+									x: x + 2,
+									y: y - 1,
+								},
+								{
+									x: x + 1,
+									y: y - 2,
+								},
+								{
+									x: x - 2,
+									y: y - 1,
+								},
+								{
+									x: x - 1,
+									y: y - 2,
+								},
+								{
+									x: x - 2,
+									y: y + 1,
+								},
+								{
+									x: x - 1,
+									y: y + 2,
+								},
+							];
+
+							Object.values(coords).forEach((coordinates) => {
+								const stringCoordinates = `${coordinates.x}${coordinates.y}`;
+								if (getSquareIsExists(coordinates)) {
+									if (
+										!state.locations[stringCoordinates] ||
+										state.locations[stringCoordinates].color !== figureColor
+									) {
+										attackedSquares.push(stringCoordinates);
+									}
+								}
+							});
+						})();
+						break;
+					case 'king':
+						(() => {
+							const coords: Coordinates[] = [
+								{
+									x: x + 1,
+									y: y + 1,
+								},
+								{
+									x: x - 1,
+									y: y - 1,
+								},
+								{
+									x: x + 1,
+									y: y - 1,
+								},
+								{
+									x: x - 1,
+									y: y + 1,
+								},
+								{
+									x,
+									y: y + 1,
+								},
+								{
+									x,
+									y: y - 1,
+								},
+								{
+									x: x + 1,
+									y,
+								},
+								{
+									x: x - 1,
+									y,
+								},
+							];
+
+							Object.values(coords).forEach((coordinates) => {
+								const stringCoordinates = `${coordinates.x}${coordinates.y}`;
+								if (getSquareIsExists(coordinates)) {
+									if (
+										!state.locations[stringCoordinates] ||
+										state.locations[stringCoordinates].color !== figureColor
+									) {
+										attackedSquares.push(stringCoordinates);
+									}
+								}
+							});
 						})();
 						break;
 					case 'bishop':
