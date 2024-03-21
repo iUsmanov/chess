@@ -2,12 +2,64 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/chessPlay';
 import { getIsSquareEmpty } from '../../lib/helpers/getIsSquareEmpty/getIsSquareEmpty';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
+import { addAttackedVerticalSquares } from '../../lib/helpers/addAttackedVerticalSquares/addAttackedVerticalSquares';
+import { addAttackedHorizontalSquares } from '../../lib/helpers/addAttackedHorizontalSquares/addAttackedHorizontalSquares';
+import { addAttackedDiagonalSquares } from '../../lib/helpers/addAttackedDiagonalSquares/addAttackedDiagonalSquares';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		afterMoved: (state, action: PayloadAction<{ mover: ChessColor }>) => {
+			const mover = action.payload.mover;
+			Object.keys(state.locations).forEach((square) => {
+				const figure = state.locations[square];
+				const figureColor = figure.color;
+				const x = Number(square[0]);
+				const y = Number(square[1]);
+				state.locations[square].attackedSquares = [];
+				const attackedSquares: string[] = [];
+				switch (figure.name) {
+					case 'pawn':
+						(() => {
+							// let firstCoordinateY;
+
+							// switch (figureColor) {
+							// 	case 'white':
+							// 		firstCoordinateY = 2;
+							// 		break;
+							// 	case 'black':
+							// 		firstCoordinateY = 7;
+							// 		break;
+							// }
+
+							const newY = figureColor === 'white' ? y + 1 : y - 1;
+							if (x > 1) {
+								const newX = x - 1;
+								attackedSquares.push(`${newX}${newY}`);
+							}
+
+							if (x < 8) {
+								const newX = x + 1;
+								attackedSquares.push(`${newX}${newY}`);
+							}
+						})();
+						break;
+					case 'rook':
+						(() => {
+							addAttackedVerticalSquares(attackedSquares, state.locations, figureColor, x, y);
+							addAttackedHorizontalSquares(attackedSquares, state.locations, figureColor, x, y);
+						})();
+						break;
+					case 'bishop':
+						(() => {
+							addAttackedDiagonalSquares(attackedSquares, state.locations, figureColor, x, y);
+						})();
+				}
+				state.locations[square].attackedSquares.push(...attackedSquares);
+			});
+		},
 		selectSquare: (state, action: PayloadAction<{ selectedSquare: string; mover: ChessColor }>) => {
 			const selectedSquare = action.payload.selectedSquare;
 			const mover = action.payload.mover;
@@ -31,7 +83,7 @@ export const chessPlaySlice = createSlice({
 				const currentX = selectedSquare[0];
 				const currentY = selectedSquare[1];
 
-				switch (figure.figure) {
+				switch (figure.name) {
 					case 'king':
 						() => {};
 						break;
@@ -48,15 +100,6 @@ export const chessPlaySlice = createSlice({
 							const squareToTopBy2 = currentX + String(+currentY + 2);
 							const squareToLeftTop = String(+currentX - 1) + String(+currentY + 1);
 							const squareToRightTop = String(+currentX + 1) + String(+currentY + 1);
-
-							// if (state.locations[squareToLeftTop]?.color === enemy) {
-							// 	state.locations[selectedSquare] === undefined;
-							// 	state.locations[squareToLeftTop].color === mover;
-							// 	state.locations[squareToLeftTop].figure === figure.figure;
-							// 	const kingIsAttacked = false;
-
-							// 	state.availableSquares.push(squareToLeftTop);
-							// }
 
 							if (state.locations[squareToRightTop]?.color === enemy) {
 								state.availableSquares.push(squareToRightTop);

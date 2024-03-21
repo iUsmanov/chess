@@ -31,7 +31,7 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 			isBusy={Boolean(figure)}
 			onSelectSquare={onSelectSquare}
 			figureColor={figure?.color}
-			figureType={figure?.figure}
+			figureName={figure?.name}
 			isSelected={coordinates === selectedSquare}
 			available={isAvailable}
 		/>

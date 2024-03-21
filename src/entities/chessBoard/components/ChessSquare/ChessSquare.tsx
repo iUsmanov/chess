@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessSquare.module.scss';
-import { ChessFigure, ChessColor } from '../../model/types/chessBoard';
+import { ChessName, ChessColor } from '../../model/types/chessBoard';
 import { getSvg } from '../../consts/chessBoard';
 
 interface ChessSquareBaseProps {
@@ -18,7 +18,7 @@ interface ChessSquareFreeProps extends ChessSquareBaseProps {
 
 interface ChessSquareBusyProps extends ChessSquareBaseProps {
 	isBusy: true;
-	figureType: ChessFigure;
+	figureName: ChessName;
 	figureColor: ChessColor;
 }
 
@@ -49,7 +49,7 @@ export const ChessSquare = memo((props: ChessSquareProps) => {
 	}
 
 	if (isBusy) {
-		const { figureColor, figureType, available } = props;
+		const { figureColor, figureName, available } = props;
 		return (
 			<div
 				className={classNames(
@@ -60,7 +60,7 @@ export const ChessSquare = memo((props: ChessSquareProps) => {
 				data-square-id={coordinates}
 				onClick={() => onSelectSquare(coordinates)}
 			>
-				{getSvg(figureType, figureColor, cls)}
+				{getSvg(figureName, figureColor, cls)}
 			</div>
 		);
 	}

@@ -1,4 +1,4 @@
-import { ChessFigure, ChessColor } from '../model/types/chessBoard';
+import { ChessName, ChessColor } from '../model/types/chessBoard';
 import {
 	BlackBishop,
 	BlackKing,
@@ -15,7 +15,7 @@ import {
 } from '@/shared/assets/figures';
 import { ChessBoardSchema } from '../model/types/chessBoardSchema';
 
-const viewBoxes: Record<ChessFigure, string> = {
+const viewBoxes: Record<ChessName, string> = {
 	bishop: '5 5 35 35',
 	king: '5 5 35 35',
 	knight: '5 5 35 35',
@@ -24,11 +24,7 @@ const viewBoxes: Record<ChessFigure, string> = {
 	rook: '5 6 35 35',
 };
 
-export const getSvg = (
-	figureType: ChessFigure,
-	figureColor: ChessColor,
-	cls: Record<string, string>
-) => {
+export const getSvg = (figureType: ChessName, figureColor: ChessColor, cls: Record<string, string>) => {
 	switch (figureColor) {
 		case 'white': {
 			switch (figureType) {

@@ -4,148 +4,186 @@ import { ChessPlaySchema } from '../model/types/chessPlaySchema';
 const initialLocations: ChessLocations = {
 	12: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	22: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	32: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	42: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	52: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	62: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	72: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	82: {
 		color: 'white',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	// ======
 	17: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	27: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	37: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	47: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	57: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	67: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	77: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	87: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
 	},
 	//============
 	//============
 	//============
 	11: {
 		color: 'white',
-		figure: 'rook',
+		name: 'rook',
+		attackedSquares: [],
 	},
 	81: {
 		color: 'white',
-		figure: 'rook',
+		name: 'rook',
+		attackedSquares: [],
 	},
 	// ===
 	21: {
 		color: 'white',
-		figure: 'knight',
+		name: 'knight',
+		attackedSquares: [],
 	},
 	71: {
 		color: 'white',
-		figure: 'knight',
+		name: 'knight',
+		attackedSquares: [],
 	},
 	// ===
 	31: {
 		color: 'white',
-		figure: 'bishop',
+		name: 'bishop',
+		attackedSquares: [],
 	},
 	61: {
 		color: 'white',
-		figure: 'bishop',
+		name: 'bishop',
+		attackedSquares: [],
 	},
 	// ===
 	41: {
 		color: 'white',
-		figure: 'queen',
+		name: 'queen',
+		attackedSquares: [],
 	},
 	51: {
 		color: 'white',
-		figure: 'king',
+		name: 'king',
+		attackedSquares: [],
 	},
 	// ==================================
 	// ==================================
 	18: {
 		color: 'black',
-		figure: 'rook',
+		name: 'rook',
+		attackedSquares: [],
 	},
 	88: {
 		color: 'black',
-		figure: 'rook',
+		name: 'rook',
+		attackedSquares: [],
 	},
 	// ===
 	28: {
 		color: 'black',
-		figure: 'knight',
+		name: 'knight',
+		attackedSquares: [],
 	},
 	78: {
 		color: 'black',
-		figure: 'knight',
+		name: 'knight',
+		attackedSquares: [],
 	},
 	// ===
 	38: {
 		color: 'black',
-		figure: 'bishop',
+		name: 'bishop',
+		attackedSquares: [],
 	},
 	68: {
 		color: 'black',
-		figure: 'bishop',
+		name: 'bishop',
+		attackedSquares: [],
 	},
 	// ===
 	48: {
 		color: 'black',
-		figure: 'queen',
+		name: 'queen',
+		attackedSquares: [],
 	},
 	58: {
 		color: 'black',
-		figure: 'king',
+		name: 'king',
+		attackedSquares: [],
 	},
 	// =====DAADDAADAD
-	63: {
+	64: {
 		color: 'black',
-		figure: 'pawn',
+		name: 'pawn',
+		attackedSquares: [],
+	},
+	24: {
+		color: 'white',
+		name: 'bishop',
+		attackedSquares: [],
 	},
 };
 
