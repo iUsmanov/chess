@@ -175,7 +175,7 @@ const initialLocations: ChessLocations = {
 		attackedSquares: [],
 	},
 	// =====DAADDAADAD
-	64: {
+	63: {
 		color: 'black',
 		name: 'pawn',
 		attackedSquares: [],
@@ -185,9 +185,9 @@ const initialLocations: ChessLocations = {
 	// 	name: 'bishop',
 	// 	attackedSquares: [],
 	// },
-	43: {
+	46: {
 		color: 'white',
-		name: 'king',
+		name: 'pawn',
 		attackedSquares: [],
 	},
 };
