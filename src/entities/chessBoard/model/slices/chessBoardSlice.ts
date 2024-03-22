@@ -7,17 +7,7 @@ export const chessBoardSlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
-		toggleMover: (state, action: PayloadAction<ChessColor | undefined>) => {
-			if (action.payload) {
-				state.mover = action.payload;
-			} else {
-				if (state.mover === 'white') {
-					state.mover = 'black';
-				} else {
-					state.mover = 'white';
-				}
-			}
-		},
+		toggleMover: (state, action: PayloadAction<ChessColor | undefined>) => {},
 	},
 	// extraReducers(builder) {
 	// 	builder

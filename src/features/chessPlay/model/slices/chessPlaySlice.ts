@@ -47,6 +47,12 @@ export const chessPlaySlice = createSlice({
 				state.availableSquares = [];
 
 				addAttackedFigures(state);
+
+				if (state.mover === 'white') {
+					state.mover = 'black';
+				} else {
+					state.mover = 'white';
+				}
 			}
 		},
 	},

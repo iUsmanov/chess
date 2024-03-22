@@ -196,4 +196,5 @@ export const initialState: ChessPlaySchema = {
 	availableSquares: [],
 	locations: initialLocations,
 	mockLocations: initialLocations,
+	mover: 'white',
 };
