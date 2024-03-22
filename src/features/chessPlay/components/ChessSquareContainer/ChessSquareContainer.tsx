@@ -29,7 +29,7 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 			className={className}
 			coordinates={coordinates}
 			isBusy={Boolean(figure)}
-			onSelectSquare={onSelectSquare}
+			onClick={onSelectSquare}
 			figureColor={figure?.color}
 			figureName={figure?.name}
 			isSelected={coordinates === selectedSquare}

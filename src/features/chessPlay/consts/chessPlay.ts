@@ -175,21 +175,21 @@ const initialLocations: ChessLocations = {
 		attackedSquares: [],
 	},
 	// =====DAADDAADAD
-	63: {
-		color: 'black',
-		name: 'pawn',
-		attackedSquares: [],
-	},
+	// 63: {
+	// 	color: 'black',
+	// 	name: 'pawn',
+	// 	attackedSquares: [],
+	// },
 	// 24: {
 	// 	color: 'white',
 	// 	name: 'bishop',
 	// 	attackedSquares: [],
 	// },
-	46: {
-		color: 'white',
-		name: 'pawn',
-		attackedSquares: [],
-	},
+	// 46: {
+	// 	color: 'white',
+	// 	name: 'pawn',
+	// 	attackedSquares: [],
+	// },
 };
 
 export const initialState: ChessPlaySchema = {

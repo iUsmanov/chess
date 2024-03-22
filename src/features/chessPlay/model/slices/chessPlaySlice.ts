@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/chessPlay';
-import { getIsSquareEmpty } from '../../lib/helpers/getIsSquareEmpty/getIsSquareEmpty';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
 import { addAttackedDiagonals } from '../../lib/helpers/addAttackedDiagonals/addAttackedDiagonals';
 import { addAttackedAxles } from '../../lib/helpers/addAttackedAxles/addAttackedAxles';
@@ -200,72 +199,35 @@ export const chessPlaySlice = createSlice({
 			});
 		},
 		selectSquare: (state, action: PayloadAction<{ selectedSquare: string; mover: ChessColor }>) => {
-			const selectedSquare = action.payload.selectedSquare;
+			const squareWillSelected = action.payload.selectedSquare;
 			const mover = action.payload.mover;
 			const enemy = getEnemy(mover);
 
-			if (state.selectedSquare === selectedSquare) {
+			if (
+				state.selectedSquare === squareWillSelected ||
+				(state.selectedSquare &&
+					// Нажатая клетка пустая ?
+					!state.locations[squareWillSelected] &&
+					// Если эта клетка не является атакованной выбранной фигурой
+					!state.locations[state.selectedSquare].attackedSquares.includes(squareWillSelected))
+			) {
 				state.selectedSquare = undefined;
 				state.availableSquares = [];
 			} else {
 				state.availableSquares = [];
 
-				if (state.locations[selectedSquare]?.color === enemy) {
+				if (state.locations[squareWillSelected]?.color === enemy) {
 					state.selectedSquare = undefined;
 					return;
 				}
 
-				state.selectedSquare = selectedSquare;
-
-				const figure = state.locations[selectedSquare];
-
-				const currentX = selectedSquare[0];
-				const currentY = selectedSquare[1];
-
-				switch (figure.name) {
-					case 'king':
-						() => {};
-						break;
-					case 'knight':
-						() => {};
-						break;
-					case 'rook':
-						() => {};
-						break;
-					case 'pawn':
-						(() => {
-							const isFirstMoveOfPawn = true;
-							const squareToTopBy1 = currentX + String(+currentY + 1);
-							const squareToTopBy2 = currentX + String(+currentY + 2);
-							const squareToLeftTop = String(+currentX - 1) + String(+currentY + 1);
-							const squareToRightTop = String(+currentX + 1) + String(+currentY + 1);
-
-							if (state.locations[squareToRightTop]?.color === enemy) {
-								state.availableSquares.push(squareToRightTop);
-							}
-
-							if (getIsSquareEmpty(state.locations, squareToTopBy1)) {
-								state.availableSquares.push(squareToTopBy1);
-							}
-
-							if (
-								isFirstMoveOfPawn &&
-								getIsSquareEmpty(state.locations, squareToTopBy1) &&
-								getIsSquareEmpty(state.locations, squareToTopBy2)
-							) {
-								state.availableSquares.push(squareToTopBy2);
-							}
-						})();
-						break;
-					case 'queen':
-						() => {};
-						break;
-					case 'bishop':
-						() => {};
-						break;
+				state.selectedSquare = squareWillSelected;
+				if (state.locations[squareWillSelected]) {
+					state.availableSquares = state.locations[squareWillSelected].attackedSquares;
 				}
 			}
 		},
+		move: (state, action: PayloadAction<any>) => {},
 	},
 	// extraReducers(builder) {
 	// 	builder
