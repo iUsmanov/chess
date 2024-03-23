@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../../consts/chessPlay';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
+import { toggleMover } from './slice/toggleMover/toggleMover';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
@@ -47,12 +48,7 @@ export const chessPlaySlice = createSlice({
 				state.availableSquares = [];
 
 				addAttackedFigures(state);
-
-				if (state.mover === 'white') {
-					state.mover = 'black';
-				} else {
-					state.mover = 'white';
-				}
+				toggleMover(state);
 			}
 		},
 	},

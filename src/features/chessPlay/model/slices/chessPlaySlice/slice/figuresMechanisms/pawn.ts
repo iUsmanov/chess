@@ -1,5 +1,5 @@
 import { ChessColor } from '@/entities/chessBoard';
-import { ChessPlaySchema } from '../../../../../model/types/chessPlaySchema';
+import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
 
 export const pawnMechanism = (
 	state: ChessPlaySchema,

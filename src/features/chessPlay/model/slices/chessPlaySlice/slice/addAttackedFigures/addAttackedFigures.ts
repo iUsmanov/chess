@@ -1,4 +1,4 @@
-import { ChessPlaySchema } from '../../../../../model/types/chessPlaySchema';
+import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
 import { addAttackedAxles } from '../addAttackedAxles/addAttackedAxles';
 import { addAttackedDiagonals } from '../addAttackedDiagonals/addAttackedDiagonals';
 import { kingMechanism } from '../figuresMechanisms/king';

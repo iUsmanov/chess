@@ -1,5 +1,5 @@
 import { ChessColor } from '@/entities/chessBoard';
-import { ChessPlaySchema } from '../../../../../model/types/chessPlaySchema';
+import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
 import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
 import { Coordinates } from '@/entities/chessBoard';
 
