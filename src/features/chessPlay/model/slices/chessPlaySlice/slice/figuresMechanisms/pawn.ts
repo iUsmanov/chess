@@ -1,8 +1,7 @@
-import { ChessColor } from '@/entities/chessBoard';
-import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
+import { ChessColor, ChessLocations } from '@/entities/chessBoard';
 
 export const pawnMechanism = (
-	state: ChessPlaySchema,
+	locations: ChessLocations,
 	figureColor: ChessColor,
 	attackedSquares: string[],
 	x: number,
@@ -28,10 +27,10 @@ export const pawnMechanism = (
 	const nextStringCoordinates = `${x}${nextSquareY}`;
 	const next2StringCoordinates = `${x}${next2SquareY}`;
 
-	if (!state.locations[nextStringCoordinates]) {
+	if (!locations[nextStringCoordinates]) {
 		attackedSquares.push(nextStringCoordinates);
 
-		if (y === firstCoordinateY && !state.locations[next2StringCoordinates]) {
+		if (y === firstCoordinateY && !locations[next2StringCoordinates]) {
 			attackedSquares.push(next2StringCoordinates);
 		}
 	}
@@ -43,10 +42,7 @@ export const pawnMechanism = (
 		const newX = x - 1;
 		const stringCoordinates = `${newX}${newY}`;
 
-		if (
-			state.locations[stringCoordinates] &&
-			state.locations[stringCoordinates].color !== figureColor
-		) {
+		if (locations[stringCoordinates] && locations[stringCoordinates].color !== figureColor) {
 			attackedSquares.push(`${newX}${newY}`);
 		}
 	}
@@ -55,10 +51,7 @@ export const pawnMechanism = (
 		const newX = x + 1;
 		const stringCoordinates = `${newX}${newY}`;
 
-		if (
-			state.locations[stringCoordinates] &&
-			state.locations[stringCoordinates].color !== figureColor
-		) {
+		if (locations[stringCoordinates] && locations[stringCoordinates].color !== figureColor) {
 			attackedSquares.push(`${newX}${newY}`);
 		}
 	}

@@ -2,13 +2,13 @@ import { ChessColor, ChessLocations } from '@/entities/chessBoard';
 import { Coordinates } from '@/entities/chessBoard';
 
 export const addAttackedDirection = (
+	x: number,
+	y: number,
 	attackedSquares: string[],
 	locations: ChessLocations,
 	figureColor: ChessColor,
 	condition: (coordinates: Coordinates) => boolean,
-	shift: (coordinates: Coordinates) => void,
-	x: number,
-	y: number
+	shift: (coordinates: Coordinates) => void
 ) => {
 	const coordinates = {
 		x,

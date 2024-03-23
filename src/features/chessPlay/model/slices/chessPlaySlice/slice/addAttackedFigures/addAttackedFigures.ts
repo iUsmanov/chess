@@ -16,24 +16,45 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 
 		switch (figure.name) {
 			case 'pawn':
-				pawnMechanism(state, figureColor, attackedSquares, x, y);
-				break;
-			case 'rook':
-				addAttackedAxles(attackedSquares, state.locations, figureColor, x, y);
-				break;
-			case 'queen':
-				addAttackedAxles(attackedSquares, state.locations, figureColor, x, y);
-				addAttackedDiagonals(attackedSquares, state.locations, figureColor, x, y);
+				pawnMechanism(state.locations, figureColor, attackedSquares, x, y);
 				break;
 			case 'knight':
-				knightMechanism(state, figureColor, attackedSquares, x, y);
+				knightMechanism(state.locations, figureColor, attackedSquares, x, y);
 				break;
 			case 'king':
-				kingMechanism(state, figureColor, attackedSquares, x, y);
+				kingMechanism(state.locations, figureColor, attackedSquares, x, y);
 				break;
+			case 'rook':
+				addAttackedAxles(x, y, attackedSquares, state.locations, figureColor);
+				break;
+			case 'queen':
+				addAttackedAxles(x, y, attackedSquares, state.locations, figureColor);
+				addAttackedDiagonals(x, y, attackedSquares, state.locations, figureColor);
+				break;
+
 			case 'bishop':
-				addAttackedDiagonals(attackedSquares, state.locations, figureColor, x, y);
+				addAttackedDiagonals(x, y, attackedSquares, state.locations, figureColor);
 		}
+		// if (state.mover !== figure.color) {
 		state.locations[square].attackedSquares.push(...attackedSquares);
+		// 	state.mockLocations[square].attackedSquares.push(...attackedSquares);
+		// } else {
+		// 	state.mockLocations[square].attackedSquares.push(...attackedSquares);
+		// }
 	});
+	// ====================
+	// ====================
+	// ====================
+	// ====================
+
+	Object.keys(state.locations).forEach((square) => {});
+
+	// После того, как кто-то сделал ход
+	// Фигуры ч-ка, сделавшего ход обработать обычным образом
+
+	// А вот с фигурами того, кому надо сделать ход немного иначе
+
+	// Сделать каждый возможный ход
+	// И если при таком сделанном ходе его король не попадает под атаку
+	// То добавить этот ход в attackedSquares соответствующей фигуры
 };

@@ -3,11 +3,11 @@ import { addAttackedDirection } from '../addAttackedDirection/addAttackedDirecti
 import { Coordinates } from '@/entities/chessBoard';
 
 export const addAttackedDiagonals = (
+	x: number,
+	y: number,
 	attackedSquares: string[],
 	locations: ChessLocations,
-	figureColor: ChessColor,
-	x: number,
-	y: number
+	figureColor: ChessColor
 ) => {
 	/* RIGHT TOP */
 	/* RIGHT TOP */
@@ -22,13 +22,13 @@ export const addAttackedDiagonals = (
 	const canShiftToRightTop = (coordinates: Coordinates) => coordinates.x < 8 && coordinates.y < 8;
 
 	addAttackedDirection(
+		x,
+		y,
 		attackedSquares,
 		locations,
 		figureColor,
 		canShiftToRightTop,
-		shiftToRightTop,
-		x,
-		y
+		shiftToRightTop
 	);
 	/* LEFT TOP */
 	/* LEFT TOP */
@@ -43,13 +43,13 @@ export const addAttackedDiagonals = (
 	const canShiftToLeftTop = (coordinates: Coordinates) => coordinates.x > 1 && coordinates.y < 8;
 
 	addAttackedDirection(
+		x,
+		y,
 		attackedSquares,
 		locations,
 		figureColor,
 		canShiftToLeftTop,
-		shiftToLeftTop,
-		x,
-		y
+		shiftToLeftTop
 	);
 
 	/* LEFT BOTTOM */
@@ -65,13 +65,13 @@ export const addAttackedDiagonals = (
 	const canShiftToLeftBottom = (coordinates: Coordinates) => coordinates.x > 1 && coordinates.y > 1;
 
 	addAttackedDirection(
+		x,
+		y,
 		attackedSquares,
 		locations,
 		figureColor,
 		canShiftToLeftBottom,
-		shiftToLeftBottom,
-		x,
-		y
+		shiftToLeftBottom
 	);
 
 	/* RIGHT BOTTOM */
@@ -87,12 +87,12 @@ export const addAttackedDiagonals = (
 	const canShiftToRightBottom = (coordinates: Coordinates) => coordinates.x < 8 && coordinates.y > 1;
 
 	addAttackedDirection(
+		x,
+		y,
 		attackedSquares,
 		locations,
 		figureColor,
 		canShiftToRightBottom,
-		shiftToRightBottom,
-		x,
-		y
+		shiftToRightBottom
 	);
 };

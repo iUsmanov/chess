@@ -1,10 +1,9 @@
-import { ChessColor } from '@/entities/chessBoard';
-import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
+import { ChessColor, ChessLocations } from '@/entities/chessBoard';
 import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
 import { Coordinates } from '@/entities/chessBoard';
 
 export const knightMechanism = (
-	state: ChessPlaySchema,
+	locations: ChessLocations,
 	figureColor: ChessColor,
 	attackedSquares: string[],
 	x: number,
@@ -48,10 +47,7 @@ export const knightMechanism = (
 	Object.values(coords).forEach((coordinates) => {
 		const stringCoordinates = `${coordinates.x}${coordinates.y}`;
 		if (getSquareIsExists(coordinates)) {
-			if (
-				!state.locations[stringCoordinates] ||
-				state.locations[stringCoordinates].color !== figureColor
-			) {
+			if (!locations[stringCoordinates] || locations[stringCoordinates].color !== figureColor) {
 				attackedSquares.push(stringCoordinates);
 			}
 		}
