@@ -16,13 +16,13 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 
 		switch (figure.name) {
 			case 'pawn':
-				pawnMechanism(state.locations, figureColor, attackedSquares, x, y);
+				pawnMechanism(x, y, attackedSquares, state.locations, figureColor);
 				break;
 			case 'knight':
-				knightMechanism(state.locations, figureColor, attackedSquares, x, y);
+				knightMechanism(x, y, attackedSquares, state.locations, figureColor);
 				break;
 			case 'king':
-				kingMechanism(state.locations, figureColor, attackedSquares, x, y);
+				kingMechanism(x, y, attackedSquares, state.locations, figureColor);
 				break;
 			case 'rook':
 				addAttackedAxles(x, y, attackedSquares, state.locations, figureColor);
@@ -31,7 +31,6 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 				addAttackedAxles(x, y, attackedSquares, state.locations, figureColor);
 				addAttackedDiagonals(x, y, attackedSquares, state.locations, figureColor);
 				break;
-
 			case 'bishop':
 				addAttackedDiagonals(x, y, attackedSquares, state.locations, figureColor);
 		}

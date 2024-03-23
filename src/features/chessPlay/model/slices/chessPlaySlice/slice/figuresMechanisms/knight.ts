@@ -3,11 +3,11 @@ import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExist
 import { Coordinates } from '@/entities/chessBoard';
 
 export const knightMechanism = (
-	locations: ChessLocations,
-	figureColor: ChessColor,
-	attackedSquares: string[],
 	x: number,
-	y: number
+	y: number,
+	attackedSquares: string[],
+	locations: ChessLocations,
+	figureColor: ChessColor
 ) => {
 	const coords: Coordinates[] = [
 		{
