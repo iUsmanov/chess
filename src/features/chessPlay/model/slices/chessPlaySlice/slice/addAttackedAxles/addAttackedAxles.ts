@@ -1,5 +1,5 @@
 import { ChessColor, ChessLocations } from '@/entities/chessBoard';
-import { Coordinates } from '../../../../model/types/chessPlay';
+import { Coordinates } from '../../../../../model/types/chessPlay';
 import { addAttackedDirection } from '../addAttackedDirection/addAttackedDirection';
 
 export const addAttackedAxles = (

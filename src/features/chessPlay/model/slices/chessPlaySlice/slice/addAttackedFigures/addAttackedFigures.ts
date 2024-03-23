@@ -1,8 +1,8 @@
-import { Coordinates } from '../../../../model/types/chessPlay';
-import { ChessPlaySchema } from '../../../../model/types/chessPlaySchema';
+import { Coordinates } from '../../../../../model/types/chessPlay';
+import { ChessPlaySchema } from '../../../../../model/types/chessPlaySchema';
 import { addAttackedAxles } from '../addAttackedAxles/addAttackedAxles';
 import { addAttackedDiagonals } from '../addAttackedDiagonals/addAttackedDiagonals';
-import { getSquareIsExists } from '../../getSquareIsExists/getSquareIsExists';
+import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
 
 export const addAttackedFigures = (state: ChessPlaySchema) => {
 	Object.keys(state.locations).forEach((square) => {

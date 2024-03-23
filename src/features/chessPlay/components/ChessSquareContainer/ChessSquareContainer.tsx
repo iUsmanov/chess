@@ -6,7 +6,7 @@ import { ChessSquare } from '@/entities/chessBoard';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getSelectedSquare } from '../../model/selectors/getSelectedSquare/getSelectedSquare';
-import { chessPlayActions } from '../../model/slices/chessPlaySlice';
+import { chessPlayActions } from '../../model/slices/chessPlaySlice/chessPlaySlice';
 import { getSquareIsAvailable } from '../../model/selectors/getSquareIsAvailable/getSquareIsAvailable';
 
 export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {

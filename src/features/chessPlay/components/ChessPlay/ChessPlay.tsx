@@ -3,7 +3,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessPlay.module.scss';
 import { ChessBoard } from '@/entities/chessBoard';
 import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
-import { chessPlayActions } from '../../model/slices/chessPlaySlice';
+import { chessPlayActions } from '../../model/slices/chessPlaySlice/chessPlaySlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface ChessPlayProps {

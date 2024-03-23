@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { initialState } from '../../consts/chessPlay';
+import { initialState } from '../../../consts/chessPlay';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
-import { addAttackedFigures } from '../../lib/helpers/slice/addAttackedFigures/addAttackedFigures';
+import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
