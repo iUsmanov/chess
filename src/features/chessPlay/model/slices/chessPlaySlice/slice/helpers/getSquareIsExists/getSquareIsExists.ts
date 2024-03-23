@@ -1,4 +1,4 @@
-import { Coordinates } from './../../../../../types/chessPlay';
+import { Coordinates } from '@/entities/chessBoard';
 
 export const getSquareIsExists = (coordinates: Coordinates) => {
 	if (coordinates.x >= 1 && coordinates.x <= 8 && coordinates.y >= 1 && coordinates.y <= 8) {

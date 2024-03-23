@@ -8,3 +8,7 @@ export interface Figure {
 	attackedSquares: string[];
 }
 export type ChessLocations = Record<string, Figure>;
+export interface Coordinates {
+	x: number;
+	y: number;
+}
