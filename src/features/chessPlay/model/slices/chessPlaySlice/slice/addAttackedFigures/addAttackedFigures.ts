@@ -2,6 +2,7 @@ import { deepClone } from '@/shared/lib/helpers/deepClone/deepClone';
 import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
 import { addFiguresMechanisms } from '../addFiguresMechanisms/addFiguresMechanisms';
 import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
+import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
 
 export const addAttackedFigures = (state: ChessPlaySchema) => {
 	Object.keys(state.locations).forEach((square) => {
@@ -31,8 +32,6 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 
 				Object.keys(mockLocations).forEach((enemySquare) => {
 					if (mockLocations[enemySquare].color !== state.mover) {
-						const x = Number(enemySquare[0]);
-						const y = Number(enemySquare[1]);
 						const attackedSquares: string[] = [];
 
 						addFiguresMechanisms(enemySquare, attackedSquares, mockLocations);
@@ -52,16 +51,7 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 		}
 	});
 
-	const isMat = Object.keys(state.locations).every((square) => {
-		const figure = state.locations[square];
-		if (figure.color === state.mover) {
-			return figure.attackedSquares.length === 0;
-		} else {
-			return true;
-		}
-	});
-
-	if (isMat) {
+	if (getIsCheckmate(state)) {
 		console.log(`Стороне ${state.mover} поставлен мат`);
 	}
 };

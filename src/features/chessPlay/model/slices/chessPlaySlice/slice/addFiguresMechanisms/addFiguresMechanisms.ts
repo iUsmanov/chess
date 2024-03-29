@@ -1,5 +1,5 @@
 import { ChessLocations } from '@/entities/chessBoard';
-import { pawnMechanism } from '../figuresMechanisms/pawn';
+import { pawnMechanism } from '../figuresMechanisms/pawn/pawn';
 import { knightMechanism } from '../figuresMechanisms/knight';
 import { kingMechanism } from '../figuresMechanisms/king';
 import { addAttackedAxles } from '../addAttackedAxles/addAttackedAxles';
