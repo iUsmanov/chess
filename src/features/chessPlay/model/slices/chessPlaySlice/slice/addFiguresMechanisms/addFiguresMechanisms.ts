@@ -1,4 +1,4 @@
-import { ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations, ChessMove } from '@/entities/chessBoard';
 import { pawnMechanism } from '../figuresMechanisms/pawn/pawn';
 import { knightMechanism } from '../figuresMechanisms/knight';
 import { kingMechanism } from '../figuresMechanisms/king';
@@ -8,11 +8,12 @@ import { addAttackedDiagonals } from '../addAttackedDiagonals/addAttackedDiagona
 export const addFiguresMechanisms = (
 	square: string,
 	attackedSquares: string[],
-	locations: ChessLocations
+	locations: ChessLocations,
+	lastMove?: ChessMove
 ) => {
 	switch (locations[square].name) {
 		case 'pawn':
-			pawnMechanism(square, attackedSquares, locations);
+			pawnMechanism(square, attackedSquares, locations, lastMove);
 			break;
 		case 'knight':
 			knightMechanism(square, attackedSquares, locations);

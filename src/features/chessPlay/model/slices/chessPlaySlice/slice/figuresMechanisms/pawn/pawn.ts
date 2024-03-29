@@ -1,7 +1,12 @@
-import { ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations, ChessMove } from '@/entities/chessBoard';
 import { getPawnConsts } from './getPawnConsts/getPawnConsts';
 
-export const pawnMechanism = (square: string, attackedSquares: string[], locations: ChessLocations) => {
+export const pawnMechanism = (
+	square: string,
+	attackedSquares: string[],
+	locations: ChessLocations,
+	lastMove?: ChessMove
+) => {
 	const { color: figureColor } = locations[square];
 	const x = Number(square[0]);
 	const y = Number(square[1]);
@@ -36,11 +41,15 @@ export const pawnMechanism = (square: string, attackedSquares: string[], locatio
 		addAttackedAndBusySquaresByPawn(nextSquareX, nextSquareY);
 	}
 
-	// if(y === takePassY && lastMove.to.y === y && (Math.abs(x - lastMove.to.x) === 1)) {
-	// 	const lastMovedFigure = locations[lastMove.to.x + lastMove.to.y]
-	// 	if(lastMovedFigure.name === 'pawn') {
-	// 		attackedSquares.push(`${lastMove.to.x}${y}`);
-	// 		delete locations[lastMovedFigure]
+	// if (!lastMove) return;
+	// const lastMoveToX = Number(lastMove.to[0]);
+	// const lastMoveToY = Number(lastMove.to[1]);
+
+	// if (y === takePassY && lastMoveToY === y && Math.abs(x - lastMoveToX) === 1) {
+	// 	const lastMovedFigure = locations[lastMove.to];
+	// 	if (lastMovedFigure.name === 'pawn') {
+	// 		attackedSquares.push(`${lastMoveToX}${y}`);
+	// 		delete locations[lastMove.to];
 	// 	}
 	// }
 };

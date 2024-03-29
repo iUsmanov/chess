@@ -197,4 +197,5 @@ export const initialState: ChessPlaySchema = {
 	locations: initialLocations,
 	mockLocations: initialLocations,
 	mover: 'white',
+	history: [],
 };

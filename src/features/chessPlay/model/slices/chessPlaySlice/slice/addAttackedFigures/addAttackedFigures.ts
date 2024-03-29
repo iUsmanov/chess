@@ -9,7 +9,12 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 		state.locations[square].attackedSquares = [];
 		const attackedSquares: string[] = [];
 
-		addFiguresMechanisms(square, attackedSquares, state.locations);
+		addFiguresMechanisms(
+			square,
+			attackedSquares,
+			state.locations,
+			state.history[state.history.length - 1]
+		);
 
 		if (state.locations[square].color === state.mover) {
 			state.mockLocations[square].attackedSquares = attackedSquares;
@@ -34,7 +39,12 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 					if (mockLocations[enemySquare].color !== state.mover) {
 						const attackedSquares: string[] = [];
 
-						addFiguresMechanisms(enemySquare, attackedSquares, mockLocations);
+						addFiguresMechanisms(
+							enemySquare,
+							attackedSquares,
+							mockLocations,
+							state.history[state.history.length - 1]
+						);
 						attackedSquaresByEnemy.push(...attackedSquares);
 					}
 				});

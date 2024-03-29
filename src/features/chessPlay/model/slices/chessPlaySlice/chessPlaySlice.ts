@@ -47,6 +47,8 @@ export const chessPlaySlice = createSlice({
 				// ====
 				state.mockLocations[clickedSquare] = state.mockLocations[state.selectedSquare];
 				delete state.mockLocations[state.selectedSquare];
+				// =============
+				state.history.push({ from: state.selectedSquare, to: clickedSquare });
 
 				// ===============
 				state.selectedSquare = undefined;
