@@ -1,3 +1,4 @@
+import { deepClone } from '@/shared/lib/helpers/deepClone/deepClone';
 import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
 import { addFiguresMechanisms } from '../addFiguresMechanisms/addFiguresMechanisms';
 import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
@@ -20,12 +21,12 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 	});
 	// ====================
 
-	let mockLocations = cloneObj(state.mockLocations);
+	let mockLocations = deepClone(state.mockLocations);
 	Object.keys(mockLocations).forEach((square) => {
 		const figure = mockLocations[square];
 		if (figure.color === state.mover) {
 			figure.attackedSquares.forEach((attackedSquare) => {
-				mockLocations[attackedSquare] = cloneObj(figure);
+				mockLocations[attackedSquare] = deepClone(figure);
 				delete mockLocations[square];
 
 				const moverKingSquare = getKingSquare(state.mover, mockLocations);
@@ -55,7 +56,7 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 					state.locations[square].attackedSquares.push(attackedSquare);
 				}
 
-				mockLocations = cloneObj(state.mockLocations);
+				mockLocations = deepClone(state.mockLocations);
 			});
 		}
 	});
@@ -72,8 +73,9 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 	if (isMat) {
 		console.log(`Стороне ${state.mover} поставлен мат`);
 	}
+};
 
-	/* 
+/* 
 Проитерироваться по фигурам врага и добавить атакованные ими фигуры в их locations. 
 Проитерироваться по фигурам мувера и добавить атакованные ими фигуры в их mockLocations. 
 const savedMockLocations = cloneObj(mockLocations)
@@ -95,11 +97,3 @@ const savedMockLocations = cloneObj(mockLocations)
 			state.mockLocations = cloneObj(savedMockLocations)
 
  */
-
-	// const newAttackedSquares = state.locations[square].attackedSquares.filter(
-	// 	(att) => att !== square
-	// );
-};
-function cloneObj<T>(obj: T): T {
-	return JSON.parse(JSON.stringify(obj));
-}
