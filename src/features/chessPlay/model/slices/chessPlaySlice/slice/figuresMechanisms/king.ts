@@ -1,14 +1,32 @@
-import { ChessColor, ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/chessBoard';
 import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
-import { Coordinates } from '@/entities/chessBoard';
 
-export const kingMechanism = (
-	x: number,
-	y: number,
-	attackedSquares: string[],
-	locations: ChessLocations,
-	figureColor: ChessColor
-) => {
+export const kingMechanism = (square: string, attackedSquares: string[], locations: ChessLocations) => {
+	const { color: figureColor } = locations[square];
+	const x = Number(square[0]);
+	const y = Number(square[1]);
+
+	for (let differenceX = -1; differenceX <= 1; differenceX++) {
+		for (let differenceY = -1; differenceY <= 1; differenceY++) {
+			const newX = x + differenceX;
+			const newY = y + differenceY;
+			const stringCoordinates = `${newX}${newY}`;
+			if (getSquareIsExists({ x: newX, y: newY })) {
+				if (!locations[stringCoordinates] || locations[stringCoordinates].color !== figureColor) {
+					attackedSquares.push(stringCoordinates);
+				}
+			}
+		}
+	}
+};
+
+/* 
+
+export const kingMechanism = (square: string, attackedSquares: string[], locations: ChessLocations) => {
+	const { color: figureColor } = locations[square];
+	const x = Number(square[0]);
+	const y = Number(square[1]);
+
 	const coords: Coordinates[] = [
 		{
 			x: x + 1,
@@ -53,3 +71,6 @@ export const kingMechanism = (
 		}
 	});
 };
+
+
+*/

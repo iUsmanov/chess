@@ -5,13 +5,10 @@ import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
 
 export const addAttackedFigures = (state: ChessPlaySchema) => {
 	Object.keys(state.locations).forEach((square) => {
-		const figure = state.locations[square];
-		const x = Number(square[0]);
-		const y = Number(square[1]);
 		state.locations[square].attackedSquares = [];
 		const attackedSquares: string[] = [];
 
-		addFiguresMechanisms(x, y, attackedSquares, state.locations, figure);
+		addFiguresMechanisms(square, attackedSquares, state.locations);
 
 		if (state.locations[square].color === state.mover) {
 			state.mockLocations[square].attackedSquares = attackedSquares;
@@ -38,13 +35,7 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 						const y = Number(enemySquare[1]);
 						const attackedSquares: string[] = [];
 
-						addFiguresMechanisms(
-							x,
-							y,
-							attackedSquares,
-							mockLocations,
-							mockLocations[enemySquare]
-						);
+						addFiguresMechanisms(enemySquare, attackedSquares, mockLocations);
 						attackedSquaresByEnemy.push(...attackedSquares);
 					}
 				});

@@ -1,13 +1,11 @@
-import { ChessColor, ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/chessBoard';
 import { addAttackedDirection } from '../addAttackedDirection/addAttackedDirection';
 import { Coordinates } from '@/entities/chessBoard';
 
 export const addAttackedDiagonals = (
-	x: number,
-	y: number,
+	square: string,
 	attackedSquares: string[],
-	locations: ChessLocations,
-	figureColor: ChessColor
+	locations: ChessLocations
 ) => {
 	/* RIGHT TOP */
 	/* RIGHT TOP */
@@ -21,15 +19,7 @@ export const addAttackedDiagonals = (
 
 	const canShiftToRightTop = (coordinates: Coordinates) => coordinates.x < 8 && coordinates.y < 8;
 
-	addAttackedDirection(
-		x,
-		y,
-		attackedSquares,
-		locations,
-		figureColor,
-		canShiftToRightTop,
-		shiftToRightTop
-	);
+	addAttackedDirection(square, attackedSquares, locations, canShiftToRightTop, shiftToRightTop);
 	/* LEFT TOP */
 	/* LEFT TOP */
 	/* LEFT TOP */
@@ -42,15 +32,7 @@ export const addAttackedDiagonals = (
 
 	const canShiftToLeftTop = (coordinates: Coordinates) => coordinates.x > 1 && coordinates.y < 8;
 
-	addAttackedDirection(
-		x,
-		y,
-		attackedSquares,
-		locations,
-		figureColor,
-		canShiftToLeftTop,
-		shiftToLeftTop
-	);
+	addAttackedDirection(square, attackedSquares, locations, canShiftToLeftTop, shiftToLeftTop);
 
 	/* LEFT BOTTOM */
 	/* LEFT BOTTOM */
@@ -64,15 +46,7 @@ export const addAttackedDiagonals = (
 
 	const canShiftToLeftBottom = (coordinates: Coordinates) => coordinates.x > 1 && coordinates.y > 1;
 
-	addAttackedDirection(
-		x,
-		y,
-		attackedSquares,
-		locations,
-		figureColor,
-		canShiftToLeftBottom,
-		shiftToLeftBottom
-	);
+	addAttackedDirection(square, attackedSquares, locations, canShiftToLeftBottom, shiftToLeftBottom);
 
 	/* RIGHT BOTTOM */
 	/* RIGHT BOTTOM */
@@ -86,13 +60,5 @@ export const addAttackedDiagonals = (
 
 	const canShiftToRightBottom = (coordinates: Coordinates) => coordinates.x < 8 && coordinates.y > 1;
 
-	addAttackedDirection(
-		x,
-		y,
-		attackedSquares,
-		locations,
-		figureColor,
-		canShiftToRightBottom,
-		shiftToRightBottom
-	);
+	addAttackedDirection(square, attackedSquares, locations, canShiftToRightBottom, shiftToRightBottom);
 };

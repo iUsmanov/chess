@@ -1,12 +1,10 @@
-import { ChessColor, ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/chessBoard';
 
-export const pawnMechanism = (
-	x: number,
-	y: number,
-	attackedSquares: string[],
-	locations: ChessLocations,
-	figureColor: ChessColor
-) => {
+export const pawnMechanism = (square: string, attackedSquares: string[], locations: ChessLocations) => {
+	const { color: figureColor } = locations[square];
+	const x = Number(square[0]);
+	const y = Number(square[1]);
+
 	let firstCoordinateY;
 	let nextSquareY;
 	let next2SquareY;
