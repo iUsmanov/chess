@@ -44,11 +44,16 @@ export const chessPlaySlice = createSlice({
 			) {
 				state.locations[clickedSquare] = state.locations[state.selectedSquare];
 				delete state.locations[state.selectedSquare];
+				// ====
+				state.mockLocations[clickedSquare] = state.mockLocations[state.selectedSquare];
+				delete state.mockLocations[state.selectedSquare];
+
+				// ===============
 				state.selectedSquare = undefined;
 				state.availableSquares = [];
 
-				addAttackedFigures(state);
 				toggleMover(state);
+				addAttackedFigures(state);
 			}
 		},
 	},
