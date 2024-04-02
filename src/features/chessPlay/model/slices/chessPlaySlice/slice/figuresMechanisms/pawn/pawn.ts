@@ -41,15 +41,16 @@ export const pawnMechanism = (
 		addAttackedAndBusySquaresByPawn(nextSquareX, nextSquareY);
 	}
 
-	// if (!lastMove) return;
-	// const lastMoveToX = Number(lastMove.to[0]);
-	// const lastMoveToY = Number(lastMove.to[1]);
+	// Взятие на проходе
+	if (lastMove) {
+		const lastMoveToX = Number(lastMove.to[0]);
+		const lastMoveToY = Number(lastMove.to[1]);
 
-	// if (y === takePassY && lastMoveToY === y && Math.abs(x - lastMoveToX) === 1) {
-	// 	const lastMovedFigure = locations[lastMove.to];
-	// 	if (lastMovedFigure.name === 'pawn') {
-	// 		attackedSquares.push(`${lastMoveToX}${y}`);
-	// 		delete locations[lastMove.to];
-	// 	}
-	// }
+		if (y === takePassY && y === lastMoveToY && Math.abs(x - lastMoveToX) === 1) {
+			const lastMovedFigure = locations[lastMove.to];
+			if (lastMovedFigure.name === 'pawn') {
+				attackedSquares.push(`${lastMoveToX}${nextSquareY}`);
+			}
+		}
+	}
 };

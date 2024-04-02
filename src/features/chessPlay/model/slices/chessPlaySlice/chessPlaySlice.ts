@@ -3,6 +3,7 @@ import { initialState } from '../../../consts/chessPlay';
 import { ChessColor, getEnemy } from '@/entities/chessBoard';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { toggleMover } from './slice/toggleMover/toggleMover';
+import { takePass } from './slice/takePass/takePass';
 
 export const chessPlaySlice = createSlice({
 	name: 'chessPlay',
@@ -42,18 +43,24 @@ export const chessPlaySlice = createSlice({
 				(state.locations[clickedSquare]?.color === enemy || !state.locations[clickedSquare]) &&
 				state.locations[state.selectedSquare].attackedSquares.includes(clickedSquare)
 			) {
+				takePass(state, state.locations, state.selectedSquare, clickedSquare);
+				takePass(state, state.mockLocations, state.selectedSquare, clickedSquare);
+				// =============
 				state.locations[clickedSquare] = state.locations[state.selectedSquare];
 				delete state.locations[state.selectedSquare];
-				// ====
+				// =============
 				state.mockLocations[clickedSquare] = state.mockLocations[state.selectedSquare];
 				delete state.mockLocations[state.selectedSquare];
 				// =============
-				state.history.push({ from: state.selectedSquare, to: clickedSquare });
-
+				state.history.push({
+					from: state.selectedSquare,
+					to: clickedSquare,
+					locations: state.locations,
+				});
 				// ===============
 				state.selectedSquare = undefined;
 				state.availableSquares = [];
-
+				// ===============
 				toggleMover(state);
 				addAttackedFigures(state);
 			}

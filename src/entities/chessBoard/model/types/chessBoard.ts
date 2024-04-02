@@ -16,4 +16,5 @@ export interface Coordinates {
 export interface ChessMove {
 	from: string;
 	to: string;
+	locations: ChessLocations;
 }

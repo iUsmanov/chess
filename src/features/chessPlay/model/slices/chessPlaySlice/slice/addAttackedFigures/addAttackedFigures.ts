@@ -3,6 +3,7 @@ import { ChessPlaySchema } from '../../../../types/chessPlaySchema';
 import { addFiguresMechanisms } from '../addFiguresMechanisms/addFiguresMechanisms';
 import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
 import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
+import { takePass } from '../takePass/takePass';
 
 export const addAttackedFigures = (state: ChessPlaySchema) => {
 	Object.keys(state.locations).forEach((square) => {
@@ -29,6 +30,7 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 		const figure = mockLocations[square];
 		if (figure.color === state.mover) {
 			figure.attackedSquares.forEach((attackedSquare) => {
+				takePass(state, mockLocations, square, attackedSquare);
 				mockLocations[attackedSquare] = deepClone(figure);
 				delete mockLocations[square];
 
