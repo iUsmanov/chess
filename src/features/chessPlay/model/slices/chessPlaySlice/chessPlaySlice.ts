@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../../consts/chessPlay';
-import { ChessColor, getEnemy } from '@/entities/chessBoard';
+import { ChessColor, ChessLocations, getEnemy } from '@/entities/chessBoard';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { toggleMover } from './slice/toggleMover/toggleMover';
 import { takePass } from './slice/takePass/takePass';
@@ -10,7 +10,21 @@ export const chessPlaySlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
-		afterMoved: (state, action: PayloadAction<{ mover: ChessColor }>) => {
+		goBack: (state) => {
+			const preLastMove = state.history[state.history.length - 2];
+			if (!preLastMove) return;
+			state.history.pop();
+			// ===============
+			state.locations = preLastMove.locations;
+			state.mockLocations = preLastMove.locations;
+			// ===============
+			state.selectedSquare = undefined;
+			state.availableSquares = [];
+			// ===============
+			toggleMover(state);
+			addAttackedFigures(state);
+		},
+		addInitialAttackedSquares: (state) => {
 			addAttackedFigures(state);
 		},
 		clickSquare: (state, action: PayloadAction<{ selectedSquare: string; mover: ChessColor }>) => {
@@ -52,10 +66,15 @@ export const chessPlaySlice = createSlice({
 				state.mockLocations[clickedSquare] = state.mockLocations[state.selectedSquare];
 				delete state.mockLocations[state.selectedSquare];
 				// =============
+				const locations: ChessLocations = {};
+				Object.entries(state.locations).map(([square, figure]) => {
+					locations[square] = { ...figure, attackedSquares: [] };
+				});
+				// =============
 				state.history.push({
 					from: state.selectedSquare,
 					to: clickedSquare,
-					locations: state.locations,
+					locations: locations,
 				});
 				// ===============
 				state.selectedSquare = undefined;

@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessPlay.module.scss';
 import { ChessBoard } from '@/entities/chessBoard';
@@ -15,11 +15,18 @@ export const ChessPlay = memo((props: ChessPlayProps) => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(chessPlayActions.afterMoved({ mover: 'white' }));
+		dispatch(chessPlayActions.addInitialAttackedSquares());
+	}, [dispatch]);
+
+	const goBack = useCallback(() => {
+		dispatch(chessPlayActions.goBack());
 	}, [dispatch]);
 
 	return (
 		<div className={classNames(cls.chessPlay, {}, [className])}>
+			<button type='button' onClick={goBack}>
+				Back
+			</button>
 			<ChessBoard ChessSquareContainer={ChessSquareContainer} />
 		</div>
 	);
