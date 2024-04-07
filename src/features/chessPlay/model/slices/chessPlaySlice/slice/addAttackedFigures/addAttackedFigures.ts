@@ -4,6 +4,7 @@ import { addFiguresMechanisms } from '../addFiguresMechanisms/addFiguresMechanis
 import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
 import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
 import { takePass } from '../takePass/takePass';
+import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
 
 export const addAttackedFigures = (state: ChessPlaySchema) => {
 	Object.keys(state.locations).forEach((square) => {
@@ -62,6 +63,10 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 			});
 		}
 	});
+
+	if (getIsCheck(state)) {
+		console.log(`Стороне ${state.mover} поставлен шах`);
+	}
 
 	if (getIsCheckmate(state)) {
 		console.log(`Стороне ${state.mover} поставлен мат`);

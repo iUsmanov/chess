@@ -61,5 +61,3 @@ export const ChessPlay = memo((props: ChessPlayProps) => {
 		</div>
 	);
 });
-
-// TODO Fix bug with take pass

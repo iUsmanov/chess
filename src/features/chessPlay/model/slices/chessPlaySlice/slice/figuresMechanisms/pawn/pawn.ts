@@ -45,8 +45,14 @@ export const pawnMechanism = (
 	if (lastMove) {
 		const lastMoveToX = Number(lastMove.to[0]);
 		const lastMoveToY = Number(lastMove.to[1]);
+		const lastMoveFromY = Number(lastMove.from[1]);
 
-		if (y === takePassY && y === lastMoveToY && Math.abs(x - lastMoveToX) === 1) {
+		if (
+			y === takePassY &&
+			y === lastMoveToY &&
+			Math.abs(x - lastMoveToX) === 1 &&
+			Math.abs(y - lastMoveFromY) === 2
+		) {
 			const lastMovedFigure = locations[lastMove.to];
 			if (lastMovedFigure.name === 'pawn') {
 				attackedSquares.push(`${lastMoveToX}${nextSquareY}`);
