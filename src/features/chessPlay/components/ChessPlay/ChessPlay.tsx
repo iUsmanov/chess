@@ -11,6 +11,8 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { getMinutes } from '../../model/selectors/getTime/getMinutes/getMinutes';
 import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds';
 import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
+// eslint-disable-next-line fsd-paths-guard/public-api-imports
+import { GamePanelLayout } from '@/entities/chessBoard/layouts/GamePanelLayout/GamePanelLayout';
 
 interface ChessPlayProps {
 	className?: string;
@@ -47,17 +49,26 @@ export const ChessPlay = memo((props: ChessPlayProps) => {
 	}, [dispatch]);
 
 	return (
-		<div className={classNames(cls.chessPlay, {}, [className])}>
-			<div style={{ width: 400, height: 100, background: 'red' }}>
-				<div>{hours}</div>
-				<div>{minutes}</div>
-				<div>{seconds}</div>
-				<div>{milliseconds}</div>
-			</div>
-			<button type='button' onClick={goBack}>
-				Back
-			</button>
-			<ChessBoard ChessSquareContainer={ChessSquareContainer} />
-		</div>
+		<GamePanelLayout
+			className={classNames(cls.chessPlay, {}, [className])}
+			board={<ChessBoard ChessSquareContainer={ChessSquareContainer} />}
+			topTimer={
+				<div style={{ width: 400, height: 100, background: 'red' }}>
+					<div>{hours}</div>
+					<div>{minutes}</div>
+					<div>{seconds}</div>
+					<div>{milliseconds}</div>
+				</div>
+			}
+			bottomTimer={<div />}
+			history={<div />}
+			settings={
+				<div>
+					<button type='button' onClick={goBack}>
+						Go back
+					</button>
+				</div>
+			}
+		/>
 	);
 });
