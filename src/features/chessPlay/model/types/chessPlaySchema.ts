@@ -1,4 +1,5 @@
 import { ChessColor, ChessLocations, ChessMove } from '@/entities/chessBoard';
+import { ChessClocks } from '@/entities/chessBoard';
 export interface ChessPlaySchema {
 	locations: ChessLocations;
 	mockLocations: ChessLocations;
@@ -6,4 +7,5 @@ export interface ChessPlaySchema {
 	availableSquares: string[];
 	mover: ChessColor;
 	history: ChessMove[];
+	clocks: ChessClocks;
 }

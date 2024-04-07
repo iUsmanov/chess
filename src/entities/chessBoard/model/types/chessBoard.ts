@@ -18,3 +18,11 @@ export interface ChessMove {
 	to: string;
 	locations: ChessLocations;
 }
+
+interface Clock {
+	startTime?: number;
+	time: number;
+	savedTime: number;
+}
+
+export type ChessClocks = Record<ChessColor, Clock>;

@@ -10,6 +10,15 @@ export const chessPlaySlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		setTime: (state, action: PayloadAction<number>) => {
+			const newTime = action.payload;
+			const startTime = state.clocks[state.mover].startTime;
+			if (startTime) {
+				const differenceTime = newTime - startTime;
+
+				state.clocks[state.mover].time = state.clocks[state.mover].savedTime - differenceTime;
+			}
+		},
 		goBack: (state) => {
 			const preLastMove = state.history[state.history.length - 2];
 			if (!preLastMove) return;
@@ -27,9 +36,13 @@ export const chessPlaySlice = createSlice({
 		addInitialAttackedSquares: (state) => {
 			addAttackedFigures(state);
 		},
-		clickSquare: (state, action: PayloadAction<{ selectedSquare: string; mover: ChessColor }>) => {
+		clickSquare: (
+			state,
+			action: PayloadAction<{ selectedSquare: string; mover: ChessColor; time: number }>
+		) => {
 			const clickedSquare = action.payload.selectedSquare;
 			const mover = action.payload.mover;
+			const time = action.payload.time;
 			const enemy = getEnemy(mover);
 
 			// Когда мы отменаяем выбранную фигуру
@@ -82,6 +95,9 @@ export const chessPlaySlice = createSlice({
 				// ===============
 				toggleMover(state);
 				addAttackedFigures(state);
+				// ===============
+				state.clocks[state.mover].startTime = time;
+				state.clocks[state.mover].savedTime = state.clocks[state.mover].time;
 			}
 		},
 	},

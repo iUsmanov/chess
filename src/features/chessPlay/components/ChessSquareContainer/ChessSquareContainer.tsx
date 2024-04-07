@@ -19,7 +19,13 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 
 	const onSelectSquare = useCallback(
 		(square: string) => {
-			dispatch(chessPlayActions.clickSquare({ mover: mover, selectedSquare: square }));
+			dispatch(
+				chessPlayActions.clickSquare({
+					mover: mover,
+					selectedSquare: square,
+					time: new Date().getTime(),
+				})
+			);
 		},
 		[dispatch, mover]
 	);
