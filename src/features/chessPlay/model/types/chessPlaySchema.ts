@@ -8,4 +8,6 @@ export interface ChessPlaySchema {
 	mover: ChessColor;
 	history: ChessMove[];
 	clocks: ChessClocks;
+	isCheck?: boolean;
+	isCheckmate?: boolean;
 }
