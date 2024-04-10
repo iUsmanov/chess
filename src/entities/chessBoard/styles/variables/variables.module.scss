@@ -5,6 +5,11 @@
 
 [data-size] {
 	--board-size: calc(var(--square-size) * 8);
+
+	@media (width < 518px) {
+		--square-size: 12.5vw !important;
+		--figure-svg-size: 11vw !important;
+	}
 }
 
 [data-size="s"] {

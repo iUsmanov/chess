@@ -1,4 +1,7 @@
 export { ChessBoard } from './components/ChessBoard/ChessBoard';
+export { Clock } from './components/Clock/Clock';
+export { GamePanelLayout } from './layouts/GamePanelLayout/GamePanelLayout';
+export { History } from './components/History/History';
 export type { ChessBoardSize } from './components/ChessBoard/ChessBoard';
 export { ChessSquare } from './components/ChessSquare/ChessSquare';
 export type { ChessSquareContainerProps } from './components/ChessSquare/ChessSquare';
