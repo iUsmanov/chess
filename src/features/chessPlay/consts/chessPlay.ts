@@ -208,4 +208,6 @@ export const initialState: ChessPlaySchema = {
 			savedTime: 60000,
 		},
 	},
+	isCheck: false,
+	isCheckmate: false,
 };

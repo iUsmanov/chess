@@ -67,11 +67,15 @@ export const addAttackedFigures = (state: ChessPlaySchema) => {
 	if (getIsCheck(state)) {
 		state.isCheck = true;
 		console.log(`Стороне ${state.mover} поставлен шах`);
+	} else {
+		state.isCheck = false;
 	}
 
 	if (getIsCheckmate(state)) {
 		state.isCheckmate = true;
 		console.log(`Стороне ${state.mover} поставлен мат`);
+	} else {
+		state.isCheckmate = false;
 	}
 };
 

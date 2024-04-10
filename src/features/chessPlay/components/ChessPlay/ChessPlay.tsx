@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessPlay.module.scss';
-import { ChessBoard, Clock, History } from '@/entities/chessBoard';
+import { ChessBoard, Clock, History, getMover } from '@/entities/chessBoard';
 import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
 import { chessPlayActions } from '../../model/slices/chessPlaySlice/chessPlaySlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -13,6 +13,8 @@ import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds'
 import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
 import { GamePanelLayout } from '@/entities/chessBoard';
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
+import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
+import { getIsCheckmate } from '../../model/selectors/getIsCheckmate/getIsCheckmate';
 
 interface ChessPlayProps {
 	className?: string;
@@ -23,6 +25,9 @@ export const ChessPlay = memo((props: ChessPlayProps) => {
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
+	const isCheck = useSelector(getIsCheck);
+	const isCheckmate = useSelector(getIsCheckmate);
+	const mover = useSelector(getMover);
 	// ===========
 	const whiteHours = useSelector((state: StateSchema) => getHours(state, 'white'));
 	const whiteMinutes = useSelector((state: StateSchema) => getMinutes(state, 'white'));
@@ -59,7 +64,10 @@ export const ChessPlay = memo((props: ChessPlayProps) => {
 		<GamePanelLayout
 			className={classNames(cls.chessPlay, {}, [className])}
 			board={
-				<div>
+				<div className={cls.main}>
+					{!isCheck && !isCheckmate && <div className={cls.header}>Ходят {mover}</div>}
+					{isCheck && !isCheckmate && <div className={cls.header}>CHEX</div>}
+					{isCheckmate && <div className={cls.header}>CHECKMATE</div>}
 					<ChessBoard ChessSquareContainer={ChessSquareContainer} />
 				</div>
 			}
