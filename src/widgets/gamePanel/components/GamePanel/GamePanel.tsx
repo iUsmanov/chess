@@ -17,6 +17,7 @@ import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContain
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
+import { BoardSettingsMenu } from '../BoardSettingsMenu/BoardSettingsMenu';
 
 interface GamePanelProps {
 	className?: string;
@@ -102,6 +103,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 						<button type='button' onClick={goBack}>
 							Сделать ход назад
 						</button>
+						<br />
+						<BoardSettingsMenu />
 					</div>
 				}
 			/>
