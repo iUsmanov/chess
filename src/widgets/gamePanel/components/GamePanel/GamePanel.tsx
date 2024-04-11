@@ -18,6 +18,7 @@ import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
 import { BoardSettingsMenu } from '../BoardSettingsMenu/BoardSettingsMenu';
+import { Button } from '@/shared/ui/Button/Button';
 
 interface GamePanelProps {
 	className?: string;
@@ -100,11 +101,11 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				history={<GameHistory history={history} />}
 				settings={
 					<div style={{ background: 'purple', height: '100%' }}>
-						<button type='button' onClick={goBack}>
-							Сделать ход назад
-						</button>
+						<Button onClick={goBack}>Сделать ход назад</Button>
+						<br />
 						<br />
 						<BoardSettingsMenu />
+						{/* <Button>Button</Button> */}
 					</div>
 				}
 			/>

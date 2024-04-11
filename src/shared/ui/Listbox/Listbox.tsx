@@ -2,6 +2,8 @@ import { Listbox as HListbox } from '@headlessui/react';
 import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
 import { ReactNode, useMemo } from 'react';
 import cls from './Listbox.module.scss';
+import { Button } from '../Button/Button';
+import { HStack } from '../Stack';
 
 interface ListboxProps<T extends string> {
 	className?: string;
@@ -25,19 +27,21 @@ export const Listbox = typedMemo(<T extends string>(props: ListboxProps<T>) => {
 	}, [options, selectedValue]);
 
 	return (
-		<div className={cls.wrapper}>
+		<HStack className={cls.wrapper} align='center'>
 			{label}
-			<HListbox value={selectedValue} onChange={onChange}>
-				<HListbox.Button>{selectedOption?.content}</HListbox.Button>
-				<HListbox.Options>
+			<HListbox value={selectedValue} onChange={onChange} as={'div'}>
+				<HListbox.Button as={'div'}>
+					<Button>{selectedOption?.content}</Button>
+				</HListbox.Button>
+				<HListbox.Options className={cls.options}>
 					{options.map((option) => (
-						<HListbox.Option key={option.value} value={option.value}>
+						<HListbox.Option key={option.value} value={option.value} className={cls.option}>
 							{option.content}
 						</HListbox.Option>
 					))}
 				</HListbox.Options>
 			</HListbox>
-		</div>
+		</HStack>
 	);
 });
 

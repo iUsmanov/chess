@@ -35,4 +35,6 @@ interface Clock {
 	savedTime: number;
 }
 
+export type Game = 'chess' | 'checkers';
+
 export type ChessClocks = Record<ChessColor, Clock>;

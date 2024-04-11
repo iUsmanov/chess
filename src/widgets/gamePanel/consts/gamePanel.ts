@@ -215,4 +215,5 @@ export const initialState: GamePanelSchema = {
 		size: 's',
 		style: 'wood',
 	},
+	game: 'chess',
 };

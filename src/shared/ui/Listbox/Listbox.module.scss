@@ -1,3 +1,14 @@
-.wrapper {
-	display: flex;
+.options {
+	margin-top: 5px;
+}
+
+.option {
+	background: rgb(19 160 202);
+	color: rgb(219 219 219);
+	border: 2px solid wheat;
+	cursor: pointer;
+
+	&:hover {
+		background-color: green;
+	}
 }

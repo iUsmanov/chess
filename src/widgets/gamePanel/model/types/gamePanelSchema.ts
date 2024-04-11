@@ -4,6 +4,7 @@ import {
 	ChessColor,
 	ChessLocations,
 	ChessMove,
+	Game,
 } from '@/entities/chessBoard';
 
 export interface GamePanelSchema {
@@ -17,4 +18,5 @@ export interface GamePanelSchema {
 	isCheck?: boolean;
 	isCheckmate?: boolean;
 	boardSettings: BoardSettings;
+	game: Game;
 }
