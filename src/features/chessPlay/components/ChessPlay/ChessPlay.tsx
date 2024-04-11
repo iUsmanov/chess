@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessPlay.module.scss';
-import { ChessBoard, Clock, History, getMover } from '@/entities/chessBoard';
+import { ChessBoard, Clock, GameHistory, getMover } from '@/entities/chessBoard';
 import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
 import { chessPlayActions } from '../../model/slices/chessPlaySlice/chessPlaySlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -87,7 +87,7 @@ export const ChessPlay = memo((props: ChessPlayProps) => {
 					seconds={whiteSeconds}
 				/>
 			}
-			history={<History history={history} />}
+			history={<GameHistory history={history} />}
 			settings={
 				<div style={{ background: 'purple', height: '100%' }}>
 					<button type='button' onClick={goBack}>

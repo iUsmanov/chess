@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GameHistory.module.scss';
-import { ChessMove } from '@/entities/chessBoard';
+import { ChessMove } from '../../model/types/chessBoard';
 
 interface GameHistoryProps {
 	className?: string;
