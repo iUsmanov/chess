@@ -5,8 +5,6 @@ import themesCls from '../../styles/themes/themes.module.scss';
 import { isEven } from '@/shared/lib/helpers/isEven/isEven';
 import { ChessSquareContainerProps } from '../ChessSquare/ChessSquare';
 
-export type ChessBoardSize = 's' | 'm' | 'x';
-
 interface ChessBoardProps {
 	className?: string;
 	ChessSquareContainer: React.MemoExoticComponent<(props: ChessSquareContainerProps) => JSX.Element>;
@@ -38,9 +36,5 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 		}
 	}
 
-	return (
-		<section className={classNames(cls.chessBoard, {}, [className, themesCls[`style-${'second'}`]])}>
-			{squares}
-		</section>
-	);
+	return <section className={classNames(cls.chessBoard, {}, [className])}>{squares}</section>;
 });

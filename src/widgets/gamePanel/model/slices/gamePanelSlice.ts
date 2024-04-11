@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/gamePanel';
-import { ChessColor, ChessLocations, getEnemy } from '@/entities/chessBoard';
+import { BoardSettings, ChessColor, ChessLocations, getEnemy } from '@/entities/chessBoard';
 import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { takePass } from './slice/takePass/takePass';
@@ -10,6 +10,9 @@ export const gamePanelSlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		changeBoardSettings: (state, action: PayloadAction<Partial<BoardSettings>>) => {
+			state.boardSettings = { ...state.boardSettings, ...action.payload };
+		},
 		setTime: (state, action: PayloadAction<number>) => {
 			const newTime = action.payload;
 			const startTime = state.clocks[state.mover].startTime;

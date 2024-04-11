@@ -1,9 +1,7 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
-import { ChessBoard, ChessBoardSize, Clock, GameHistory } from '@/entities/chessBoard';
-// eslint-disable-next-line fsd-paths-guard/public-api-imports
-// import { GamePanelLayout } from '@/entities/chessBoard/layouts/GamePanelLayout/GamePanelLayout';
+import { ChessBoard, Clock, GameHistory } from '@/entities/chessBoard';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getHours } from '../../model/selectors/getTime/getHours/getHours';
@@ -18,6 +16,7 @@ import { getIsCheckmate } from '../../model/selectors/getIsCheckmate/getIsCheckm
 import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
+import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
 
 interface GamePanelProps {
 	className?: string;
@@ -25,7 +24,7 @@ interface GamePanelProps {
 
 export const GamePanel = memo((props: GamePanelProps) => {
 	const { className } = props;
-	const [size, setSize] = useState<ChessBoardSize>('s');
+	const { figuresPack, size, style } = useSelector(getBoardSettings);
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
@@ -68,7 +67,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		<div
 			className={classNames(cls.gamePanel, {}, [className])}
 			data-size={size}
-			data-figures-pack={`figures-${'classic'}`}
+			data-figures-pack={`figures-${figuresPack}`}
+			data-style={style}
 		>
 			<GamePanelLayout
 				className={classNames(cls.chessPlay, {}, [className])}

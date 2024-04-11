@@ -210,4 +210,9 @@ export const initialState: GamePanelSchema = {
 	},
 	isCheck: false,
 	isCheckmate: false,
+	boardSettings: {
+		figuresPack: 'classic',
+		size: 's',
+		style: 'wood',
+	},
 };

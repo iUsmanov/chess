@@ -1,6 +1,6 @@
 @import "../variables/variables.module";
 
-.style-usual {
+[data-style="ice"] {
 	.evenSquare {
 		background: bisque;
 	}
@@ -10,7 +10,7 @@
 	}
 }
 
-.style-second {
+[data-style="wood"] {
 	.evenSquare {
 		background: rgb(230 134 17);
 	}
@@ -20,12 +20,12 @@
 	}
 }
 
-.style-primary {
+[data-style="field"]  {
 	.evenSquare {
 		background: rgb(57 192 4);
 	}
 	
 	.oddSquare {
-		background: rgb(47 11 95);
+		background: rgb(255 255 255);
 	}
 }

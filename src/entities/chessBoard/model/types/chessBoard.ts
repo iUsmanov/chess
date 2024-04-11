@@ -19,6 +19,16 @@ export interface ChessMove {
 	locations: ChessLocations;
 }
 
+export type BoardSize = 's' | 'm' | 'x';
+export type BoardStyle = 'wood' | 'ice' | 'field';
+export type ChessFiguresPack = 'classic' | 'primary';
+
+export interface BoardSettings {
+	size: BoardSize;
+	style: BoardStyle;
+	figuresPack: ChessFiguresPack;
+}
+
 interface Clock {
 	startTime?: number;
 	time: number;

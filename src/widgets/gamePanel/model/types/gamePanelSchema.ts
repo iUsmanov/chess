@@ -1,4 +1,10 @@
-import { ChessClocks, ChessColor, ChessLocations, ChessMove } from '@/entities/chessBoard';
+import {
+	BoardSettings,
+	ChessClocks,
+	ChessColor,
+	ChessLocations,
+	ChessMove,
+} from '@/entities/chessBoard';
 
 export interface GamePanelSchema {
 	locations: ChessLocations;
@@ -10,4 +16,5 @@ export interface GamePanelSchema {
 	clocks: ChessClocks;
 	isCheck?: boolean;
 	isCheckmate?: boolean;
+	boardSettings: BoardSettings;
 }
