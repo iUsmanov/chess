@@ -3,8 +3,6 @@ import { AnyAction, CombinedState, Reducer, configureStore } from '@reduxjs/tool
 import { ReducersObject, StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 import { gamePanelReducer } from '@/widgets/gamePanel';
-import { chessPlayReducer } from '@/features/chessPlay';
-import { chessBoardReducer } from '@/entities/chessBoard';
 
 /**
  * @param children - что мы хотим обернуть в Provider?
@@ -17,8 +15,6 @@ export const createReduxStore = (initialState?: StateSchema, asyncReducers?: Red
 	const rootReducer: ReducersObject = {
 		// [rtkApi.reducerPath]: rtkApi.reducer,
 		gamePanel: gamePanelReducer,
-		chessPlay: chessPlayReducer,
-		chessBoard: chessBoardReducer,
 		...asyncReducers,
 	};
 
