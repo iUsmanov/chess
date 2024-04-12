@@ -2,10 +2,9 @@ import { memo, useCallback } from 'react';
 import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
 import { useSelector } from 'react-redux';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
-import { BoardSize, BoardStyle, ChessFiguresPack, Game } from '@/entities/chessBoard';
+import { BoardSize, BoardStyle, ChessFiguresPack } from '@/entities/chessBoard';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
-import { getGame } from '../../model/selectors/getGame/getGame';
 
 interface ListboxProps {
 	className?: string;
@@ -60,23 +59,9 @@ const figuresPackOptions: ListboxOption<ChessFiguresPack>[] = [
 	},
 ];
 
-const gameOptions: ListboxOption<Game>[] = [
-	{
-		value: 'chess',
-		content: 'Шахматы',
-		disabled: false,
-	},
-	{
-		value: 'checkers',
-		content: 'Шашки',
-		disabled: false,
-	},
-];
-
 export const BoardSettingsMenu = memo((props: ListboxProps) => {
 	const { className } = props;
 	const { figuresPack, size, style } = useSelector(getBoardSettings);
-	const game = useSelector(getGame);
 	const dispatch = useAppDispatch();
 
 	const onChangeBoardSize = useCallback(
@@ -99,14 +84,6 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 		},
 		[dispatch]
 	);
-
-	const onChangeGame = useCallback(
-		(newGame: Game) => {
-			dispatch(gamePanelActions.changeGame(newGame));
-		},
-		[dispatch]
-	);
-
 	return (
 		<div>
 			<Listbox<BoardSize>
@@ -128,13 +105,6 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 				options={figuresPackOptions}
 				selectedValue={figuresPack}
 				label={<div>Стиль фигур</div>}
-			/>
-			<br />
-			<Listbox<Game>
-				onChange={onChangeGame}
-				options={gameOptions}
-				selectedValue={game}
-				label={<div>Игра</div>}
 			/>
 		</div>
 	);

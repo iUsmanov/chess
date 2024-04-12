@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
-import { ChessBoard, Clock, GameHistory } from '@/entities/chessBoard';
+import { ChessBoard, Clock, Game, GameHistory } from '@/entities/chessBoard';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getHours } from '../../model/selectors/getTime/getHours/getHours';
@@ -19,6 +19,23 @@ import { BoardSettingsMenu } from '../BoardSettingsMenu/BoardSettingsMenu';
 import { Button } from '@/shared/ui/Button/Button';
 import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
 import { getGameResult } from '../../model/selectors/getGameResult/getGameResult';
+import { Input } from '@/shared/ui/Input/Input';
+import { getIsGameStarted } from '../../model/selectors/getIsGameStarted/getIsGameStarted';
+import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
+import { getGame } from '../../model/selectors/getGame/getGame';
+
+const gameOptions: ListboxOption<Game>[] = [
+	{
+		value: 'chess',
+		content: 'Шахматы',
+		disabled: false,
+	},
+	{
+		value: 'checkers',
+		content: 'Шашки',
+		disabled: false,
+	},
+];
 
 interface GamePanelProps {
 	className?: string;
@@ -33,6 +50,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const isCheck = useSelector(getIsCheck);
 	const mover = useSelector(getMover);
 	const gameResult = useSelector(getGameResult);
+	const isGameStarted = useSelector(getIsGameStarted);
+	const game = useSelector(getGame);
 	// ===========
 	const whiteHours = useSelector((state: StateSchema) => getHours(state, 'white'));
 	const whiteMinutes = useSelector((state: StateSchema) => getMinutes(state, 'white'));
@@ -55,6 +74,41 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const onGiveUp = useCallback(() => {
 		dispatch(gamePanelActions.giveUp(mover));
 	}, [dispatch, mover]);
+
+	const onStartGame = useCallback(() => {
+		dispatch(gamePanelActions.startGame());
+	}, [dispatch]);
+
+	const setInitialHours = useCallback(
+		(newHours: string) => {
+			dispatch(
+				gamePanelActions.setInitialTime({
+					minutesString: String(whiteMinutes),
+					hoursString: newHours,
+				})
+			);
+		},
+		[dispatch, whiteMinutes]
+	);
+
+	const setInitialMinutes = useCallback(
+		(newMinutes: string) => {
+			dispatch(
+				gamePanelActions.setInitialTime({
+					minutesString: newMinutes,
+					hoursString: String(whiteHours),
+				})
+			);
+		},
+		[dispatch, whiteHours]
+	);
+
+	const onChangeGame = useCallback(
+		(newGame: Game) => {
+			dispatch(gamePanelActions.changeGame(newGame));
+		},
+		[dispatch]
+	);
 
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
@@ -80,7 +134,9 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				className={classNames(cls.chessPlay, {}, [className])}
 				board={
 					<div className={cls.main}>
-						{!gameResult && !isCheck && <div className={cls.header}>Ходят {mover}</div>}
+						{!gameResult && !isCheck && isGameStarted && (
+							<div className={cls.header}>Ходят {mover}</div>
+						)}
 						{!gameResult && isCheck && <div className={cls.header}>ШАХ</div>}
 						{gameResult && (
 							<div className={cls.header}>
@@ -88,10 +144,27 @@ export const GamePanel = memo((props: GamePanelProps) => {
 							</div>
 						)}
 
-						<ChessBoard
-							ChessSquareContainer={ChessSquareContainer}
-							className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}
-						/>
+						{isGameStarted ? (
+							<ChessBoard
+								ChessSquareContainer={ChessSquareContainer}
+								className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}
+							/>
+						) : (
+							<>
+								<Listbox<Game>
+									onChange={onChangeGame}
+									options={gameOptions}
+									selectedValue={game}
+									label={<div>Игра</div>}
+								/>
+								<br />
+								<br />
+								<Input value={whiteHours} onChange={setInitialHours} label='Часы' />
+								<br />
+								<Input value={whiteMinutes} onChange={setInitialMinutes} label='Минуты' />
+								<Button onClick={onStartGame}>Начать игру</Button>
+							</>
+						)}
 					</div>
 				}
 				topTimer={
@@ -113,6 +186,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				history={<GameHistory history={history} />}
 				settings={
 					<div style={{ background: 'purple', height: '100%' }}>
+						<br />
+						<br />
 						<Button onClick={goBack}>Сделать ход назад</Button>
 						<br />
 						<br />

@@ -10,6 +10,24 @@ export const gamePanelSlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		startGame: (state) => {
+			state.isGameStarted = true;
+		},
+		setInitialTime: (
+			state,
+			action: PayloadAction<{ hoursString: string; minutesString: string }>
+		) => {
+			const { hoursString, minutesString } = action.payload;
+			const hours = Number(hoursString);
+			const minutes = Number(minutesString);
+			const allMinutes = 60 * hours + minutes;
+			const milliseconds = allMinutes * 60 * 1000;
+			state.clocks.white.savedTime = milliseconds;
+			state.clocks.white.time = milliseconds;
+			// ===============
+			state.clocks.black.savedTime = milliseconds;
+			state.clocks.black.time = milliseconds;
+		},
 		giveUp: (state, action: PayloadAction<ChessColor>) => {
 			state.gameResult = {
 				reason: 'giveUp',

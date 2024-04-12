@@ -216,4 +216,5 @@ export const initialState: GamePanelSchema = {
 	game: 'chess',
 	gameResult: undefined,
 	isCheck: false,
+	isGameStarted: false,
 };
