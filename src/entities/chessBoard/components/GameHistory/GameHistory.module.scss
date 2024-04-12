@@ -1,4 +1,27 @@
 .gameHistory {
-	height: 100%;
+	height: 70vh;
 	background-color: red;
+	overflow-y: auto;
+	padding: 8px;
+	border-radius: 5px;
+}
+
+.move {
+	border-radius: 5px;
+	padding: 5px 10px;
+	background-color: blue;
+	margin-bottom: 10px;
+	color: #fff;
+}
+
+.pairNumber {
+	width: 10%;
+}
+
+.whiteMove {
+	width: 40%;
+}
+
+.blackMove {
+	width: 40%;
 }
