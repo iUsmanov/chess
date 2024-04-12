@@ -208,11 +208,12 @@ export const initialState: GamePanelSchema = {
 			savedTime: 60000,
 		},
 	},
-	specialSituation: undefined,
 	boardSettings: {
 		figuresPack: 'classic',
 		size: 's',
 		style: 'wood',
 	},
 	game: 'chess',
+	gameResult: undefined,
+	isCheck: false,
 };

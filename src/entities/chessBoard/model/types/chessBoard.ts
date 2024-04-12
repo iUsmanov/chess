@@ -22,12 +22,18 @@ export interface ChessMove {
 export type BoardSize = 's' | 'm' | 'x';
 export type BoardStyle = 'wood' | 'ice' | 'field';
 export type ChessFiguresPack = 'classic' | 'primary';
-export type SpecialSituation = 'check' | 'checkmate' | 'stalemate';
+type GameResultWinner = ChessColor | 'draw';
+type GameResultReason = 'giveUp' | 'expirationTime' | 'checkmate' | 'stalemate';
 
 export interface BoardSettings {
 	size: BoardSize;
 	style: BoardStyle;
 	figuresPack: ChessFiguresPack;
+}
+
+export interface GameResult {
+	winner: GameResultWinner;
+	reason: GameResultReason;
 }
 
 interface Clock {

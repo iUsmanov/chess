@@ -11,13 +11,14 @@ import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds'
 import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
 import { GamePanelLayout } from '@/entities/chessBoard';
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
-import { getSpecialSituation } from '../../model/selectors/getSpecialSituation/getSpecialSituation';
 import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
 import { BoardSettingsMenu } from '../BoardSettingsMenu/BoardSettingsMenu';
 import { Button } from '@/shared/ui/Button/Button';
+import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
+import { getGameResult } from '../../model/selectors/getGameResult/getGameResult';
 
 interface GamePanelProps {
 	className?: string;
@@ -29,8 +30,9 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
-	const specialSituation = useSelector(getSpecialSituation);
+	const isCheck = useSelector(getIsCheck);
 	const mover = useSelector(getMover);
+	const gameResult = useSelector(getGameResult);
 	// ===========
 	const whiteHours = useSelector((state: StateSchema) => getHours(state, 'white'));
 	const whiteMinutes = useSelector((state: StateSchema) => getMinutes(state, 'white'));
@@ -49,6 +51,10 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const goBack = useCallback(() => {
 		dispatch(gamePanelActions.goBack());
 	}, [dispatch]);
+
+	const onGiveUp = useCallback(() => {
+		dispatch(gamePanelActions.giveUp(mover));
+	}, [dispatch, mover]);
 
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
@@ -74,9 +80,18 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				className={classNames(cls.chessPlay, {}, [className])}
 				board={
 					<div className={cls.main}>
-						{!specialSituation && <div className={cls.header}>Ходят {mover}</div>}
-						{specialSituation && <div className={cls.header}>{specialSituation}</div>}
-						<ChessBoard ChessSquareContainer={ChessSquareContainer} />
+						{!gameResult && !isCheck && <div className={cls.header}>Ходят {mover}</div>}
+						{!gameResult && isCheck && <div className={cls.header}>ШАХ</div>}
+						{gameResult && (
+							<div className={cls.header}>
+								Победитель - {gameResult.winner}. Причина - {gameResult.reason}
+							</div>
+						)}
+
+						<ChessBoard
+							ChessSquareContainer={ChessSquareContainer}
+							className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}
+						/>
 					</div>
 				}
 				topTimer={
@@ -99,6 +114,9 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				settings={
 					<div style={{ background: 'purple', height: '100%' }}>
 						<Button onClick={goBack}>Сделать ход назад</Button>
+						<br />
+						<br />
+						<Button onClick={onGiveUp}>Сдаться</Button>
 						<br />
 						<br />
 						<BoardSettingsMenu />

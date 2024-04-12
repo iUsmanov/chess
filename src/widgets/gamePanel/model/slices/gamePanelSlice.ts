@@ -10,6 +10,12 @@ export const gamePanelSlice = createSlice({
 	initialState,
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
+		giveUp: (state, action: PayloadAction<ChessColor>) => {
+			state.gameResult = {
+				reason: 'giveUp',
+				winner: getEnemy(action.payload),
+			};
+		},
 		changeBoardSettings: (state, action: PayloadAction<Partial<BoardSettings>>) => {
 			state.boardSettings = { ...state.boardSettings, ...action.payload };
 		},
@@ -17,12 +23,20 @@ export const gamePanelSlice = createSlice({
 			state.game = action.payload;
 		},
 		setTime: (state, action: PayloadAction<number>) => {
+			if (state.gameResult) return;
 			const newTime = action.payload;
 			const startTime = state.clocks[state.mover].startTime;
 			if (startTime) {
 				const differenceTime = newTime - startTime;
 
 				state.clocks[state.mover].time = state.clocks[state.mover].savedTime - differenceTime;
+
+				if (state.clocks[state.mover].time <= 0) {
+					state.gameResult = {
+						reason: 'expirationTime',
+						winner: getEnemy(state.mover),
+					};
+				}
 			}
 		},
 		goBack: (state) => {

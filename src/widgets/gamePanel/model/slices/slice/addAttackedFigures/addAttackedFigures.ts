@@ -6,6 +6,7 @@ import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
 import { takePass } from '../takePass/takePass';
 import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
 import { getIsStalemate } from '../helpers/getIsStalemate/getIsStalemate';
+import { getEnemy } from '@/entities/chessBoard';
 
 export const addAttackedFigures = (state: GamePanelSchema) => {
 	Object.keys(state.locations).forEach((square) => {
@@ -66,20 +67,28 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 	});
 
 	if (getIsCheck(state)) {
-		state.specialSituation = 'check';
+		state.isCheck = true;
 		console.log(`Стороне ${state.mover} поставлен шах`);
 	} else {
-		state.specialSituation = undefined;
+		state.isCheck = false;
 	}
 
 	if (getIsStalemate(state)) {
-		state.specialSituation = 'stalemate';
 		console.log(`Стороне ${state.mover} поставлен пат`);
+
+		state.gameResult = {
+			reason: 'stalemate',
+			winner: 'draw',
+		};
 	}
 
 	if (getIsCheckmate(state)) {
-		state.specialSituation = 'checkmate';
 		console.log(`Стороне ${state.mover} поставлен мат`);
+
+		state.gameResult = {
+			reason: 'checkmate',
+			winner: getEnemy(state.mover),
+		};
 	}
 };
 
