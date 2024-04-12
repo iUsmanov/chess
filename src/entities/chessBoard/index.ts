@@ -16,6 +16,7 @@ export type {
 	BoardStyle,
 	ChessFiguresPack,
 	Game,
+	SpecialSituation,
 } from './model/types/chessBoard';
 export type { ChessBoardSchema } from './model/types/chessBoardSchema';
 export { chessBoardReducer } from './model/slices/chessBoardSlice';

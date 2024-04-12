@@ -22,6 +22,7 @@ export interface ChessMove {
 export type BoardSize = 's' | 'm' | 'x';
 export type BoardStyle = 'wood' | 'ice' | 'field';
 export type ChessFiguresPack = 'classic' | 'primary';
+export type SpecialSituation = 'check' | 'checkmate' | 'stalemate';
 
 export interface BoardSettings {
 	size: BoardSize;

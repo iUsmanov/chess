@@ -1,8 +1,8 @@
 import { GamePanelSchema } from '../../../../types/gamePanelSchema';
 import { getIsCheck } from '../getIsCheck/getIsCheck';
 
-export const getIsCheckmate = (state: GamePanelSchema) => {
-	if (!getIsCheck(state)) return false;
+export const getIsStalemate = (state: GamePanelSchema) => {
+	if (getIsCheck(state)) return false;
 	return Object.keys(state.locations).every((square) => {
 		const figure = state.locations[square];
 		if (figure.color === state.mover) {

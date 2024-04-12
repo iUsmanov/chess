@@ -5,6 +5,7 @@ import {
 	ChessLocations,
 	ChessMove,
 	Game,
+	SpecialSituation,
 } from '@/entities/chessBoard';
 
 export interface GamePanelSchema {
@@ -15,8 +16,7 @@ export interface GamePanelSchema {
 	mover: ChessColor;
 	history: ChessMove[];
 	clocks: ChessClocks;
-	isCheck?: boolean;
-	isCheckmate?: boolean;
+	specialSituation?: SpecialSituation;
 	boardSettings: BoardSettings;
 	game: Game;
 }

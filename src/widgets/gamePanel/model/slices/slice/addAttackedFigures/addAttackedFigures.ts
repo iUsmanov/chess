@@ -5,6 +5,7 @@ import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
 import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
 import { takePass } from '../takePass/takePass';
 import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
+import { getIsStalemate } from '../helpers/getIsStalemate/getIsStalemate';
 
 export const addAttackedFigures = (state: GamePanelSchema) => {
 	Object.keys(state.locations).forEach((square) => {
@@ -65,17 +66,20 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 	});
 
 	if (getIsCheck(state)) {
-		state.isCheck = true;
+		state.specialSituation = 'check';
 		console.log(`Стороне ${state.mover} поставлен шах`);
 	} else {
-		state.isCheck = false;
+		state.specialSituation = undefined;
+	}
+
+	if (getIsStalemate(state)) {
+		state.specialSituation = 'stalemate';
+		console.log(`Стороне ${state.mover} поставлен пат`);
 	}
 
 	if (getIsCheckmate(state)) {
-		state.isCheckmate = true;
+		state.specialSituation = 'checkmate';
 		console.log(`Стороне ${state.mover} поставлен мат`);
-	} else {
-		state.isCheckmate = false;
 	}
 };
 

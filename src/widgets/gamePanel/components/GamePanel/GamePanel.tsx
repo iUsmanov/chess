@@ -11,8 +11,7 @@ import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds'
 import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
 import { GamePanelLayout } from '@/entities/chessBoard';
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
-import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
-import { getIsCheckmate } from '../../model/selectors/getIsCheckmate/getIsCheckmate';
+import { getSpecialSituation } from '../../model/selectors/getSpecialSituation/getSpecialSituation';
 import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
@@ -30,8 +29,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
-	const isCheck = useSelector(getIsCheck);
-	const isCheckmate = useSelector(getIsCheckmate);
+	const specialSituation = useSelector(getSpecialSituation);
 	const mover = useSelector(getMover);
 	// ===========
 	const whiteHours = useSelector((state: StateSchema) => getHours(state, 'white'));
@@ -76,9 +74,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				className={classNames(cls.chessPlay, {}, [className])}
 				board={
 					<div className={cls.main}>
-						{!isCheck && !isCheckmate && <div className={cls.header}>Ходят {mover}</div>}
-						{isCheck && !isCheckmate && <div className={cls.header}>CHEX</div>}
-						{isCheckmate && <div className={cls.header}>CHECKMATE</div>}
+						{!specialSituation && <div className={cls.header}>Ходят {mover}</div>}
+						{specialSituation && <div className={cls.header}>{specialSituation}</div>}
 						<ChessBoard ChessSquareContainer={ChessSquareContainer} />
 					</div>
 				}

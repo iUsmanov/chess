@@ -208,8 +208,7 @@ export const initialState: GamePanelSchema = {
 			savedTime: 60000,
 		},
 	},
-	isCheck: false,
-	isCheckmate: false,
+	specialSituation: undefined,
 	boardSettings: {
 		figuresPack: 'classic',
 		size: 's',
