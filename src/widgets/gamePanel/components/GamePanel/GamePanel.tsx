@@ -79,6 +79,17 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		dispatch(gamePanelActions.startGame());
 	}, [dispatch]);
 
+	const onStartNewGame = useCallback(() => {
+		dispatch(gamePanelActions.prepareNewGame());
+
+		dispatch(
+			gamePanelActions.setInitialTime({
+				minutesString: '1',
+				hoursString: '0',
+			})
+		);
+	}, [dispatch]);
+
 	const setInitialHours = useCallback(
 		(newHours: string) => {
 			dispatch(
@@ -193,6 +204,11 @@ export const GamePanel = memo((props: GamePanelProps) => {
 						<br />
 						<Button onClick={onGiveUp}>Сдаться</Button>
 						<br />
+						<br />
+						{gameResult && <Button onClick={onStartNewGame}>Начать новую игру</Button>}
+						<br />
+						<br />
+						<hr />
 						<br />
 						<BoardSettingsMenu />
 						{/* <Button>Button</Button> */}

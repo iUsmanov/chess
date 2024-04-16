@@ -12,6 +12,24 @@ export const gamePanelSlice = createSlice({
 		template: (state, action: PayloadAction<string>) => {},
 		startGame: (state) => {
 			state.isGameStarted = true;
+			state.gameResult = undefined;
+			addAttackedFigures(state);
+		},
+		// actually prepare to start new game
+		prepareNewGame: (state) => {
+			state.isGameStarted = false;
+			state.gameResult = undefined;
+			state.history.length = 1;
+			state.locations = initialState.locations;
+			state.mockLocations = initialState.mockLocations;
+			state.mover = initialState.mover;
+			state.availableSquares = [];
+			state.isCheck = false;
+			state.selectedSquare = undefined;
+			state.clocks.black.startTime = undefined;
+			state.clocks.white.startTime = undefined;
+
+			// state.clocks
 		},
 		setInitialTime: (
 			state,
@@ -29,6 +47,7 @@ export const gamePanelSlice = createSlice({
 			state.clocks.black.time = milliseconds;
 		},
 		giveUp: (state, action: PayloadAction<ChessColor>) => {
+			if (!state.isGameStarted) return;
 			state.gameResult = {
 				reason: 'giveUp',
 				winner: getEnemy(action.payload),
@@ -41,6 +60,7 @@ export const gamePanelSlice = createSlice({
 			state.game = action.payload;
 		},
 		setTime: (state, action: PayloadAction<number>) => {
+			if (!state.isGameStarted) return;
 			if (state.gameResult) return;
 			const newTime = action.payload;
 			const startTime = state.clocks[state.mover].startTime;
@@ -54,10 +74,13 @@ export const gamePanelSlice = createSlice({
 						reason: 'expirationTime',
 						winner: getEnemy(state.mover),
 					};
+					state.clocks[state.mover].savedTime = 0;
+					state.clocks[state.mover].time = 0;
 				}
 			}
 		},
 		goBack: (state) => {
+			if (!state.isGameStarted) return;
 			const preLastMove = state.history[state.history.length - 2];
 			if (!preLastMove) return;
 			state.history.pop();
@@ -78,6 +101,7 @@ export const gamePanelSlice = createSlice({
 			state,
 			action: PayloadAction<{ selectedSquare: string; mover: ChessColor; time: number }>
 		) => {
+			if (state.gameResult) return;
 			const clickedSquare = action.payload.selectedSquare;
 			const mover = action.payload.mover;
 			const time = action.payload.time;
