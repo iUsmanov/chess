@@ -3,15 +3,6 @@
 	// --board-size: calc(var(--square-size) * 8);
 }
 
-[data-size] {
-	--board-size: calc(var(--square-size) * 8);
-
-	@media (width < 518px) {
-		--square-size: 12.5vw !important;
-		--figure-svg-size: 11vw !important;
-	}
-}
-
 [data-size="s"] {
 	--square-size: 64px;
 	--figure-svg-size: 55px;
@@ -25,4 +16,18 @@
 [data-size="x"] {
 	--square-size: 100px;
 	--figure-svg-size: 85px;
+}
+
+[data-size] {
+	--board-size: calc(var(--square-size) * 8);
+
+	@media (width < 805px) {
+		--square-size: 64px;
+		--figure-svg-size: 55px;
+	}
+
+	@media (width < 518px) {
+		--square-size: 12.5vw;
+		--figure-svg-size: 11vw;
+	}
 }

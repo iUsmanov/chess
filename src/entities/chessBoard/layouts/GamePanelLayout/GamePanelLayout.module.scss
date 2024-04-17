@@ -13,7 +13,7 @@
 	
 	@media (width < 1120px) {
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr 3fr 1fr 1fr;
+		grid-template-rows: minmax(auto, 120px) 1fr auto auto;
 		/* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
 		grid-template-areas: 
 			'bottomTimer topTimer' 

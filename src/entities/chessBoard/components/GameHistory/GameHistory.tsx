@@ -52,6 +52,7 @@ export const GameHistory = memo((props: GameHistoryProps) => {
 
 	return (
 		<div className={classNames(cls.gameHistory, {}, [className])}>
+			<div className={cls.header}>История</div>
 			<HStack wrap='wrap' justify='between' className={cls.move}>
 				<div className={cls.pairNumber}>Ход</div>
 				<div className={cls.whiteMove}>Белые</div>
