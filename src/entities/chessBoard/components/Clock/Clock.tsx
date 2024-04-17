@@ -4,10 +4,10 @@ import cls from './Clock.module.scss';
 
 interface ClockProps {
 	className?: string;
-	hours: number;
-	minutes: number;
-	seconds: number;
-	milliseconds: number;
+	hours: string;
+	minutes: string;
+	seconds: string;
+	milliseconds: string;
 }
 
 export const Clock = memo((props: ClockProps) => {
@@ -15,22 +15,21 @@ export const Clock = memo((props: ClockProps) => {
 
 	return (
 		<div className={classNames(cls.clock, {}, [className])}>
-			<div className={cls.period}>
-				<div>Часы - </div>
-				<div>{hours}</div>
-			</div>
-			<div className={cls.period}>
-				<div>Минуты - </div>
-				<div>{minutes}</div>
-			</div>
-			<div className={cls.period}>
-				<div>Секунды - </div>
-				<div>{seconds}</div>
-			</div>
-			<div className={cls.period}>
-				<div>Миллисекунды - </div>
-				<div>{milliseconds}</div>
-			</div>
+			{/* <div className={cls.period}> */}
+			<div>{hours}</div>
+			<div>:</div>
+			{/* </div> */}
+			{/* <div className={cls.period}> */}
+			<div>{minutes}</div>
+			<div>:</div>
+			{/* </div> */}
+			{/* <div className={cls.period}> */}
+			<div>{seconds}</div>
+			<div>:</div>
+			{/* </div> */}
+			{/* <div className={cls.period}> */}
+			<div>{milliseconds}</div>
+			{/* </div> */}
 		</div>
 	);
 });

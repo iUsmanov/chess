@@ -81,6 +81,7 @@ export const gamePanelSlice = createSlice({
 		},
 		goBack: (state) => {
 			if (!state.isGameStarted) return;
+			if (state.gameResult) return;
 			const preLastMove = state.history[state.history.length - 2];
 			if (!preLastMove) return;
 			state.history.pop();

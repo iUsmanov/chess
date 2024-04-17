@@ -8,6 +8,8 @@ export const getMinutes = createSelector(
 	(state, color) => {
 		const minutes = new Date(state.gamePanel.clocks[color].time).getMinutes();
 
-		return minutes;
+		const minutesString = String(minutes);
+		const minutesStringWithZero = minutesString.length === 1 ? `0${minutesString}` : minutesString;
+		return minutesStringWithZero;
 	}
 );
