@@ -1,19 +1,6 @@
-import { ChessName, ChessColor } from '../model/types/chessBoard';
-import {
-	BlackBishop,
-	BlackKing,
-	BlackKnight,
-	BlackPawn,
-	BlackQueen,
-	BlackRook,
-	WhiteBishop,
-	WhiteKing,
-	WhiteKnight,
-	WhitePawn,
-	WhiteQueen,
-	WhiteRook,
-} from '@/shared/assets/figures';
+import { ChessName, ChessColor, FiguresStyle } from '../model/types/chessBoard';
 import { ChessBoardSchema } from '../model/types/chessBoardSchema';
+import { figuresStyleNavigator } from '../lib/helpers/figuresStyleNavigator/figuresStyleNavigator';
 
 const viewBoxes: Record<ChessName, string> = {
 	bishop: '5 5 35 35',
@@ -24,7 +11,27 @@ const viewBoxes: Record<ChessName, string> = {
 	rook: '5 6 35 35',
 };
 
-export const getSvg = (figureType: ChessName, figureColor: ChessColor, cls: Record<string, string>) => {
+export const getSvg = (
+	figureType: ChessName,
+	figureColor: ChessColor,
+	cls: Record<string, string>,
+	figuresStyle: FiguresStyle
+) => {
+	const {
+		BlackBishop,
+		BlackKing,
+		BlackKnight,
+		BlackPawn,
+		BlackQueen,
+		BlackRook,
+		WhiteBishop,
+		WhiteKing,
+		WhiteKnight,
+		WhitePawn,
+		WhiteQueen,
+		WhiteRook,
+	} = figuresStyleNavigator(figuresStyle);
+
 	switch (figureColor) {
 		case 'white': {
 			switch (figureType) {

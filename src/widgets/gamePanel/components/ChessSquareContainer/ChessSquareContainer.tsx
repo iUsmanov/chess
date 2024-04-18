@@ -9,10 +9,12 @@ import { getSelectedSquare } from '../../model/selectors/getSelectedSquare/getSe
 import { getSquareIsAvailable } from '../../model/selectors/getSquareIsAvailable/getSquareIsAvailable';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
+import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
 
 export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 	const { className, coordinates } = props;
 	const selectedSquare = useSelector(getSelectedSquare);
+	const { figuresPack: figuresStyle } = useSelector(getBoardSettings);
 	const dispatch = useAppDispatch();
 	const figure = useSelector((state: StateSchema) => getChessAtLocation(state, coordinates));
 	const isAvailable = useSelector((state: StateSchema) => getSquareIsAvailable(state, coordinates));
@@ -33,6 +35,7 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 
 	return (
 		<ChessSquare
+			figuresStyle={figuresStyle}
 			className={className}
 			coordinates={coordinates}
 			isBusy={Boolean(figure)}

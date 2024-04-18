@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ChessSquare.module.scss';
-import { ChessName, ChessColor } from '../../model/types/chessBoard';
+import { ChessName, ChessColor, FiguresStyle } from '../../model/types/chessBoard';
 import { getSvg } from '../../consts/chessBoard';
 
 interface ChessSquareBaseProps {
@@ -10,6 +10,7 @@ interface ChessSquareBaseProps {
 	available?: boolean;
 	isSelected?: boolean;
 	onClick: (square: string) => void;
+	figuresStyle: FiguresStyle;
 }
 
 interface ChessSquareFreeProps extends ChessSquareBaseProps {
@@ -26,11 +27,11 @@ type ChessSquareProps = ChessSquareFreeProps | ChessSquareBusyProps;
 
 export type ChessSquareContainerProps = Omit<
 	ChessSquareBaseProps,
-	'available' | 'isSelected' | 'onClick'
+	'available' | 'isSelected' | 'onClick' | 'figuresStyle'
 >;
 
 export const ChessSquare = memo((props: ChessSquareProps) => {
-	const { className, isBusy, coordinates, onClick, isSelected } = props;
+	const { className, isBusy, coordinates, onClick, isSelected, figuresStyle } = props;
 
 	if (!isBusy) {
 		const { available } = props;
@@ -60,7 +61,7 @@ export const ChessSquare = memo((props: ChessSquareProps) => {
 				data-square-id={coordinates}
 				onClick={() => onClick(coordinates)}
 			>
-				{getSvg(figureName, figureColor, cls)}
+				{getSvg(figureName, figureColor, cls, figuresStyle)}
 			</div>
 		);
 	}

@@ -14,7 +14,7 @@ export type {
 	BoardSettings,
 	BoardSize,
 	BoardStyle,
-	ChessFiguresPack,
+	FiguresStyle,
 	Game,
 	GameResult,
 } from './model/types/chessBoard';

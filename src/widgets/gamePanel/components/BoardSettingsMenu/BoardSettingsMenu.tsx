@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
 import { useSelector } from 'react-redux';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
-import { BoardSize, BoardStyle, ChessFiguresPack } from '@/entities/chessBoard';
+import { BoardSize, BoardStyle, FiguresStyle } from '@/entities/chessBoard';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 
@@ -46,15 +46,15 @@ const styleOptions: ListboxOption<BoardStyle>[] = [
 	},
 ];
 
-const figuresPackOptions: ListboxOption<ChessFiguresPack>[] = [
+const figuresPackOptions: ListboxOption<FiguresStyle>[] = [
 	{
 		value: 'classic',
 		content: 'Классические',
 		disabled: false,
 	},
 	{
-		value: 'primary',
-		content: 'Неклассические',
+		value: 'standart',
+		content: 'Стандартные',
 		disabled: false,
 	},
 ];
@@ -79,7 +79,7 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 	);
 
 	const onChangeBoardFiguresPack = useCallback(
-		(newFiguresPack: ChessFiguresPack) => {
+		(newFiguresPack: FiguresStyle) => {
 			dispatch(gamePanelActions.changeBoardSettings({ figuresPack: newFiguresPack }));
 		},
 		[dispatch]
@@ -100,7 +100,7 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 				label={<div>Стиль доски</div>}
 			/>
 			<br />
-			<Listbox<ChessFiguresPack>
+			<Listbox<FiguresStyle>
 				onChange={onChangeBoardFiguresPack}
 				options={figuresPackOptions}
 				selectedValue={figuresPack}
