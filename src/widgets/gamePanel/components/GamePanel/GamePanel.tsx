@@ -194,7 +194,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 						seconds={whiteSeconds}
 					/>
 				}
-				history={<GameHistory history={history} />}
+				history={isGameStarted ? <GameHistory history={history} /> : undefined}
 				settings={
 					<div style={{ background: 'purple', height: '100%' }}>
 						<br />

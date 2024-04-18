@@ -11,6 +11,7 @@ export const gamePanelSlice = createSlice({
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
 		startGame: (state) => {
+			if (state.clocks.white.time < 60000) return;
 			state.isGameStarted = true;
 			state.gameResult = undefined;
 			addAttackedFigures(state);
@@ -38,8 +39,14 @@ export const gamePanelSlice = createSlice({
 			const { hoursString, minutesString } = action.payload;
 			const hours = Number(hoursString);
 			const minutes = Number(minutesString);
+
+			if (Number.isNaN(hours) || Number.isNaN(minutes)) return;
+
 			const allMinutes = 60 * hours + minutes;
 			const milliseconds = allMinutes * 60 * 1000;
+
+			if (milliseconds > 86400000) return;
+
 			state.clocks.white.savedTime = milliseconds;
 			state.clocks.white.time = milliseconds;
 			// ===============
