@@ -49,12 +49,12 @@ const styleOptions: ListboxOption<BoardStyle>[] = [
 const figuresPackOptions: ListboxOption<FiguresStyle>[] = [
 	{
 		value: 'classic',
-		content: 'Классические',
+		content: 'Классический',
 		disabled: false,
 	},
 	{
 		value: 'standart',
-		content: 'Стандартные',
+		content: 'Стандартный',
 		disabled: false,
 	},
 ];

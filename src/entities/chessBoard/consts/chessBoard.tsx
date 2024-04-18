@@ -2,14 +2,14 @@ import { ChessName, ChessColor, FiguresStyle } from '../model/types/chessBoard';
 import { ChessBoardSchema } from '../model/types/chessBoardSchema';
 import { figuresStyleNavigator } from '../lib/helpers/figuresStyleNavigator/figuresStyleNavigator';
 
-const viewBoxes: Record<ChessName, string> = {
-	bishop: '5 5 35 35',
-	king: '5 5 35 35',
-	knight: '5 5 35 35',
-	pawn: '5 6 35 35',
-	queen: '3 2 39 39',
-	rook: '5 6 35 35',
-};
+// const viewBoxes: Record<ChessName, string> = {
+// 	bishop: '5 5 35 35',
+// 	king: '5 5 35 35',
+// 	knight: '5 5 35 35',
+// 	pawn: '5 6 35 35',
+// 	queen: '3 2 39 39',
+// 	rook: '5 6 35 35',
+// };
 
 export const getSvg = (
 	figureType: ChessName,
@@ -36,34 +36,34 @@ export const getSvg = (
 		case 'white': {
 			switch (figureType) {
 				case 'king':
-					return <WhiteKing className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <WhiteKing className={cls.svg} />;
 				case 'knight':
-					return <WhiteKnight className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <WhiteKnight className={cls.svg} />;
 				case 'rook':
-					return <WhiteRook className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <WhiteRook className={cls.svg} />;
 				case 'pawn':
-					return <WhitePawn className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <WhitePawn className={cls.svg} />;
 				case 'queen':
-					return <WhiteQueen className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <WhiteQueen className={cls.svg} />;
 				case 'bishop':
-					return <WhiteBishop className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <WhiteBishop className={cls.svg} />;
 			}
 			break;
 		}
 		case 'black': {
 			switch (figureType) {
 				case 'king':
-					return <BlackKing className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <BlackKing className={cls.svg} />;
 				case 'knight':
-					return <BlackKnight className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <BlackKnight className={cls.svg} />;
 				case 'rook':
-					return <BlackRook className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <BlackRook className={cls.svg} />;
 				case 'pawn':
-					return <BlackPawn className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <BlackPawn className={cls.svg} />;
 				case 'queen':
-					return <BlackQueen className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <BlackQueen className={cls.svg} />;
 				case 'bishop':
-					return <BlackBishop className={cls.svg} viewBox={viewBoxes[figureType]} />;
+					return <BlackBishop className={cls.svg} />;
 			}
 		}
 	}

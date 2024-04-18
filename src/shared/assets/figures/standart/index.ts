@@ -1,16 +1,16 @@
-import BlackBishop from './black-bishop.png';
-import BlackKing from './black-king.png';
-import BlackKnight from './black-knight.png';
-import BlackPawn from './black-pawn.png';
-import BlackQueen from './black-queen.png';
-import BlackRook from './black-rook.png';
+import BlackBishop from './black-bishop.svg';
+import BlackKing from './black-king.svg';
+import BlackKnight from './black-knight.svg';
+import BlackPawn from './black-pawn.svg';
+import BlackQueen from './black-queen.svg';
+import BlackRook from './black-rook.svg';
 // =============
-import WhiteBishop from './white-bishop.png';
-import WhiteKing from './white-king.png';
-import WhiteKnight from './white-knight.png';
-import WhitePawn from './white-pawn.png';
-import WhiteQueen from './white-queen.png';
-import WhiteRook from './white-rook.png';
+import WhiteBishop from './white-bishop.svg';
+import WhiteKing from './white-king.svg';
+import WhiteKnight from './white-knight.svg';
+import WhitePawn from './white-pawn.svg';
+import WhiteQueen from './white-queen.svg';
+import WhiteRook from './white-rook.svg';
 
 export {
 	BlackBishop as StandartBlackBishop,
