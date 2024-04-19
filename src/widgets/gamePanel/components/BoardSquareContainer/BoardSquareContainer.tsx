@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { BoardSquareContainerProps } from '@/entities/board';
-import { getChessAtLocation } from '../../model/selectors/getChessAtLocation/getChessAtLocation';
+import { getFigureAtLocation } from '../../model/selectors/getFigureAtLocation/getFigureAtLocation';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { BoardSquare } from '@/entities/board';
 import { useSelector } from 'react-redux';
@@ -14,9 +14,9 @@ import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoar
 export const BoardSquareContainer = memo((props: BoardSquareContainerProps) => {
 	const { className, coordinates } = props;
 	const selectedSquare = useSelector(getSelectedSquare);
-	const { figuresPack: figuresStyle } = useSelector(getBoardSettings);
+	const { figuresStyle } = useSelector(getBoardSettings);
 	const dispatch = useAppDispatch();
-	const figure = useSelector((state: StateSchema) => getChessAtLocation(state, coordinates));
+	const figure = useSelector((state: StateSchema) => getFigureAtLocation(state, coordinates));
 	const isAvailable = useSelector((state: StateSchema) => getSquareIsAvailable(state, coordinates));
 	const mover = useSelector(getMover);
 

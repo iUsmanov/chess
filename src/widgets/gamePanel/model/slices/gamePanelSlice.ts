@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/gamePanel';
-import { BoardSettings, ChessColor, ChessLocations, Game, getEnemy } from '@/entities/board';
+import { BoardSettings, FigureColor, FiguresLocations, Game, getEnemy } from '@/entities/board';
 import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { takePass } from './slice/takePass/takePass';
@@ -53,7 +53,7 @@ export const gamePanelSlice = createSlice({
 			state.clocks.black.savedTime = milliseconds;
 			state.clocks.black.time = milliseconds;
 		},
-		giveUp: (state, action: PayloadAction<ChessColor>) => {
+		giveUp: (state, action: PayloadAction<FigureColor>) => {
 			if (!state.isGameStarted) return;
 			state.gameResult = {
 				reason: 'giveUp',
@@ -107,7 +107,7 @@ export const gamePanelSlice = createSlice({
 		},
 		clickSquare: (
 			state,
-			action: PayloadAction<{ selectedSquare: string; mover: ChessColor; time: number }>
+			action: PayloadAction<{ selectedSquare: string; mover: FigureColor; time: number }>
 		) => {
 			if (state.gameResult) return;
 			const clickedSquare = action.payload.selectedSquare;
@@ -149,7 +149,7 @@ export const gamePanelSlice = createSlice({
 				state.mockLocations[clickedSquare] = state.mockLocations[state.selectedSquare];
 				delete state.mockLocations[state.selectedSquare];
 				// =============
-				const locations: ChessLocations = {};
+				const locations: FiguresLocations = {};
 				Object.entries(state.locations).map(([square, figure]) => {
 					locations[square] = { ...figure, attackedSquares: [] };
 				});

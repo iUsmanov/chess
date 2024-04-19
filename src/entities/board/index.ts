@@ -4,12 +4,12 @@ export { History } from './components/History/History';
 export { BoardSquare } from './components/BoardSquare/BoardSquare';
 export type { BoardSquareContainerProps } from './components/BoardSquare/BoardSquare';
 export type {
-	ChessLocations,
-	ChessColor,
+	FiguresLocations,
+	FigureColor,
 	Coordinates,
 	Figure,
 	ChessMove,
-	ChessClocks,
+	GameClocks,
 	BoardSettings,
 	BoardSize,
 	BoardStyle,

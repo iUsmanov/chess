@@ -1,9 +1,9 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { createSelector } from '@reduxjs/toolkit';
-import { getChessLocations } from '../getChessLocations/getChessLocations';
+import { getFiguresLocations } from '../getFiguresLocations/getFiguresLocations';
 
-export const getChessAtLocation = createSelector(
-	getChessLocations,
+export const getFigureAtLocation = createSelector(
+	getFiguresLocations,
 	(state: StateSchema, key: string) => key,
 	(locations, key) => locations[key] || undefined
 );

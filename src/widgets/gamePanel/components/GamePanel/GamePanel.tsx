@@ -43,7 +43,7 @@ interface GamePanelProps {
 
 export const GamePanel = memo((props: GamePanelProps) => {
 	const { className } = props;
-	const { figuresPack, size, style } = useSelector(getBoardSettings);
+	const { figuresStyle, size, style } = useSelector(getBoardSettings);
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
@@ -138,7 +138,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		<div
 			className={classNames(cls.gamePanel, {}, [className])}
 			data-size={size}
-			data-figures-pack={`figures-${figuresPack}`}
+			data-figures-pack={`figures-${figuresStyle}`}
 			data-style={style}
 		>
 			<GamePanelLayout

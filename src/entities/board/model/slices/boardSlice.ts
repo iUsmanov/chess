@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ChessColor } from '../types/board';
+import { FigureColor } from '../types/board';
 
 export const boardSlice = createSlice({
 	name: 'board',
 	initialState: {},
 	reducers: {
 		template: (state, action: PayloadAction<string>) => {},
-		toggleMover: (state, action: PayloadAction<ChessColor | undefined>) => {},
+		toggleMover: (state, action: PayloadAction<FigureColor | undefined>) => {},
 	},
 	// extraReducers(builder) {
 	// 	builder

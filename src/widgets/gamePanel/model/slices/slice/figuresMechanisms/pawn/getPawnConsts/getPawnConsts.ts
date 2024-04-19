@@ -1,6 +1,6 @@
-import { ChessColor } from '@/entities/board';
+import { FigureColor } from '@/entities/board';
 
-export const getPawnConsts = (x: number, y: number, figureColor: ChessColor) => {
+export const getPawnConsts = (x: number, y: number, figureColor: FigureColor) => {
 	let firstCoordinateY;
 	let nextSquareY;
 	let next2SquareY;

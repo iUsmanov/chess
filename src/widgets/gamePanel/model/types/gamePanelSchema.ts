@@ -1,21 +1,21 @@
 import {
 	BoardSettings,
-	ChessClocks,
-	ChessColor,
-	ChessLocations,
+	GameClocks,
+	FigureColor,
+	FiguresLocations,
 	ChessMove,
 	Game,
 	GameResult,
 } from '@/entities/board';
 
 export interface GamePanelSchema {
-	locations: ChessLocations;
-	mockLocations: ChessLocations;
+	locations: FiguresLocations;
+	mockLocations: FiguresLocations;
 	selectedSquare?: string;
 	availableSquares: string[];
-	mover: ChessColor;
+	mover: FigureColor;
 	history: ChessMove[];
-	clocks: ChessClocks;
+	clocks: GameClocks;
 	boardSettings: BoardSettings;
 	game: Game;
 	isCheck: boolean;

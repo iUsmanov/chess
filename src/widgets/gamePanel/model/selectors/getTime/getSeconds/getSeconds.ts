@@ -1,10 +1,10 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { ChessColor } from '@/entities/board';
+import { FigureColor } from '@/entities/board';
 import { createSelector } from '@reduxjs/toolkit';
 
 export const getSeconds = createSelector(
 	(state: StateSchema) => state,
-	(state: StateSchema, color: ChessColor) => color,
+	(state: StateSchema, color: FigureColor) => color,
 	(state, color) => {
 		const seconds = new Date(state.gamePanel.clocks[color].time).getSeconds();
 

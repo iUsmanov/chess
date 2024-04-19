@@ -62,7 +62,7 @@ const figuresPackOptions: ListboxOption<FiguresStyle>[] = [
 
 export const BoardSettingsMenu = memo((props: ListboxProps) => {
 	const { className } = props;
-	const { figuresPack, size, style } = useSelector(getBoardSettings);
+	const { figuresStyle, size, style } = useSelector(getBoardSettings);
 	const dispatch = useAppDispatch();
 
 	const onChangeBoardSize = useCallback(
@@ -80,8 +80,8 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 	);
 
 	const onChangeBoardFiguresPack = useCallback(
-		(newFiguresPack: FiguresStyle) => {
-			dispatch(gamePanelActions.changeBoardSettings({ figuresPack: newFiguresPack }));
+		(newFiguresStyle: FiguresStyle) => {
+			dispatch(gamePanelActions.changeBoardSettings({ figuresStyle: newFiguresStyle }));
 		},
 		[dispatch]
 	);
@@ -104,7 +104,7 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 			<Listbox<FiguresStyle>
 				onChange={onChangeBoardFiguresPack}
 				options={figuresPackOptions}
-				selectedValue={figuresPack}
+				selectedValue={figuresStyle}
 				label={<div className={cls.settingLabel}>Стиль фигур</div>}
 			/>
 		</div>

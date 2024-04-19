@@ -1,11 +1,11 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 import { Coordinates } from '@/entities/board';
 import { addAttackedDirection } from '../addAttackedDirection/addAttackedDirection';
 
 export const addAttackedAxles = (
 	square: string,
 	attackedSquares: string[],
-	locations: ChessLocations
+	locations: FiguresLocations
 ) => {
 	// RIGHTS
 	// RIGHTS

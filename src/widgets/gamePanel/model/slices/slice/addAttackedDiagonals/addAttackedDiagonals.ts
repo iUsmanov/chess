@@ -1,11 +1,11 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 import { addAttackedDirection } from '../addAttackedDirection/addAttackedDirection';
 import { Coordinates } from '@/entities/board';
 
 export const addAttackedDiagonals = (
 	square: string,
 	attackedSquares: string[],
-	locations: ChessLocations
+	locations: FiguresLocations
 ) => {
 	/* RIGHT TOP */
 	/* RIGHT TOP */

@@ -1,7 +1,7 @@
-import { ChessName, ChessColor, FiguresStyle } from '../../../model/types/board';
+import { FigureName, FigureColor, FiguresStyle } from '../../../model/types/board';
 import { figuresStyleNavigator } from '../figuresStyleNavigator/figuresStyleNavigator';
 
-// const viewBoxes: Record<ChessName, string> = {
+// const viewBoxes: Record<FigureName, string> = {
 // 	bishop: '5 5 35 35',
 // 	king: '5 5 35 35',
 // 	knight: '5 5 35 35',
@@ -11,8 +11,8 @@ import { figuresStyleNavigator } from '../figuresStyleNavigator/figuresStyleNavi
 // };
 
 export const getSvg = (
-	figureType: ChessName,
-	figureColor: ChessColor,
+	figureType: FigureName,
+	figureColor: FigureColor,
 	cls: Record<string, string>,
 	figuresStyle: FiguresStyle
 ) => {

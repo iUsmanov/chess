@@ -1,10 +1,10 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 import { Coordinates } from '@/entities/board';
 
 export const addAttackedDirection = (
 	square: string,
 	attackedSquares: string[],
-	locations: ChessLocations,
+	locations: FiguresLocations,
 	condition: (coordinates: Coordinates) => boolean,
 	shift: (coordinates: Coordinates) => void
 ) => {

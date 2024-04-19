@@ -1,6 +1,6 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 
-export const getIsSquareEmpty = (locations: ChessLocations, square: string): boolean => {
+export const getIsSquareEmpty = (locations: FiguresLocations, square: string): boolean => {
 	if (locations[square]) {
 		return false;
 	} else {

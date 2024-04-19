@@ -1,8 +1,8 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 import { GamePanelSchema } from '../../../types/gamePanelSchema';
 export const takePass = (
 	state: GamePanelSchema,
-	locations: ChessLocations,
+	locations: FiguresLocations,
 	squareFrom: string,
 	squareTo: string
 ) => {

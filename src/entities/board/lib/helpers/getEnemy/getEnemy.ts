@@ -1,6 +1,6 @@
-import { ChessColor } from '../../../model/types/board';
+import { FigureColor } from '../../../model/types/board';
 
-export const getEnemy = (mover: ChessColor) => {
+export const getEnemy = (mover: FigureColor) => {
 	if (mover === 'white') {
 		return 'black';
 	} else {

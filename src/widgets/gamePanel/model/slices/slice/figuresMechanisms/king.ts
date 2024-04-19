@@ -1,7 +1,11 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
 
-export const kingMechanism = (square: string, attackedSquares: string[], locations: ChessLocations) => {
+export const kingMechanism = (
+	square: string,
+	attackedSquares: string[],
+	locations: FiguresLocations
+) => {
 	const { color: figureColor } = locations[square];
 	const x = Number(square[0]);
 	const y = Number(square[1]);
@@ -22,7 +26,7 @@ export const kingMechanism = (square: string, attackedSquares: string[], locatio
 
 /* 
 
-export const kingMechanism = (square: string, attackedSquares: string[], locations: ChessLocations) => {
+export const kingMechanism = (square: string, attackedSquares: string[], locations: FiguresLocations) => {
 	const { color: figureColor } = locations[square];
 	const x = Number(square[0]);
 	const y = Number(square[1]);

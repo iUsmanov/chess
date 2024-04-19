@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './BoardSquare.module.scss';
-import { ChessName, ChessColor, FiguresStyle } from '../../model/types/board';
+import { FigureName, FigureColor, FiguresStyle } from '../../model/types/board';
 import { getSvg } from '../../lib/helpers/getSvg/getSvg';
 
 interface BoardSquareBaseProps {
@@ -19,8 +19,8 @@ interface BoardSquareFreeProps extends BoardSquareBaseProps {
 
 interface BoardSquareBusyProps extends BoardSquareBaseProps {
 	isBusy: true;
-	figureName: ChessName;
-	figureColor: ChessColor;
+	figureName: FigureName;
+	figureColor: FigureColor;
 }
 
 type BoardSquareProps = BoardSquareFreeProps | BoardSquareBusyProps;

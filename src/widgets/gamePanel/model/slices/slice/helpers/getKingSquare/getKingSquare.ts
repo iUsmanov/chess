@@ -1,6 +1,6 @@
-import { ChessColor, ChessLocations } from '@/entities/board';
+import { FigureColor, FiguresLocations } from '@/entities/board';
 
-export const getKingSquare = (color: ChessColor, locations: ChessLocations): string => {
+export const getKingSquare = (color: FigureColor, locations: FiguresLocations): string => {
 	let moverKingSquare = '';
 	Object.keys(locations).forEach((square) => {
 		const { name: figureName, color: figureColor } = locations[square];

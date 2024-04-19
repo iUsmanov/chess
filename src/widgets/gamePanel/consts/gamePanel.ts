@@ -1,7 +1,7 @@
-import { ChessLocations } from '@/entities/board';
+import { FiguresLocations } from '@/entities/board';
 import { GamePanelSchema } from '../model/types/gamePanelSchema';
 
-const initialLocations: ChessLocations = {
+const initialLocations: FiguresLocations = {
 	12: {
 		color: 'white',
 		name: 'pawn',
@@ -209,7 +209,7 @@ export const initialState: GamePanelSchema = {
 		},
 	},
 	boardSettings: {
-		figuresPack: 'classic',
+		figuresStyle: 'classic',
 		size: 's',
 		style: 'wood',
 	},
