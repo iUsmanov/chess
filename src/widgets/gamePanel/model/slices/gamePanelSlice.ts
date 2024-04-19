@@ -5,6 +5,7 @@ import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { takePass } from './slice/takePass/takePass';
 import { getEnemy } from '../../lib/getEnemy/getEnemy';
+import { resetStateAfterEnd } from './slice/resetStateAfterEnd/resetStateAfterEnd';
 
 export const gamePanelSlice = createSlice({
 	name: 'gamePanel',
@@ -14,26 +15,18 @@ export const gamePanelSlice = createSlice({
 		startGame: (state) => {
 			if (state.clocks.white.time < 60000) return;
 			state.isGameOn = true;
-			state.gameResult = undefined;
+			// state.gameResult = undefined;
 			addAttackedFigures(state);
 		},
 		prepareNewGame: (state) => {
-			state.isGameOn = false;
+			resetStateAfterEnd(state);
 			state.gameResult = undefined;
 			state.history.length = 1;
 			state.locations = initialState.locations;
 			state.mockLocations = initialState.mockLocations;
-			state.mover = initialState.mover;
-			state.availableSquares = [];
-			state.isCheck = false;
-			state.selectedSquare = undefined;
-			state.clocks.black.startTime = undefined;
-			state.clocks.white.startTime = undefined;
 		},
-		setInitialTime: (
-			state,
-			action: PayloadAction<{ hoursString: string; minutesString: string }>
-		) => {
+		test: (state) => {},
+		setPartyTime: (state, action: PayloadAction<{ hoursString: string; minutesString: string }>) => {
 			const { hoursString, minutesString } = action.payload;
 			const hours = Number(hoursString);
 			const minutes = Number(minutesString);
@@ -57,6 +50,8 @@ export const gamePanelSlice = createSlice({
 				reason: 'giveUp',
 				winner: getEnemy(action.payload),
 			};
+
+			resetStateAfterEnd(state);
 		},
 		changeBoardSettings: (state, action: PayloadAction<Partial<BoardSettings>>) => {
 			state.boardSettings = { ...state.boardSettings, ...action.payload };
@@ -64,13 +59,14 @@ export const gamePanelSlice = createSlice({
 		changeGame: (state, action: PayloadAction<Game>) => {
 			state.game = action.payload;
 		},
-		setTime: (state, action: PayloadAction<number>) => {
+		setTimeLeft: (state, action: PayloadAction<number>) => {
 			if (!state.isGameOn) return;
-			if (state.gameResult) return;
+			// if (state.gameResult) return;
 			const newTime = action.payload;
-			const startTime = state.clocks[state.mover].startTime;
-			if (startTime) {
-				const differenceTime = newTime - startTime;
+			const startTiming = state.clocks[state.mover].startTiming;
+
+			if (startTiming) {
+				const differenceTime = newTime - startTiming;
 
 				state.clocks[state.mover].time = state.clocks[state.mover].savedTime - differenceTime;
 
@@ -79,6 +75,8 @@ export const gamePanelSlice = createSlice({
 						reason: 'expirationTime',
 						winner: getEnemy(state.mover),
 					};
+
+					resetStateAfterEnd(state);
 					state.clocks[state.mover].savedTime = 0;
 					state.clocks[state.mover].time = 0;
 				}
@@ -164,7 +162,7 @@ export const gamePanelSlice = createSlice({
 				toggleMover(state);
 				addAttackedFigures(state);
 				// ===============
-				state.clocks[state.mover].startTime = time;
+				state.clocks[state.mover].startTiming = time;
 				state.clocks[state.mover].savedTime = state.clocks[state.mover].time;
 			}
 		},

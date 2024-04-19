@@ -30,7 +30,7 @@ export const SideMenu = memo((props: SideMenuProps) => {
 		dispatch(gamePanelActions.prepareNewGame());
 
 		dispatch(
-			gamePanelActions.setInitialTime({
+			gamePanelActions.setPartyTime({
 				minutesString: '1',
 				hoursString: '0',
 			})

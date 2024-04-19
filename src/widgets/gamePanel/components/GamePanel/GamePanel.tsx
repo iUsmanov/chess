@@ -36,7 +36,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
 			const date = new Date();
-			dispatch(gamePanelActions.setTime(date.getTime()));
+			dispatch(gamePanelActions.setTimeLeft(date.getTime()));
 		}, 100);
 
 		return () => {

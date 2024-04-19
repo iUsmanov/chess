@@ -31,7 +31,7 @@ export const GameSettingsMenu = memo((props: GameSettingsMenuProps) => {
 	const setInitialHours = useCallback(
 		(newHours: string) => {
 			dispatch(
-				gamePanelActions.setInitialTime({
+				gamePanelActions.setPartyTime({
 					minutesString: String(whiteMinutes),
 					hoursString: newHours,
 				})
@@ -43,7 +43,7 @@ export const GameSettingsMenu = memo((props: GameSettingsMenuProps) => {
 	const setInitialMinutes = useCallback(
 		(newMinutes: string) => {
 			dispatch(
-				gamePanelActions.setInitialTime({
+				gamePanelActions.setPartyTime({
 					minutesString: newMinutes,
 					hoursString: String(whiteHours),
 				})

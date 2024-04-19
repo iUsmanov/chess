@@ -38,7 +38,7 @@ export interface GameResult {
 }
 
 interface Clock {
-	startTime?: number;
+	startTiming?: number;
 	time: number;
 	savedTime: number;
 }
