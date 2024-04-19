@@ -217,4 +217,5 @@ export const initialState: GamePanelSchema = {
 	gameResult: undefined,
 	isCheck: false,
 	isGameStarted: false,
+	selectedSquare: undefined,
 };

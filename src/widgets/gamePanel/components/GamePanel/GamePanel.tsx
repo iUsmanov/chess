@@ -1,7 +1,7 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
-import { Board, Clock, Game, History } from '@/entities/board';
+import { Board, Clock, History } from '@/entities/board';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getHours } from '../../model/selectors/getTime/getHours/getHours';
@@ -14,28 +14,12 @@ import { BoardSquareContainer } from '../BoardSquareContainer/BoardSquareContain
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
-import { BoardSettingsMenu } from '../BoardSettingsMenu/BoardSettingsMenu';
-import { Button } from '@/shared/ui/Button/Button';
 import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
 import { getGameResult } from '../../model/selectors/getGameResult/getGameResult';
-import { Input } from '@/shared/ui/Input/Input';
 import { getIsGameStarted } from '../../model/selectors/getIsGameStarted/getIsGameStarted';
-import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
-import { getGame } from '../../model/selectors/getGame/getGame';
 import { GamePanelLayout } from '../../layouts/GamePanelLayout/GamePanelLayout';
-
-const gameOptions: ListboxOption<Game>[] = [
-	{
-		value: 'chess',
-		content: 'Шахматы',
-		disabled: false,
-	},
-	{
-		value: 'checkers',
-		content: 'Шашки',
-		disabled: false,
-	},
-];
+import { SideMenu } from '../SideMenu/SideMenu';
+import { GameSettingsMenu } from '../GameSettingsMenu/GameSettingsMenu';
 
 interface GamePanelProps {
 	className?: string;
@@ -43,7 +27,7 @@ interface GamePanelProps {
 
 export const GamePanel = memo((props: GamePanelProps) => {
 	const { className } = props;
-	const { figuresStyle, size, style } = useSelector(getBoardSettings);
+	const { size, style } = useSelector(getBoardSettings);
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
@@ -51,7 +35,6 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const mover = useSelector(getMover);
 	const gameResult = useSelector(getGameResult);
 	const isGameStarted = useSelector(getIsGameStarted);
-	const game = useSelector(getGame);
 	// ===========
 	const whiteHours = useSelector((state: StateSchema) => getHours(state, 'white'));
 	const whiteMinutes = useSelector((state: StateSchema) => getMinutes(state, 'white'));
@@ -67,60 +50,6 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		dispatch(gamePanelActions.addInitialAttackedSquares());
 	}, [dispatch]);
 
-	const goBack = useCallback(() => {
-		dispatch(gamePanelActions.goBack());
-	}, [dispatch]);
-
-	const onGiveUp = useCallback(() => {
-		dispatch(gamePanelActions.giveUp(mover));
-	}, [dispatch, mover]);
-
-	const onStartGame = useCallback(() => {
-		dispatch(gamePanelActions.startGame());
-	}, [dispatch]);
-
-	const onStartNewGame = useCallback(() => {
-		dispatch(gamePanelActions.prepareNewGame());
-
-		dispatch(
-			gamePanelActions.setInitialTime({
-				minutesString: '1',
-				hoursString: '0',
-			})
-		);
-	}, [dispatch]);
-
-	const setInitialHours = useCallback(
-		(newHours: string) => {
-			dispatch(
-				gamePanelActions.setInitialTime({
-					minutesString: String(whiteMinutes),
-					hoursString: newHours,
-				})
-			);
-		},
-		[dispatch, whiteMinutes]
-	);
-
-	const setInitialMinutes = useCallback(
-		(newMinutes: string) => {
-			dispatch(
-				gamePanelActions.setInitialTime({
-					minutesString: newMinutes,
-					hoursString: String(whiteHours),
-				})
-			);
-		},
-		[dispatch, whiteHours]
-	);
-
-	const onChangeGame = useCallback(
-		(newGame: Game) => {
-			dispatch(gamePanelActions.changeGame(newGame));
-		},
-		[dispatch]
-	);
-
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
 			const date = new Date();
@@ -135,12 +64,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	}, [dispatch]);
 
 	return (
-		<div
-			className={classNames(cls.gamePanel, {}, [className])}
-			data-size={size}
-			data-figures-pack={`figures-${figuresStyle}`}
-			data-style={style}
-		>
+		<div className={classNames(cls.gamePanel, {}, [className])} data-size={size} data-style={style}>
 			<GamePanelLayout
 				className={classNames(cls.chessPlay, {}, [className])}
 				board={
@@ -161,20 +85,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 								className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}
 							/>
 						) : (
-							<>
-								<Listbox<Game>
-									onChange={onChangeGame}
-									options={gameOptions}
-									selectedValue={game}
-									label={<div>Игра</div>}
-								/>
-								<br />
-								<br />
-								<Input value={whiteHours} onChange={setInitialHours} label='Часы' />
-								<br />
-								<Input value={whiteMinutes} onChange={setInitialMinutes} label='Минуты' />
-								<Button onClick={onStartGame}>Начать игру</Button>
-							</>
+							<GameSettingsMenu />
 						)}
 					</div>
 				}
@@ -195,33 +106,17 @@ export const GamePanel = memo((props: GamePanelProps) => {
 					/>
 				}
 				history={isGameStarted ? <History history={history} /> : undefined}
-				settings={
-					<div style={{ background: 'purple', height: '100%' }}>
-						<br />
-						<br />
-						<Button onClick={goBack}>Сделать ход назад</Button>
-						<br />
-						<br />
-						<Button onClick={onGiveUp}>Сдаться</Button>
-						<br />
-						<br />
-						{gameResult && <Button onClick={onStartNewGame}>Начать новую игру</Button>}
-						<br />
-						<br />
-						<hr />
-						<br />
-						<BoardSettingsMenu />
-						{/* <Button>Button</Button> */}
-					</div>
-				}
+				sideMenu={<SideMenu />}
 			/>
-			{/* <GamePanelLayout
+		</div>
+	);
+});
+{
+	/* <GamePanelLayout
 				bottomTimer={<div style={{ height: '100%', width: '100%', background: 'red' }} />}
 				topTimer={<div style={{ height: '100%', background: 'green' }} />}
 				board={<div style={{ height: '100%', background: 'blue' }} />}
 				history={<div style={{ height: '100%', background: 'purple' }} />}
 				settings={<div style={{ height: '100%', background: 'yellow' }} />}
-			/> */}
-		</div>
-	);
-});
+			/> */
+}

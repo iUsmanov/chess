@@ -7,7 +7,7 @@
 	grid-template-areas: 
 		// 'emptyFirstString emptyFirstString emptyFirstString emptyFirstString emptyFirstString'
 		'emptyLeft topTimer board history emptyRight' 
-		'emptyLeft settings board history emptyRight' 
+		'emptyLeft sideMenu board history emptyRight' 
 		'emptyLeft bottomTimer board history emptyRight'
 		// 'emptyLastString emptyLastString emptyLastString emptyLastString emptyLastString'
 		;
@@ -20,7 +20,7 @@
 			'bottomTimer topTimer' 
 			'board board'
 			'history history'
-			'settings settings';
+			'sideMenu sideMenu';
 	}
 }
 
@@ -35,8 +35,8 @@
 	// align-self: center;
 }
 
-.settings {
-	grid-area: settings;
+.sideMenu {
+	grid-area: sideMenu;
 
 }
 
