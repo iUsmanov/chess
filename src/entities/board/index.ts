@@ -1,5 +1,4 @@
 export { Board } from './components/Board/Board';
-export { Clock } from './components/Clock/Clock';
 export { History } from './components/History/History';
 export { BoardSquare } from './components/BoardSquare/BoardSquare';
 export type { BoardSquareContainerProps } from './components/BoardSquare/BoardSquare';

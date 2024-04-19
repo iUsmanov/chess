@@ -1,14 +1,9 @@
 import { memo, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
-import { Board, Clock, History } from '@/entities/board';
+import { Board, History } from '@/entities/board';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { getHours } from '../../model/selectors/getTime/getHours/getHours';
-import { StateSchema } from '@/app/providers/StoreProvider';
-import { getMinutes } from '../../model/selectors/getTime/getMinutes/getMinutes';
-import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds';
-import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
 import { BoardSquareContainer } from '../BoardSquareContainer/BoardSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
@@ -19,6 +14,7 @@ import { GamePanelLayout } from '../../layouts/GamePanelLayout/GamePanelLayout';
 import { SideMenu } from '../SideMenu/SideMenu';
 import { GameSettingsMenu } from '../GameSettingsMenu/GameSettingsMenu';
 import { TopInfo } from '../TopInfo/TopInfo';
+import { Clock } from '../Clock/Clock';
 
 interface GamePanelProps {
 	className?: string;
@@ -32,16 +28,6 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const history = useSelector(getHistory);
 	const gameResult = useSelector(getGameResult);
 	const isGameStarted = useSelector(getIsGameStarted);
-	// ===========
-	const whiteHours = useSelector((state: StateSchema) => getHours(state, 'white'));
-	const whiteMinutes = useSelector((state: StateSchema) => getMinutes(state, 'white'));
-	const whiteSeconds = useSelector((state: StateSchema) => getSeconds(state, 'white'));
-	const whiteMilliseconds = useSelector((state: StateSchema) => getMilliseconds(state, 'white'));
-	// ===========
-	const blackHours = useSelector((state: StateSchema) => getHours(state, 'black'));
-	const blackMinutes = useSelector((state: StateSchema) => getMinutes(state, 'black'));
-	const blackSeconds = useSelector((state: StateSchema) => getSeconds(state, 'black'));
-	const blackMilliseconds = useSelector((state: StateSchema) => getMilliseconds(state, 'black'));
 
 	useEffect(() => {
 		dispatch(gamePanelActions.addInitialAttackedSquares());
@@ -77,22 +63,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 						)}
 					</div>
 				}
-				topTimer={
-					<Clock
-						hours={blackHours}
-						milliseconds={blackMilliseconds}
-						minutes={blackMinutes}
-						seconds={blackSeconds}
-					/>
-				}
-				bottomTimer={
-					<Clock
-						hours={whiteHours}
-						milliseconds={whiteMilliseconds}
-						minutes={whiteMinutes}
-						seconds={whiteSeconds}
-					/>
-				}
+				topTimer={<Clock color='black' />}
+				bottomTimer={<Clock color='white' />}
 				history={isGameStarted ? <History history={history} /> : undefined}
 				sideMenu={<SideMenu />}
 			/>
