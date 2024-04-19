@@ -9,7 +9,7 @@ import { BoardSquareContainer } from '../BoardSquareContainer/BoardSquareContain
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
 import { getGameResult } from '../../model/selectors/getGameResult/getGameResult';
-import { getIsGameStarted } from '../../model/selectors/getIsGameStarted/getIsGameStarted';
+import { getIsGameStarted } from '../../model/selectors/getIsGameOn/getIsGameOn';
 import { GamePanelLayout } from '../../layouts/GamePanelLayout/GamePanelLayout';
 import { SideMenu } from '../SideMenu/SideMenu';
 import { GameSettingsMenu } from '../GameSettingsMenu/GameSettingsMenu';
@@ -27,7 +27,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
 	const gameResult = useSelector(getGameResult);
-	const isGameStarted = useSelector(getIsGameStarted);
+	const isGameOn = useSelector(getIsGameStarted);
 
 	useEffect(() => {
 		dispatch(gamePanelActions.addInitialAttackedSquares());
@@ -53,7 +53,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				mainContent={
 					<div className={cls.mainContent}>
 						<TopInfo />
-						{isGameStarted ? (
+						{isGameOn ? (
 							<Board
 								BoardSquareContainer={BoardSquareContainer}
 								className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}
@@ -65,7 +65,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				}
 				topTimer={<Clock color='black' />}
 				bottomTimer={<Clock color='white' />}
-				history={isGameStarted ? <History history={history} /> : undefined}
+				history={isGameOn ? <History history={history} /> : undefined}
 				sideMenu={<SideMenu />}
 			/>
 		</div>

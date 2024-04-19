@@ -20,5 +20,5 @@ export interface GamePanelSchema {
 	game: Game;
 	isCheck: boolean;
 	gameResult?: GameResult;
-	isGameStarted: boolean;
+	isGameOn: boolean;
 }

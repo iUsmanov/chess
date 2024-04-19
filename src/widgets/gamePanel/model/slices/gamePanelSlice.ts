@@ -13,13 +13,12 @@ export const gamePanelSlice = createSlice({
 		template: (state, action: PayloadAction<string>) => {},
 		startGame: (state) => {
 			if (state.clocks.white.time < 60000) return;
-			state.isGameStarted = true;
+			state.isGameOn = true;
 			state.gameResult = undefined;
 			addAttackedFigures(state);
 		},
-		// actually prepare to start new game
 		prepareNewGame: (state) => {
-			state.isGameStarted = false;
+			state.isGameOn = false;
 			state.gameResult = undefined;
 			state.history.length = 1;
 			state.locations = initialState.locations;
@@ -30,8 +29,6 @@ export const gamePanelSlice = createSlice({
 			state.selectedSquare = undefined;
 			state.clocks.black.startTime = undefined;
 			state.clocks.white.startTime = undefined;
-
-			// state.clocks
 		},
 		setInitialTime: (
 			state,
@@ -55,7 +52,7 @@ export const gamePanelSlice = createSlice({
 			state.clocks.black.time = milliseconds;
 		},
 		giveUp: (state, action: PayloadAction<FigureColor>) => {
-			if (!state.isGameStarted) return;
+			if (!state.isGameOn) return;
 			state.gameResult = {
 				reason: 'giveUp',
 				winner: getEnemy(action.payload),
@@ -68,7 +65,7 @@ export const gamePanelSlice = createSlice({
 			state.game = action.payload;
 		},
 		setTime: (state, action: PayloadAction<number>) => {
-			if (!state.isGameStarted) return;
+			if (!state.isGameOn) return;
 			if (state.gameResult) return;
 			const newTime = action.payload;
 			const startTime = state.clocks[state.mover].startTime;
@@ -88,7 +85,7 @@ export const gamePanelSlice = createSlice({
 			}
 		},
 		goBack: (state) => {
-			if (!state.isGameStarted) return;
+			if (!state.isGameOn) return;
 			if (state.gameResult) return;
 			const preLastMove = state.history[state.history.length - 2];
 			if (!preLastMove) return;

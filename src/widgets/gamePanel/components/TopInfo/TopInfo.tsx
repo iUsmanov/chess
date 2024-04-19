@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getGameResult } from '../../model/selectors/getGameResult/getGameResult';
-import { getIsGameStarted } from '../../model/selectors/getIsGameStarted/getIsGameStarted';
+import { getIsGameStarted } from '../../model/selectors/getIsGameOn/getIsGameOn';
 
 interface TopInfoProps {
 	className?: string;
@@ -16,11 +16,11 @@ export const TopInfo = memo((props: TopInfoProps) => {
 	const isCheck = useSelector(getIsCheck);
 	const mover = useSelector(getMover);
 	const gameResult = useSelector(getGameResult);
-	const isGameStarted = useSelector(getIsGameStarted);
+	const isGameOn = useSelector(getIsGameStarted);
 
 	return (
 		<div className={classNames(cls.topInfo, {}, [className])}>
-			{!gameResult && !isCheck && isGameStarted && <div className={cls.header}>Ходят {mover}</div>}
+			{!gameResult && !isCheck && isGameOn && <div className={cls.header}>Ходят {mover}</div>}
 			{!gameResult && isCheck && <div className={cls.header}>ШАХ</div>}
 			{gameResult && (
 				<div className={cls.header}>
