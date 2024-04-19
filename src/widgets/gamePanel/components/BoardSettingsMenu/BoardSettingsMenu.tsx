@@ -5,6 +5,7 @@ import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoar
 import { BoardSize, BoardStyle, FiguresStyle } from '@/entities/chessBoard';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
+import cls from './BoardSettingsMenu.module.scss';
 
 interface ListboxProps {
 	className?: string;
@@ -85,26 +86,26 @@ export const BoardSettingsMenu = memo((props: ListboxProps) => {
 		[dispatch]
 	);
 	return (
-		<div>
+		<div className={cls.boardSettingsMenu}>
 			<Listbox<BoardSize>
 				onChange={onChangeBoardSize}
 				options={sizeOptions}
 				selectedValue={size}
-				label={<div>Размер доски</div>}
+				label={<div className={cls.settingLabel}>Размер доски</div>}
 			/>
 			<br />
 			<Listbox<BoardStyle>
 				onChange={onChangeBoardStyle}
 				options={styleOptions}
 				selectedValue={style}
-				label={<div>Стиль доски</div>}
+				label={<div className={cls.settingLabel}>Стиль доски</div>}
 			/>
 			<br />
 			<Listbox<FiguresStyle>
 				onChange={onChangeBoardFiguresPack}
 				options={figuresPackOptions}
 				selectedValue={figuresPack}
-				label={<div>Стиль фигур</div>}
+				label={<div className={cls.settingLabel}>Стиль фигур</div>}
 			/>
 		</div>
 	);
