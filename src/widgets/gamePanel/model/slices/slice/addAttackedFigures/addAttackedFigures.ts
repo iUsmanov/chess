@@ -6,7 +6,7 @@ import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
 import { takePass } from '../takePass/takePass';
 import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
 import { getIsStalemate } from '../helpers/getIsStalemate/getIsStalemate';
-import { getEnemy } from '@/entities/board';
+import { getEnemy } from '../../../../lib/getEnemy/getEnemy';
 
 export const addAttackedFigures = (state: GamePanelSchema) => {
 	Object.keys(state.locations).forEach((square) => {

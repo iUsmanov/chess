@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/gamePanel';
-import { BoardSettings, FigureColor, FiguresLocations, Game, getEnemy } from '@/entities/board';
+import { BoardSettings, FigureColor, FiguresLocations, Game } from '@/entities/board';
 import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { takePass } from './slice/takePass/takePass';
+import { getEnemy } from '../../lib/getEnemy/getEnemy';
 
 export const gamePanelSlice = createSlice({
 	name: 'gamePanel',

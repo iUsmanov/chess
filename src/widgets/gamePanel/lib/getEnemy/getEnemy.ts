@@ -1,4 +1,4 @@
-import { FigureColor } from '../../../model/types/board';
+import { FigureColor } from '@/entities/board';
 
 export const getEnemy = (mover: FigureColor) => {
 	if (mover === 'white') {

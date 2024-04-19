@@ -12,14 +12,13 @@ import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/g
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
 import { BoardSquareContainer } from '../BoardSquareContainer/BoardSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
-import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
-import { getIsCheck } from '../../model/selectors/getIsCheck/getIsCheck';
 import { getGameResult } from '../../model/selectors/getGameResult/getGameResult';
 import { getIsGameStarted } from '../../model/selectors/getIsGameStarted/getIsGameStarted';
 import { GamePanelLayout } from '../../layouts/GamePanelLayout/GamePanelLayout';
 import { SideMenu } from '../SideMenu/SideMenu';
 import { GameSettingsMenu } from '../GameSettingsMenu/GameSettingsMenu';
+import { TopInfo } from '../TopInfo/TopInfo';
 
 interface GamePanelProps {
 	className?: string;
@@ -31,8 +30,6 @@ export const GamePanel = memo((props: GamePanelProps) => {
 	const dispatch = useAppDispatch();
 	const timerRef = useRef<null | NodeJS.Timeout>(null);
 	const history = useSelector(getHistory);
-	const isCheck = useSelector(getIsCheck);
-	const mover = useSelector(getMover);
 	const gameResult = useSelector(getGameResult);
 	const isGameStarted = useSelector(getIsGameStarted);
 	// ===========
@@ -67,18 +64,9 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		<div className={classNames(cls.gamePanel, {}, [className])} data-size={size} data-style={style}>
 			<GamePanelLayout
 				className={classNames(cls.chessPlay, {}, [className])}
-				board={
-					<div className={cls.main}>
-						{!gameResult && !isCheck && isGameStarted && (
-							<div className={cls.header}>Ходят {mover}</div>
-						)}
-						{!gameResult && isCheck && <div className={cls.header}>ШАХ</div>}
-						{gameResult && (
-							<div className={cls.header}>
-								Победитель - {gameResult.winner}. Причина - {gameResult.reason}
-							</div>
-						)}
-
+				mainContent={
+					<div className={cls.mainContent}>
+						<TopInfo />
 						{isGameStarted ? (
 							<Board
 								BoardSquareContainer={BoardSquareContainer}

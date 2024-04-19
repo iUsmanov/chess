@@ -6,9 +6,9 @@
 	/* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
 	grid-template-areas: 
 		// 'emptyFirstString emptyFirstString emptyFirstString emptyFirstString emptyFirstString'
-		'emptyLeft topTimer board history emptyRight' 
-		'emptyLeft sideMenu board history emptyRight' 
-		'emptyLeft bottomTimer board history emptyRight'
+		'emptyLeft topTimer mainContent history emptyRight' 
+		'emptyLeft sideMenu mainContent history emptyRight' 
+		'emptyLeft bottomTimer mainContent history emptyRight'
 		// 'emptyLastString emptyLastString emptyLastString emptyLastString emptyLastString'
 		;
 	
@@ -18,7 +18,7 @@
 		/* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
 		grid-template-areas: 
 			'bottomTimer topTimer' 
-			'board board'
+			'mainContent mainContent'
 			'history history'
 			'sideMenu sideMenu';
 	}
@@ -40,8 +40,8 @@
 
 }
 
-.board {
-	grid-area: board;
+.mainContent {
+	grid-area: mainContent;
 	place-self: center center;
 }
 

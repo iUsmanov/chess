@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GameSettingsMenu.module.scss';
-import { Game } from '@/entities/board';
+import { Game, gameOptions } from '@/entities/board';
 import { Input } from '@/shared/ui/Input/Input';
 import { Button } from '@/shared/ui/Button/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -11,20 +11,7 @@ import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { getHours } from '../../model/selectors/getTime/getHours/getHours';
 import { getMinutes } from '../../model/selectors/getTime/getMinutes/getMinutes';
-import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
-
-const gameOptions: ListboxOption<Game>[] = [
-	{
-		value: 'chess',
-		content: 'Шахматы',
-		disabled: false,
-	},
-	{
-		value: 'checkers',
-		content: 'Шашки',
-		disabled: false,
-	},
-];
+import { Listbox } from '@/shared/ui/Listbox/Listbox';
 
 interface GameSettingsMenuProps {
 	className?: string;

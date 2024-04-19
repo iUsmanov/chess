@@ -1,64 +1,16 @@
 import { memo, useCallback } from 'react';
-import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
+import { Listbox } from '@/shared/ui/Listbox/Listbox';
 import { useSelector } from 'react-redux';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
-import { BoardSize, BoardStyle, FiguresStyle } from '@/entities/board';
+import { BoardSize, BoardStyle, FiguresStyle, sizeOptions } from '@/entities/board';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import cls from './BoardSettingsMenu.module.scss';
+import { figuresPackOptions, styleOptions } from '@/entities/board';
 
 interface ListboxProps {
 	className?: string;
 }
-
-const sizeOptions: ListboxOption<BoardSize>[] = [
-	{
-		value: 's',
-		content: 'Маленький',
-		disabled: false,
-	},
-	{
-		value: 'm',
-		content: 'Средний',
-		disabled: false,
-	},
-	{
-		value: 'x',
-		content: 'Большой',
-		disabled: false,
-	},
-];
-
-const styleOptions: ListboxOption<BoardStyle>[] = [
-	{
-		value: 'wood',
-		content: 'Дерево',
-		disabled: false,
-	},
-	{
-		value: 'field',
-		content: 'Поле',
-		disabled: false,
-	},
-	{
-		value: 'ice',
-		content: 'Лёд',
-		disabled: false,
-	},
-];
-
-const figuresPackOptions: ListboxOption<FiguresStyle>[] = [
-	{
-		value: 'classic',
-		content: 'Классический',
-		disabled: false,
-	},
-	{
-		value: 'standart',
-		content: 'Стандартный',
-		disabled: false,
-	},
-];
 
 export const BoardSettingsMenu = memo((props: ListboxProps) => {
 	const { className } = props;

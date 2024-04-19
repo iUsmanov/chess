@@ -18,4 +18,4 @@ export type {
 	GameResult,
 } from './model/types/board';
 export { boardReducer } from './model/slices/boardSlice';
-export { getEnemy } from './lib/helpers/getEnemy/getEnemy';
+export { figuresPackOptions, gameOptions, sizeOptions, styleOptions } from './consts/options';
