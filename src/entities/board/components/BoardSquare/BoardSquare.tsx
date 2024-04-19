@@ -37,7 +37,7 @@ export const BoardSquare = memo((props: BoardSquareProps) => {
 		const { available } = props;
 		return (
 			<div
-				className={classNames(cls.chessSquare, {}, [className])}
+				className={classNames(cls.boardSquare, {}, [className])}
 				data-square-id={coordinates}
 				onClick={() => onClick(coordinates)}
 			>

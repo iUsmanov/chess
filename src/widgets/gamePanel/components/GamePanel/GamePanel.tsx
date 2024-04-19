@@ -9,7 +9,6 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { getMinutes } from '../../model/selectors/getTime/getMinutes/getMinutes';
 import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds';
 import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
-import { GamePanelLayout } from '@/entities/board';
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
 import { BoardSquareContainer } from '../BoardSquareContainer/BoardSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
@@ -23,6 +22,7 @@ import { Input } from '@/shared/ui/Input/Input';
 import { getIsGameStarted } from '../../model/selectors/getIsGameStarted/getIsGameStarted';
 import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
 import { getGame } from '../../model/selectors/getGame/getGame';
+import { GamePanelLayout } from '../../layouts/GamePanelLayout/GamePanelLayout';
 
 const gameOptions: ListboxOption<Game>[] = [
 	{
