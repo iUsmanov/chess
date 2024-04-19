@@ -1,4 +1,4 @@
-import { ChessColor } from '@/entities/chessBoard';
+import { ChessColor } from '@/entities/board';
 
 export const getPawnConsts = (x: number, y: number, figureColor: ChessColor) => {
 	let firstCoordinateY;

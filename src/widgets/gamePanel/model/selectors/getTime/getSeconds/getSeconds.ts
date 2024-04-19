@@ -1,5 +1,5 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { ChessColor } from '@/entities/chessBoard';
+import { ChessColor } from '@/entities/board';
 import { createSelector } from '@reduxjs/toolkit';
 
 export const getSeconds = createSelector(

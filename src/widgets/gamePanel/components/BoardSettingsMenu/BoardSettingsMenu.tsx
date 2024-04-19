@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { Listbox, ListboxOption } from '@/shared/ui/Listbox/Listbox';
 import { useSelector } from 'react-redux';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
-import { BoardSize, BoardStyle, FiguresStyle } from '@/entities/chessBoard';
+import { BoardSize, BoardStyle, FiguresStyle } from '@/entities/board';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import cls from './BoardSettingsMenu.module.scss';

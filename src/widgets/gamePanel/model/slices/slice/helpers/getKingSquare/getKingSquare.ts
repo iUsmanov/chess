@@ -1,4 +1,4 @@
-import { ChessColor, ChessLocations } from '@/entities/chessBoard';
+import { ChessColor, ChessLocations } from '@/entities/board';
 
 export const getKingSquare = (color: ChessColor, locations: ChessLocations): string => {
 	let moverKingSquare = '';

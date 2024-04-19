@@ -6,7 +6,7 @@ import {
 	ChessMove,
 	Game,
 	GameResult,
-} from '@/entities/chessBoard';
+} from '@/entities/board';
 
 export interface GamePanelSchema {
 	locations: ChessLocations;

@@ -1,17 +1,17 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './GameHistory.module.scss';
-import { ChessMove } from '../../model/types/chessBoard';
+import cls from './History.module.scss';
+import { ChessMove } from '../../model/types/board';
 import { HStack } from '@/shared/ui/Stack';
 
-interface GameHistoryProps {
+interface HistoryProps {
 	className?: string;
 	history: ChessMove[];
 }
 
 const mapper = '0abcdefgh';
 
-export const GameHistory = memo((props: GameHistoryProps) => {
+export const History = memo((props: HistoryProps) => {
 	const { className, history } = props;
 
 	const newArray: Array<[ChessMove, ChessMove?]> = [];
@@ -51,7 +51,7 @@ export const GameHistory = memo((props: GameHistoryProps) => {
 	});
 
 	return (
-		<div className={classNames(cls.gameHistory, {}, [className])}>
+		<div className={classNames(cls.history, {}, [className])}>
 			<div className={cls.header}>История</div>
 			<HStack wrap='wrap' justify='between' className={cls.move}>
 				<div className={cls.pairNumber}>Ход</div>

@@ -1,4 +1,4 @@
-import { ChessLocations, ChessMove } from '@/entities/chessBoard';
+import { ChessLocations, ChessMove } from '@/entities/board';
 import { getPawnConsts } from './getPawnConsts/getPawnConsts';
 
 export const pawnMechanism = (

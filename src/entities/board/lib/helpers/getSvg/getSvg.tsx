@@ -1,6 +1,5 @@
-import { ChessName, ChessColor, FiguresStyle } from '../model/types/chessBoard';
-import { ChessBoardSchema } from '../model/types/chessBoardSchema';
-import { figuresStyleNavigator } from '../lib/helpers/figuresStyleNavigator/figuresStyleNavigator';
+import { ChessName, ChessColor, FiguresStyle } from '../../../model/types/board';
+import { figuresStyleNavigator } from '../figuresStyleNavigator/figuresStyleNavigator';
 
 // const viewBoxes: Record<ChessName, string> = {
 // 	bishop: '5 5 35 35',
@@ -67,8 +66,4 @@ export const getSvg = (
 			}
 		}
 	}
-};
-
-export const initialState: ChessBoardSchema = {
-	mover: 'white',
 };

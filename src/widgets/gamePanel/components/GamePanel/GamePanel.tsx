@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './GamePanel.module.scss';
-import { ChessBoard, Clock, Game, GameHistory } from '@/entities/chessBoard';
+import { Board, Clock, Game, History } from '@/entities/board';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getHours } from '../../model/selectors/getTime/getHours/getHours';
@@ -9,9 +9,9 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { getMinutes } from '../../model/selectors/getTime/getMinutes/getMinutes';
 import { getSeconds } from '../../model/selectors/getTime/getSeconds/getSeconds';
 import { getMilliseconds } from '../../model/selectors/getTime/getMilliseconds/getMilliseconds';
-import { GamePanelLayout } from '@/entities/chessBoard';
+import { GamePanelLayout } from '@/entities/board';
 import { getHistory } from '../../model/selectors/getHistory/getHistory';
-import { ChessSquareContainer } from '../ChessSquareContainer/ChessSquareContainer';
+import { BoardSquareContainer } from '../BoardSquareContainer/BoardSquareContainer';
 import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
@@ -156,8 +156,8 @@ export const GamePanel = memo((props: GamePanelProps) => {
 						)}
 
 						{isGameStarted ? (
-							<ChessBoard
-								ChessSquareContainer={ChessSquareContainer}
+							<Board
+								BoardSquareContainer={BoardSquareContainer}
 								className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}
 							/>
 						) : (
@@ -194,7 +194,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 						seconds={whiteSeconds}
 					/>
 				}
-				history={isGameStarted ? <GameHistory history={history} /> : undefined}
+				history={isGameStarted ? <History history={history} /> : undefined}
 				settings={
 					<div style={{ background: 'purple', height: '100%' }}>
 						<br />

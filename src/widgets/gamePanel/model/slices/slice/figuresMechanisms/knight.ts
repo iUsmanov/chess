@@ -1,4 +1,4 @@
-import { ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/board';
 import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
 
 export const knightMechanism = (

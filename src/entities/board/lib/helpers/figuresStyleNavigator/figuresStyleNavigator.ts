@@ -1,4 +1,4 @@
-import { FiguresStyle } from '../../../model/types/chessBoard';
+import { FiguresStyle } from '../../../model/types/board';
 import {
 	ClassicBlackBishop,
 	ClassicBlackKing,

@@ -1,5 +1,5 @@
-import { ChessLocations } from '@/entities/chessBoard';
-import { Coordinates } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/board';
+import { Coordinates } from '@/entities/board';
 
 export const addAttackedDirection = (
 	square: string,

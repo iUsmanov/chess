@@ -1,4 +1,4 @@
-import { ChessLocations } from '@/entities/chessBoard';
+import { ChessLocations } from '@/entities/board';
 import { GamePanelSchema } from '../model/types/gamePanelSchema';
 
 const initialLocations: ChessLocations = {

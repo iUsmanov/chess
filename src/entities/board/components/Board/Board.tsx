@@ -1,17 +1,17 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ChessBoard.module.scss';
+import cls from './Board.module.scss';
 import themesCls from '../../styles/themes/themes.module.scss';
 import { isEven } from '@/shared/lib/helpers/isEven/isEven';
-import { ChessSquareContainerProps } from '../ChessSquare/ChessSquare';
+import { BoardSquareContainerProps } from '../BoardSquare/BoardSquare';
 
-interface ChessBoardProps {
+interface BoardProps {
 	className?: string;
-	ChessSquareContainer: React.MemoExoticComponent<(props: ChessSquareContainerProps) => JSX.Element>;
+	BoardSquareContainer: React.MemoExoticComponent<(props: BoardSquareContainerProps) => JSX.Element>;
 }
 
-export const ChessBoard = memo((props: ChessBoardProps) => {
-	const { className, ChessSquareContainer } = props;
+export const Board = memo((props: BoardProps) => {
+	const { className, BoardSquareContainer } = props;
 	const squares = [];
 
 	for (let y = 0; y < 8; y++) {
@@ -27,7 +27,7 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 			}
 
 			squares.push(
-				<ChessSquareContainer
+				<BoardSquareContainer
 					key={coordinates}
 					coordinates={coordinates}
 					className={isEvenSquare ? themesCls.evenSquare : themesCls.oddSquare}
@@ -36,5 +36,5 @@ export const ChessBoard = memo((props: ChessBoardProps) => {
 		}
 	}
 
-	return <section className={classNames(cls.chessBoard, {}, [className])}>{squares}</section>;
+	return <section className={classNames(cls.board, {}, [className])}>{squares}</section>;
 });

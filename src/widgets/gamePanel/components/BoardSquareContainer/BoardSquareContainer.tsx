@@ -1,8 +1,8 @@
 import { memo, useCallback } from 'react';
-import { ChessSquareContainerProps } from '@/entities/chessBoard';
+import { BoardSquareContainerProps } from '@/entities/board';
 import { getChessAtLocation } from '../../model/selectors/getChessAtLocation/getChessAtLocation';
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { ChessSquare } from '@/entities/chessBoard';
+import { BoardSquare } from '@/entities/board';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getSelectedSquare } from '../../model/selectors/getSelectedSquare/getSelectedSquare';
@@ -11,7 +11,7 @@ import { gamePanelActions } from '../../model/slices/gamePanelSlice';
 import { getMover } from '../../model/selectors/getMover/getMover';
 import { getBoardSettings } from '../../model/selectors/getBoardSettings/getBoardSettings';
 
-export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
+export const BoardSquareContainer = memo((props: BoardSquareContainerProps) => {
 	const { className, coordinates } = props;
 	const selectedSquare = useSelector(getSelectedSquare);
 	const { figuresPack: figuresStyle } = useSelector(getBoardSettings);
@@ -34,7 +34,7 @@ export const ChessSquareContainer = memo((props: ChessSquareContainerProps) => {
 	);
 
 	return (
-		<ChessSquare
+		<BoardSquare
 			figuresStyle={figuresStyle}
 			className={className}
 			coordinates={coordinates}

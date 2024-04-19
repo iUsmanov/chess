@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ChessSquare.module.scss';
-import { ChessName, ChessColor, FiguresStyle } from '../../model/types/chessBoard';
-import { getSvg } from '../../consts/chessBoard';
+import cls from './BoardSquare.module.scss';
+import { ChessName, ChessColor, FiguresStyle } from '../../model/types/board';
+import { getSvg } from '../../lib/helpers/getSvg/getSvg';
 
-interface ChessSquareBaseProps {
+interface BoardSquareBaseProps {
 	className?: string;
 	coordinates: string;
 	available?: boolean;
@@ -13,24 +13,24 @@ interface ChessSquareBaseProps {
 	figuresStyle: FiguresStyle;
 }
 
-interface ChessSquareFreeProps extends ChessSquareBaseProps {
+interface BoardSquareFreeProps extends BoardSquareBaseProps {
 	isBusy?: false;
 }
 
-interface ChessSquareBusyProps extends ChessSquareBaseProps {
+interface BoardSquareBusyProps extends BoardSquareBaseProps {
 	isBusy: true;
 	figureName: ChessName;
 	figureColor: ChessColor;
 }
 
-type ChessSquareProps = ChessSquareFreeProps | ChessSquareBusyProps;
+type BoardSquareProps = BoardSquareFreeProps | BoardSquareBusyProps;
 
-export type ChessSquareContainerProps = Omit<
-	ChessSquareBaseProps,
+export type BoardSquareContainerProps = Omit<
+	BoardSquareBaseProps,
 	'available' | 'isSelected' | 'onClick' | 'figuresStyle'
 >;
 
-export const ChessSquare = memo((props: ChessSquareProps) => {
+export const BoardSquare = memo((props: BoardSquareProps) => {
 	const { className, isBusy, coordinates, onClick, isSelected, figuresStyle } = props;
 
 	if (!isBusy) {
@@ -54,7 +54,7 @@ export const ChessSquare = memo((props: ChessSquareProps) => {
 		return (
 			<div
 				className={classNames(
-					cls.chessSquare,
+					cls.boardSquare,
 					{ [cls.available]: available, [cls.selected]: isSelected },
 					[className]
 				)}

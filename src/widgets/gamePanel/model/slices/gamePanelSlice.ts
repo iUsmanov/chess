@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/gamePanel';
-import { BoardSettings, ChessColor, ChessLocations, Game, getEnemy } from '@/entities/chessBoard';
+import { BoardSettings, ChessColor, ChessLocations, Game, getEnemy } from '@/entities/board';
 import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { takePass } from './slice/takePass/takePass';

@@ -1,4 +1,4 @@
-export interface ChessBoard {}
+export interface Board {}
 
 export type ChessName = 'king' | 'knight' | 'rook' | 'pawn' | 'queen' | 'bishop';
 export type ChessColor = 'white' | 'black';

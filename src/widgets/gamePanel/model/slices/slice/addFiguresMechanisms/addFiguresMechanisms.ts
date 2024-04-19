@@ -1,4 +1,4 @@
-import { ChessLocations, ChessMove } from '@/entities/chessBoard';
+import { ChessLocations, ChessMove } from '@/entities/board';
 import { pawnMechanism } from '../figuresMechanisms/pawn/pawn';
 import { knightMechanism } from '../figuresMechanisms/knight';
 import { kingMechanism } from '../figuresMechanisms/king';
