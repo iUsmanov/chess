@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/gamePanel';
-import { BoardSettings, FigureColor, FiguresLocations, Game } from '@/entities/board';
+import { BoardSettings, FigureColor, Game } from '@/entities/board';
 import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
-import { takePass } from './slice/takePass/takePass';
 import { getEnemy } from '../../lib/getEnemy/getEnemy';
 import { finishGame } from './slice/finishGame/finishGame';
+import { moveFigure } from './slice/moveFigure/moveFigure';
+import { writeHistory } from './slice/writeHistory/writeHistory';
 
 export const gamePanelSlice = createSlice({
 	name: 'gamePanel',
@@ -133,25 +134,8 @@ export const gamePanelSlice = createSlice({
 				// Выбранная фигура атакует нажатую клетку ?
 				state.locations[state.selectedSquare].attackedSquares.includes(clickedSquare)
 			) {
-				takePass(state, state.locations, state.selectedSquare, clickedSquare);
-				takePass(state, state.mockLocations, state.selectedSquare, clickedSquare);
-				// =============
-				state.locations[clickedSquare] = state.locations[state.selectedSquare];
-				delete state.locations[state.selectedSquare];
-				// =============
-				state.mockLocations[clickedSquare] = state.mockLocations[state.selectedSquare];
-				delete state.mockLocations[state.selectedSquare];
-				// =============
-				const locations: FiguresLocations = {};
-				Object.entries(state.locations).map(([square, figure]) => {
-					locations[square] = { ...figure, attackedSquares: [] };
-				});
-				// =============
-				state.history.push({
-					from: state.selectedSquare,
-					to: clickedSquare,
-					locations: locations,
-				});
+				moveFigure(state, clickedSquare);
+				writeHistory(state, clickedSquare);
 				// ===============
 				state.selectedSquare = undefined;
 				state.availableSquares = [];
