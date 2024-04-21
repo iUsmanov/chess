@@ -53,7 +53,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				mainContent={
 					<div className={cls.mainContent}>
 						<TopInfo />
-						{isGameOn ? (
+						{isGameOn || gameResult ? (
 							<Board
 								BoardSquareContainer={BoardSquareContainer}
 								className={classNames('', { [cls.gameIsEnd]: Boolean(gameResult) }, [])}

@@ -14,12 +14,11 @@ export const gamePanelSlice = createSlice({
 		template: (state, action: PayloadAction<string>) => {},
 		startGame: (state) => {
 			if (state.clocks.white.time < 60000) return;
+			state.mover = initialState.mover;
 			state.isGameOn = true;
-			// state.gameResult = undefined;
 			addAttackedFigures(state);
 		},
 		prepareNewGame: (state) => {
-			resetStateAfterEnd(state);
 			state.gameResult = undefined;
 			state.history.length = 1;
 			state.locations = initialState.locations;
@@ -61,7 +60,6 @@ export const gamePanelSlice = createSlice({
 		},
 		setTimeLeft: (state, action: PayloadAction<number>) => {
 			if (!state.isGameOn) return;
-			// if (state.gameResult) return;
 			const newTime = action.payload;
 			const startTiming = state.clocks[state.mover].startTiming;
 
@@ -71,14 +69,14 @@ export const gamePanelSlice = createSlice({
 				state.clocks[state.mover].time = state.clocks[state.mover].savedTime - differenceTime;
 
 				if (state.clocks[state.mover].time <= 0) {
+					state.clocks[state.mover].savedTime = 0;
+					state.clocks[state.mover].time = 0;
+
 					state.gameResult = {
 						reason: 'expirationTime',
 						winner: getEnemy(state.mover),
 					};
-
 					resetStateAfterEnd(state);
-					state.clocks[state.mover].savedTime = 0;
-					state.clocks[state.mover].time = 0;
 				}
 			}
 		},

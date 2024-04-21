@@ -26,6 +26,7 @@ export const SideMenu = memo((props: SideMenuProps) => {
 	const onGiveUp = useCallback(() => {
 		dispatch(gamePanelActions.giveUp(mover));
 	}, [dispatch, mover]);
+
 	const onStartNewGame = useCallback(() => {
 		dispatch(gamePanelActions.prepareNewGame());
 
