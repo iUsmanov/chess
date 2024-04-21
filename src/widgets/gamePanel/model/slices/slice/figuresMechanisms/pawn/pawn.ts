@@ -5,13 +5,14 @@ export const pawnMechanism = (
 	square: string,
 	attackedSquares: string[],
 	locations: FiguresLocations,
-	lastMove?: ChessMove
+	history?: ChessMove[]
 ) => {
 	const { color: figureColor } = locations[square];
 	const x = Number(square[0]);
 	const y = Number(square[1]);
 	const { firstCoordinateY, next2StringCoordinates, nextSquareY, nextStringCoordinates, takePassY } =
 		getPawnConsts(x, y, figureColor);
+	const lastMove = history?.[history.length - 1];
 
 	if (!locations[nextStringCoordinates]) {
 		attackedSquares.push(nextStringCoordinates);

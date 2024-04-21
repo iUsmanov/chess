@@ -14,12 +14,7 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 		state.locations[square].attackedSquares = [];
 		const attackedSquares: string[] = [];
 
-		addFiguresMechanisms(
-			square,
-			attackedSquares,
-			state.locations,
-			state.history[state.history.length - 1]
-		);
+		addFiguresMechanisms(square, attackedSquares, state.locations, state.history);
 
 		if (state.locations[square].color === state.mover) {
 			state.mockLocations[square].attackedSquares = attackedSquares;
@@ -45,12 +40,7 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 					if (mockLocations[enemySquare].color !== state.mover) {
 						const attackedSquares: string[] = [];
 
-						addFiguresMechanisms(
-							enemySquare,
-							attackedSquares,
-							mockLocations,
-							state.history[state.history.length - 1]
-						);
+						addFiguresMechanisms(enemySquare, attackedSquares, mockLocations, state.history);
 						attackedSquaresByEnemy.push(...attackedSquares);
 					}
 				});

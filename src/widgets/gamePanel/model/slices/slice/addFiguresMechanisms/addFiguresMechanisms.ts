@@ -9,11 +9,11 @@ export const addFiguresMechanisms = (
 	square: string,
 	attackedSquares: string[],
 	locations: FiguresLocations,
-	lastMove?: ChessMove
+	history?: ChessMove[]
 ) => {
 	switch (locations[square].name) {
 		case 'pawn':
-			pawnMechanism(square, attackedSquares, locations, lastMove);
+			pawnMechanism(square, attackedSquares, locations, history);
 			break;
 		case 'knight':
 			knightMechanism(square, attackedSquares, locations);

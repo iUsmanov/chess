@@ -26,6 +26,15 @@ export const kingMechanism = (
 
 /* 
 
+Если в истории нет хода, который начинается с e1 или заканчивается им
+Если в истории нет хода, который начинается с a1 или заканчивается им
+Если клетки b1, c1, d1 - пустые
+Если клетки c1, d1, e1 - не атакованы врагом
+
+*/
+
+/* 
+
 export const kingMechanism = (square: string, attackedSquares: string[], locations: FiguresLocations) => {
 	const { color: figureColor } = locations[square];
 	const x = Number(square[0]);
