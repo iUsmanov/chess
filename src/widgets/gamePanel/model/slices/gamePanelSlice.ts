@@ -24,7 +24,19 @@ export const gamePanelSlice = createSlice({
 			state.locations = initialState.locations;
 			state.mockLocations = initialState.mockLocations;
 		},
-		test: (state) => {},
+		giveUp: (state, action: PayloadAction<FigureColor>) => {
+			if (!state.isGameOn) return;
+			finishGame(state, 'giveUp', getEnemy(action.payload));
+		},
+		changeBoardSettings: (state, action: PayloadAction<Partial<BoardSettings>>) => {
+			state.boardSettings = { ...state.boardSettings, ...action.payload };
+		},
+		changeGame: (state, action: PayloadAction<Game>) => {
+			state.game = action.payload;
+		},
+		addInitialAttackedSquares: (state) => {
+			addAttackedFigures(state);
+		},
 		setPartyTime: (state, action: PayloadAction<{ hoursString: string; minutesString: string }>) => {
 			const { hoursString, minutesString } = action.payload;
 			const hours = Number(hoursString);
@@ -39,19 +51,8 @@ export const gamePanelSlice = createSlice({
 
 			state.clocks.white.savedTime = milliseconds;
 			state.clocks.white.time = milliseconds;
-			// ===============
 			state.clocks.black.savedTime = milliseconds;
 			state.clocks.black.time = milliseconds;
-		},
-		giveUp: (state, action: PayloadAction<FigureColor>) => {
-			if (!state.isGameOn) return;
-			finishGame(state, 'giveUp', getEnemy(action.payload));
-		},
-		changeBoardSettings: (state, action: PayloadAction<Partial<BoardSettings>>) => {
-			state.boardSettings = { ...state.boardSettings, ...action.payload };
-		},
-		changeGame: (state, action: PayloadAction<Game>) => {
-			state.game = action.payload;
 		},
 		setTimeLeft: (state, action: PayloadAction<number>) => {
 			if (!state.isGameOn) return;
@@ -87,9 +88,6 @@ export const gamePanelSlice = createSlice({
 			toggleMover(state);
 			addAttackedFigures(state);
 		},
-		addInitialAttackedSquares: (state) => {
-			addAttackedFigures(state);
-		},
 		clickSquare: (
 			state,
 			action: PayloadAction<{ selectedSquare: string; mover: FigureColor; time: number }>
@@ -100,29 +98,39 @@ export const gamePanelSlice = createSlice({
 			const time = action.payload.time;
 			const enemy = getEnemy(mover);
 
-			// Когда мы отменаяем выбранную фигуру
+			// !Когда мы отменаяем выбранную фигуру
 			if (
-				// Выбранная фигура и нажатая - одно и то же
+				// Выбранная фигура и нажатая - одно и то же ?
 				state.selectedSquare === clickedSquare ||
-				// Есть выбранная фигура
+				// Есть выбранная фигура ?
 				(state.selectedSquare &&
 					// Нажатая клетка пустая ?
 					!state.locations[clickedSquare] &&
-					// Если эта клетка не является атакованною выбранной фигурой
+					// Если эта клетка не является атакованною выбранной фигурой ?
 					!state.locations[state.selectedSquare].attackedSquares.includes(clickedSquare))
 			) {
+				// Отменяем выделение фигуры
 				state.selectedSquare = undefined;
+				// Отменяем выделение атакованных клеток
 				state.availableSquares = [];
 			}
-			// Когда мы выбираем или перевыбираем фигуру
-			else if (state.locations[clickedSquare]?.color === mover) {
+			// !Когда мы выбираем или перевыбираем фигуру
+			else if (
+				// Нажатая клетка имеет в себе фигуру И она принадлежит муверу ?
+				state.locations[clickedSquare]?.color === mover
+			) {
 				state.selectedSquare = clickedSquare;
 				state.availableSquares = state.locations[clickedSquare].attackedSquares;
 			}
-			// Ход фигурой
+			// !Ход фигурой
 			else if (
+				// Есть выделенная клетка с фигурой ?
 				state.selectedSquare &&
-				(state.locations[clickedSquare]?.color === enemy || !state.locations[clickedSquare]) &&
+				// Нажатая клетка имеет в себе фигуру и она принадлежит врагу ?
+				(state.locations[clickedSquare]?.color === enemy ||
+					// Нажатая клетка пустая ?
+					!state.locations[clickedSquare]) &&
+				// Выбранная фигура атакует нажатую клетку ?
 				state.locations[state.selectedSquare].attackedSquares.includes(clickedSquare)
 			) {
 				takePass(state, state.locations, state.selectedSquare, clickedSquare);
