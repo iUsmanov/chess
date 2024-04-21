@@ -62,7 +62,6 @@ export const gamePanelSlice = createSlice({
 
 			if (startTiming) {
 				const differenceTime = newTime - startTiming;
-
 				state.clocks[state.mover].time = state.clocks[state.mover].savedTime - differenceTime;
 
 				if (state.clocks[state.mover].time <= 0) {

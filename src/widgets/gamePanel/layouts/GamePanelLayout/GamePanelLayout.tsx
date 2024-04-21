@@ -24,3 +24,11 @@ export const GamePanelLayout = (props: GamePanelLayoutProps) => {
 		</div>
 	);
 };
+
+/* <GamePanelLayout
+				bottomTimer={<div style={{ height: '100%', width: '100%', background: 'red' }} />}
+				topTimer={<div style={{ height: '100%', background: 'green' }} />}
+				board={<div style={{ height: '100%', background: 'blue' }} />}
+				history={<div style={{ height: '100%', background: 'purple' }} />}
+				settings={<div style={{ height: '100%', background: 'yellow' }} />}
+			/> */

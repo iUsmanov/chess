@@ -69,25 +69,22 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 
 	if (getIsCheck(state)) {
 		state.isCheck = true;
-		console.log(`Стороне ${state.mover} поставлен шах`);
 	} else {
 		state.isCheck = false;
 	}
 
 	if (getIsStalemate(state)) {
-		console.log(`Стороне ${state.mover} поставлен пат`);
-
 		finishGame(state, 'stalemate', 'draw');
 	}
 
 	if (getIsCheckmate(state)) {
-		console.log(`Стороне ${state.mover} поставлен мат`);
-
 		finishGame(state, 'checkmate', getEnemy(state.mover));
 	}
 };
 
 /* 
+Прежде чем написать js-код, написал вот это
+
 Проитерироваться по фигурам врага и добавить атакованные ими фигуры в их locations. 
 Проитерироваться по фигурам мувера и добавить атакованные ими фигуры в их mockLocations. 
 const savedMockLocations = cloneObj(mockLocations)

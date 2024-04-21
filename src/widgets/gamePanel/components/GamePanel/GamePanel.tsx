@@ -37,7 +37,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		timerRef.current = setInterval(() => {
 			const date = new Date();
 			dispatch(gamePanelActions.setTimeLeft(date.getTime()));
-		}, 100);
+		}, 10);
 
 		return () => {
 			if (timerRef.current) {
@@ -71,12 +71,3 @@ export const GamePanel = memo((props: GamePanelProps) => {
 		</div>
 	);
 });
-{
-	/* <GamePanelLayout
-				bottomTimer={<div style={{ height: '100%', width: '100%', background: 'red' }} />}
-				topTimer={<div style={{ height: '100%', background: 'green' }} />}
-				board={<div style={{ height: '100%', background: 'blue' }} />}
-				history={<div style={{ height: '100%', background: 'purple' }} />}
-				settings={<div style={{ height: '100%', background: 'yellow' }} />}
-			/> */
-}
