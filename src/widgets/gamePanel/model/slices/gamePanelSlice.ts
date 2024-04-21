@@ -5,7 +5,7 @@ import { toggleMover } from './slice/toggleMover/toggleMover';
 import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
 import { takePass } from './slice/takePass/takePass';
 import { getEnemy } from '../../lib/getEnemy/getEnemy';
-import { resetStateAfterEnd } from './slice/resetStateAfterEnd/resetStateAfterEnd';
+import { finishGame } from './slice/finishGame/finishGame';
 
 export const gamePanelSlice = createSlice({
 	name: 'gamePanel',
@@ -45,12 +45,7 @@ export const gamePanelSlice = createSlice({
 		},
 		giveUp: (state, action: PayloadAction<FigureColor>) => {
 			if (!state.isGameOn) return;
-			state.gameResult = {
-				reason: 'giveUp',
-				winner: getEnemy(action.payload),
-			};
-
-			resetStateAfterEnd(state);
+			finishGame(state, 'giveUp', getEnemy(action.payload));
 		},
 		changeBoardSettings: (state, action: PayloadAction<Partial<BoardSettings>>) => {
 			state.boardSettings = { ...state.boardSettings, ...action.payload };
@@ -72,11 +67,7 @@ export const gamePanelSlice = createSlice({
 					state.clocks[state.mover].savedTime = 0;
 					state.clocks[state.mover].time = 0;
 
-					state.gameResult = {
-						reason: 'expirationTime',
-						winner: getEnemy(state.mover),
-					};
-					resetStateAfterEnd(state);
+					finishGame(state, 'expirationTime', getEnemy(state.mover));
 				}
 			}
 		},

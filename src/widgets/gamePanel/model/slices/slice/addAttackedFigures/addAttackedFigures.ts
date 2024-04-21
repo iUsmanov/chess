@@ -7,7 +7,7 @@ import { takePass } from '../takePass/takePass';
 import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
 import { getIsStalemate } from '../helpers/getIsStalemate/getIsStalemate';
 import { getEnemy } from '../../../../lib/getEnemy/getEnemy';
-import { resetStateAfterEnd } from '../resetStateAfterEnd/resetStateAfterEnd';
+import { finishGame } from '../finishGame/finishGame';
 
 export const addAttackedFigures = (state: GamePanelSchema) => {
 	Object.keys(state.locations).forEach((square) => {
@@ -77,23 +77,13 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 	if (getIsStalemate(state)) {
 		console.log(`Стороне ${state.mover} поставлен пат`);
 
-		state.gameResult = {
-			reason: 'stalemate',
-			winner: 'draw',
-		};
-
-		resetStateAfterEnd(state);
+		finishGame(state, 'stalemate', 'draw');
 	}
 
 	if (getIsCheckmate(state)) {
 		console.log(`Стороне ${state.mover} поставлен мат`);
 
-		state.gameResult = {
-			reason: 'checkmate',
-			winner: getEnemy(state.mover),
-		};
-
-		resetStateAfterEnd(state);
+		finishGame(state, 'checkmate', getEnemy(state.mover));
 	}
 };
 

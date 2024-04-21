@@ -6,8 +6,8 @@ export type BoardSize = 's' | 'm' | 'x';
 export type BoardStyle = 'wood' | 'ice' | 'field';
 export type Game = 'chess' | 'checkers';
 export type GameClocks = Record<FigureColor, Clock>;
-type GameResultWinner = FigureColor | 'draw';
-type GameResultReason = 'giveUp' | 'expirationTime' | 'checkmate' | 'stalemate';
+export type GameResultWinner = FigureColor | 'draw';
+export type GameResultReason = 'giveUp' | 'expirationTime' | 'checkmate' | 'stalemate';
 
 export interface Figure {
 	color: FigureColor;

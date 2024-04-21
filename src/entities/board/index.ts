@@ -15,6 +15,8 @@ export type {
 	FiguresStyle,
 	Game,
 	GameResult,
+	GameResultReason,
+	GameResultWinner,
 } from './model/types/board';
 export { boardReducer } from './model/slices/boardSlice';
 export { figuresPackOptions, gameOptions, sizeOptions, styleOptions } from './consts/options';
