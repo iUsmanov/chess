@@ -151,8 +151,10 @@ export const gamePanelSlice = createSlice({
 				toggleMover(state);
 				addAttackedFigures(state);
 				// ===============
-				state.clocks[state.mover].startTiming = time;
-				state.clocks[state.mover].savedTime = state.clocks[state.mover].time;
+				if (state.isGameOn) {
+					state.clocks[state.mover].startTiming = time;
+					state.clocks[state.mover].savedTime = state.clocks[state.mover].time;
+				}
 			}
 		},
 	},

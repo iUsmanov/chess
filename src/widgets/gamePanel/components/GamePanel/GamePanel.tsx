@@ -65,7 +65,7 @@ export const GamePanel = memo((props: GamePanelProps) => {
 				}
 				topTimer={<Clock color='black' />}
 				bottomTimer={<Clock color='white' />}
-				history={isGameOn ? <History history={history} /> : undefined}
+				history={isGameOn || gameResult ? <History history={history} /> : undefined}
 				sideMenu={<SideMenu />}
 			/>
 		</div>
