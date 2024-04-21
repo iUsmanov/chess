@@ -1,6 +1,5 @@
 import { GameResultReason, GameResultWinner } from '@/entities/board';
 import { GamePanelSchema } from '../../../types/gamePanelSchema';
-import { resetStateAfterEnd } from '../resetStateAfterEnd/resetStateAfterEnd';
 
 export const finishGame = (
 	state: GamePanelSchema,
@@ -12,5 +11,10 @@ export const finishGame = (
 		winner,
 	};
 
-	resetStateAfterEnd(state);
+	state.isGameOn = false;
+	state.availableSquares = [];
+	state.isCheck = false;
+	state.selectedSquare = undefined;
+	state.clocks.black.startTiming = undefined;
+	state.clocks.white.startTiming = undefined;
 };
