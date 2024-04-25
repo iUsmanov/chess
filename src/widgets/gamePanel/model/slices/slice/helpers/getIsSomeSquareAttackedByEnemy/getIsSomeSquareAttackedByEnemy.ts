@@ -1,6 +1,11 @@
 import { FigureColor, FiguresLocations } from '@/entities/board';
 
-export const getIsSquaresAttackedByEnemy = (
+/**
+ * Если фигуры врага атакуют хотябы одну из клеток, переданных в массиве squares,
+ * то возвращается true.
+ */
+
+export const getIsSomeSquareAttackedByEnemy = (
 	locations: FiguresLocations,
 	figureColor: FigureColor,
 	squares: string[]

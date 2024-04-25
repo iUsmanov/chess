@@ -1,6 +1,6 @@
 import { ChessMove, FiguresLocations } from '@/entities/board';
 import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
-import { getIsSquaresAttackedByEnemy } from '../helpers/getIsSquaresAttackedByEnemy/getIsSquaresAttackedByEnemy';
+import { getIsSomeSquareAttackedByEnemy } from '../helpers/getIsSomeSquareAttackedByEnemy/getIsSomeSquareAttackedByEnemy';
 
 export const kingMechanism = (
 	square: string,
@@ -37,7 +37,7 @@ export const kingMechanism = (
 		!locations[`2${homeY}`] &&
 		!locations[`3${homeY}`] &&
 		!locations[`4${homeY}`] &&
-		!getIsSquaresAttackedByEnemy(locations, figureColor, [`3${homeY}`, `4${homeY}`, `5${homeY}`])
+		!getIsSomeSquareAttackedByEnemy(locations, figureColor, [`3${homeY}`, `4${homeY}`, `5${homeY}`])
 	) {
 		attackedSquares.push(`3${homeY}`);
 	}
@@ -47,7 +47,7 @@ export const kingMechanism = (
 		kingsideRookDidNotMove &&
 		!locations[`6${homeY}`] &&
 		!locations[`7${homeY}`] &&
-		!getIsSquaresAttackedByEnemy(locations, figureColor, [`5${homeY}`, `6${homeY}`, `7${homeY}`])
+		!getIsSomeSquareAttackedByEnemy(locations, figureColor, [`5${homeY}`, `6${homeY}`, `7${homeY}`])
 	) {
 		attackedSquares.push(`7${homeY}`);
 	}
@@ -65,15 +65,6 @@ export const kingMechanism = (
 		}
 	}
 };
-
-/* 
-
-Если в истории нет хода, который начинается с e1 или заканчивается им
-Если в истории нет хода, который начинается с a1 или заканчивается им
-Если клетки b1, c1, d1 - пустые
-Если клетки c1, d1, e1 - не атакованы врагом
-
-*/
 
 /* 
 
