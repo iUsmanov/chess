@@ -1,5 +1,5 @@
 import { FiguresLocations } from '@/entities/board';
-import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
+import { getSquareIsExists } from '../../../helpers/getSquareIsExists/getSquareIsExists';
 
 export const knightMechanism = (
 	square: string,

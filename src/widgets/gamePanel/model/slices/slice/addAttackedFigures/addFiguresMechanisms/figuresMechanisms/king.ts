@@ -1,6 +1,6 @@
 import { ChessMove, FiguresLocations } from '@/entities/board';
-import { getSquareIsExists } from '../helpers/getSquareIsExists/getSquareIsExists';
-import { getIsSomeSquareAttackedByEnemy } from '../helpers/getIsSomeSquareAttackedByEnemy/getIsSomeSquareAttackedByEnemy';
+import { getSquareIsExists } from '../../../helpers/getSquareIsExists/getSquareIsExists';
+import { getIsSomeSquareAttackedByEnemy } from '../../../helpers/getIsSomeSquareAttackedByEnemy/getIsSomeSquareAttackedByEnemy';
 
 export const kingMechanism = (
 	square: string,
@@ -13,6 +13,20 @@ export const kingMechanism = (
 	const y = Number(square[1]);
 	const homeY = figureColor === 'white' ? '1' : '8';
 
+	for (let differenceX = -1; differenceX <= 1; differenceX++) {
+		for (let differenceY = -1; differenceY <= 1; differenceY++) {
+			const newX = x + differenceX;
+			const newY = y + differenceY;
+			const stringCoordinates = `${newX}${newY}`;
+			if (getSquareIsExists({ x: newX, y: newY })) {
+				if (!locations[stringCoordinates] || locations[stringCoordinates].color !== figureColor) {
+					attackedSquares.push(stringCoordinates);
+				}
+			}
+		}
+	}
+
+	// Рокировка
 	const kingDidNotMove = history?.every((move) => {
 		if (move.from !== `5${homeY}`) {
 			return true;
@@ -50,19 +64,6 @@ export const kingMechanism = (
 		!getIsSomeSquareAttackedByEnemy(locations, figureColor, [`5${homeY}`, `6${homeY}`, `7${homeY}`])
 	) {
 		attackedSquares.push(`7${homeY}`);
-	}
-
-	for (let differenceX = -1; differenceX <= 1; differenceX++) {
-		for (let differenceY = -1; differenceY <= 1; differenceY++) {
-			const newX = x + differenceX;
-			const newY = y + differenceY;
-			const stringCoordinates = `${newX}${newY}`;
-			if (getSquareIsExists({ x: newX, y: newY })) {
-				if (!locations[stringCoordinates] || locations[stringCoordinates].color !== figureColor) {
-					attackedSquares.push(stringCoordinates);
-				}
-			}
-		}
 	}
 };
 

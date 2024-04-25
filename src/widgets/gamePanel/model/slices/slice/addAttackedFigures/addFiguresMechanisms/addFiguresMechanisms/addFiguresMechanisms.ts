@@ -1,9 +1,9 @@
 import { FiguresLocations, ChessMove } from '@/entities/board';
-import { pawnMechanism } from '../figuresMechanisms/pawn/pawn';
+import { addAttackedAxles } from '../figuresMechanisms/addAttackedAxles/addAttackedAxles';
+import { addAttackedDiagonals } from '../figuresMechanisms/addAttackedDiagonals/addAttackedDiagonals';
 import { knightMechanism } from '../figuresMechanisms/knight';
+import { pawnMechanism } from '../figuresMechanisms/pawn/pawn';
 import { kingMechanism } from '../figuresMechanisms/king';
-import { addAttackedAxles } from '../addAttackedAxles/addAttackedAxles';
-import { addAttackedDiagonals } from '../addAttackedDiagonals/addAttackedDiagonals';
 
 export const addFiguresMechanisms = (
 	square: string,

@@ -1,14 +1,14 @@
 import { deepClone } from '@/shared/lib/helpers/deepClone/deepClone';
-import { GamePanelSchema } from '../../../types/gamePanelSchema';
-import { addFiguresMechanisms } from '../addFiguresMechanisms/addFiguresMechanisms';
-import { getKingSquare } from '../helpers/getKingSquare/getKingSquare';
-import { getIsCheckmate } from '../helpers/getIsCheckmate/getIsCheckmate';
-import { takePass } from '../takePass/takePass';
-import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
-import { getIsStalemate } from '../helpers/getIsStalemate/getIsStalemate';
-import { getEnemy } from '../../../../lib/getEnemy/getEnemy';
-import { finishGame } from '../finishGame/finishGame';
-import { rookJump } from '../rookJump/rookJump';
+import { GamePanelSchema } from '../../../../types/gamePanelSchema';
+import { addFiguresMechanisms } from '../addFiguresMechanisms/addFiguresMechanisms/addFiguresMechanisms';
+import { getKingSquare } from '../../helpers/getKingSquare/getKingSquare';
+import { getIsCheckmate } from '../../helpers/getIsCheckmate/getIsCheckmate';
+import { takePass } from '../../takePass/takePass';
+import { getIsCheck } from '../../helpers/getIsCheck/getIsCheck';
+import { getIsStalemate } from '../../helpers/getIsStalemate/getIsStalemate';
+import { getEnemy } from '../../../../../lib/getEnemy/getEnemy';
+import { finishGame } from '../../finishGame/finishGame';
+import { rookJump } from '../../rookJump/rookJump';
 
 export const addAttackedFigures = (state: GamePanelSchema) => {
 	Object.keys(state.locations).forEach((square) => {

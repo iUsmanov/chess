@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../../consts/gamePanel';
 import { BoardSettings, FigureColor, Game } from '@/entities/board';
 import { toggleMover } from './slice/toggleMover/toggleMover';
-import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures';
+import { addAttackedFigures } from './slice/addAttackedFigures/addAttackedFigures/addAttackedFigures';
 import { getEnemy } from '../../lib/getEnemy/getEnemy';
 import { finishGame } from './slice/finishGame/finishGame';
 import { moveFigure } from './slice/moveFigure/moveFigure';
