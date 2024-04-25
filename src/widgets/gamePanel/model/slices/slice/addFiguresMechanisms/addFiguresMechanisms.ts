@@ -19,7 +19,7 @@ export const addFiguresMechanisms = (
 			knightMechanism(square, attackedSquares, locations);
 			break;
 		case 'king':
-			kingMechanism(square, attackedSquares, locations);
+			kingMechanism(square, attackedSquares, locations, history);
 			break;
 		case 'rook':
 			addAttackedAxles(square, attackedSquares, locations);

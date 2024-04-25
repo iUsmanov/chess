@@ -8,18 +8,25 @@ import { getIsCheck } from '../helpers/getIsCheck/getIsCheck';
 import { getIsStalemate } from '../helpers/getIsStalemate/getIsStalemate';
 import { getEnemy } from '../../../../lib/getEnemy/getEnemy';
 import { finishGame } from '../finishGame/finishGame';
+import { rookJump } from '../rookJump/rookJump';
 
 export const addAttackedFigures = (state: GamePanelSchema) => {
 	Object.keys(state.locations).forEach((square) => {
 		state.locations[square].attackedSquares = [];
 		const attackedSquares: string[] = [];
 
-		addFiguresMechanisms(square, attackedSquares, state.locations, state.history);
+		if (state.locations[square].color !== state.mover) {
+			addFiguresMechanisms(square, attackedSquares, state.locations, state.history);
+			state.locations[square].attackedSquares = attackedSquares;
+		}
+	});
+
+	Object.keys(state.locations).forEach((square) => {
+		const attackedSquares: string[] = [];
 
 		if (state.locations[square].color === state.mover) {
+			addFiguresMechanisms(square, attackedSquares, state.locations, state.history);
 			state.mockLocations[square].attackedSquares = attackedSquares;
-		} else {
-			state.locations[square].attackedSquares = attackedSquares;
 		}
 	});
 	// ====================
@@ -30,6 +37,7 @@ export const addAttackedFigures = (state: GamePanelSchema) => {
 		if (figure.color === state.mover) {
 			figure.attackedSquares.forEach((attackedSquare) => {
 				takePass(state, mockLocations, square, attackedSquare);
+				rookJump(state, mockLocations, square, attackedSquare);
 				mockLocations[attackedSquare] = deepClone(figure);
 				delete mockLocations[square];
 
